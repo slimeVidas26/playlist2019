@@ -1,0 +1,367 @@
+/* PLAYER */
+.player {
+  position: relative;
+  /* background-image: url('../Docs/player.png'); */
+  background-repeat: no-repeat;
+  height: 150px;
+  ;
+  background-size: contain;
+  background-size: 100%;
+  background-position: center center;
+  /* opacity:0.3; */
+  z-index: 10;
+  /* background-color: cadetblue; */
+}
+
+.ellipse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url('../Docs/ellipse1.png');
+  background-repeat: no-repeat;
+  height: 150px;
+  ;
+  background-size: contain;
+  background-size: 100%;
+  background-position: center center;
+  /* opacity:0.3; */
+  z-index: 20;
+  width: 100%;
+
+}
+
+.item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url('../Docs/item.png');
+  background-repeat: no-repeat;
+  height: 150px;
+  ;
+  background-size: contain;
+  background-size: 100%;
+  background-position: center center;
+  /* opacity:0.3; */
+  z-index: 21;
+  width: 100%;
+}
+
+.pause {
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url('../Docs/pause1.png');
+  /* background-color: chartreuse; */
+  background-repeat: no-repeat;
+  height: 150px;
+  background-size: contain;
+  background-position: center center;
+  /* opacity: 0.3; */
+  z-index: 22;
+  width: 100%;
+  display: grid;
+}
+
+.pauseImg {
+  width: 8%;
+  margin: auto 17%;
+  /* background-color: crimson; */
+  cursor: pointer;
+  display:inline-block;
+}
+
+.cancelImg {
+    position: absolute;
+    top: 36%;
+    right: 2%;
+    cursor: pointer;
+    display: block;
+    width:4%;
+  
+}
+
+.updateImg {
+  position: absolute;
+  bottom: 37%;
+  right: 1.5%;
+  cursor: pointer;
+  display: block;
+  width:6%;
+
+}
+
+/* INFO */
+
+
+.info {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform:translateY(-50%);
+  height: 65%;
+  z-index: 29;
+  width: 40%;
+  z-index: 30;
+  font-family: 'Righteous', cursive;}
+
+.audio-control img{
+  max-width:90%;
+  border-radius: 5em;
+  z-index: 31;
+}
+
+.nowPlaying{
+  font-weight: bold;
+  z-index: 31;
+  text-align: center;
+  max-width:90%;
+    }
+
+.nowPlaying span{
+  font-family: 'Righteous', cursive;
+}
+
+.listSongs{
+  z-index: 31;
+  }
+
+  .listSongs ul{
+    overflow:auto;
+    z-index: 90;
+    }
+
+.listSongs ul li .play {
+  font-size: 1em;
+ position:relative;
+ left:-4px;
+}
+
+.listSongs .collection-item {
+  background-color: transparent;
+  border-bottom: none;
+  
+}
+.listSongs .current {
+  font-weight:bold;
+}
+.collection{
+  border:none;
+}
+
+@media (min-width:320px) {
+
+  /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+  /* PLAYER */
+  .player {
+    height: 160px;
+  }
+
+  .ellipse {
+    height: 160px;
+  }
+
+  .item {
+    height: 160px;
+  }
+
+  .pause {
+    height: 160px;
+  }
+
+  /* INFO */
+  .nowPlaying{
+font-size:0.55em;
+
+  }
+
+.listSongs ul{
+  height:5em;
+  }
+
+  .listSongs .collection-item {
+    line-height: 1.4em;
+    font-size: 0.6em;
+    padding:0;
+  }
+}
+
+@media (min-width:480px) {
+  /* smartphones, Android phones, landscape iPhone */
+
+  /* PLAYER */
+  .player {
+    height: 240px;
+  }
+
+  .ellipse {
+    height: 240px;
+  }
+
+  .item {
+    height: 240px;
+  }
+
+  .pause {
+    height: 240px;
+  }
+
+    /* INFO */
+
+  .nowPlaying{
+font-size:0.8em;
+
+  }
+
+.listSongs ul{
+  height:7em;
+  }
+
+  .listSongs .collection-item {
+    line-height: 1.3em;
+    font-size: 0.8em;
+    padding:0;
+
+  } 
+}
+
+@media (min-width:600px) {
+  /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+  /* PLAYER */
+  .player {
+    height: 300px;
+  }
+
+  .ellipse {
+    height: 300px;
+  }
+
+  .item {
+    height: 300px;
+  }
+
+  .pause {
+    height: 300px;
+  }
+
+    /* INFO */
+  .nowPlaying{
+font-size:1em;
+  }
+
+.listSongs ul{
+  height:9em;
+  }
+
+  .listSongs .collection-item {
+    line-height: 1.4em;
+    font-size: 1em;
+    padding:0;
+
+  } 
+}
+
+@media (min-width:801px) {
+
+  /* tablet, landscape iPad, lo-res laptops ands desktops */
+  /* PLAYER */
+  .player {
+    height: 360px;
+  }
+
+  .ellipse {
+    height: 360px;
+  }
+
+  .item {
+    height: 360px;
+  }
+
+  .pause {
+    height: 360px;
+  }
+
+   /* INFO */
+  .nowPlaying{
+font-size:1em;
+  }
+
+.listSongs ul{
+  height:10em;
+  }
+
+  .listSongs .collection-item {
+    line-height: 1.2em;
+    font-size: 1.1em;
+  }
+}
+
+@media (min-width:992px) {
+  /* big landscape tablets, laptops, and desktops */
+  /* PLAYER */
+  .player {
+    height: 400px;
+  }
+
+  .ellipse {
+    height: 400px;
+  }
+
+  .item {
+    height: 400px;
+  }
+
+  .pause {
+    height: 400px;
+  }
+  /* INFO */
+  .nowPlaying{
+font-size:1em;
+  }
+
+.listSongs ul{
+  height:11em;
+  }
+
+  .listSongs .collection-item {
+    line-height: 1.5em;
+    font-size: 1em;
+    padding:0;
+
+  }
+}
+
+@media (min-width:1200px) {
+  /* hi-res laptops and desktops */
+  /* PLAYER */
+  .player {
+    height: 400px;
+  }
+
+  .ellipse {
+    height: 400px;
+  }
+
+  .item {
+    height: 400px;
+  }
+
+  .pause {
+    height: 400px;
+  }
+
+    /* INFO */
+  .nowPlaying{
+font-size:1em;
+  }
+
+.listSongs ul{
+  height:11em;
+  }
+
+  .listSongs .collection-item {
+    line-height: 1.6em;
+    font-size: 1.1em;
+    padding:0;
+  } 
+}

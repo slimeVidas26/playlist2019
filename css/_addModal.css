@@ -1,0 +1,258 @@
+/* MODAL */
+
+.modal-form-row {
+    margin-bottom: 0px;
+  }
+  
+  .addPlaylistForm {
+    position: relative;
+  
+  }
+  
+  .preview {
+    background-image: url('../Docs/girl.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+  
+  #modalAdd h4 {
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+  }
+  
+  @media (min-width:320px) {
+  
+    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+    .modal {
+      max-height: 300px;
+      margin-top: 10%;
+      width: 90%
+    }
+  
+    .addPlaylistForm {
+      position: relative;
+      height: 10em;
+  
+    }
+  
+    .preview {
+      height: 10em;
+    }
+  
+    .next {
+      width: 43%;
+      position: absolute;
+      bottom: 0;
+      left: -5%;
+      font-size: 10px;
+    }
+  
+    .reset {
+      width: 43%;
+      position: absolute;
+      bottom: 0;
+      right: 8%;
+      font-size: 10px;
+    }
+  
+    .input-field {
+      position: relative;
+      margin-top: -0.3rem;
+      margin-bottom: -0.3rem;
+    }
+  }
+  
+  @media (min-width:480px) {
+  
+    /* smartphones, Android phones, landscape iPhone */
+    .modal {
+      max-height: 400px;
+      margin-top: 10%;
+      width: 90%
+    }
+  
+    .addPlaylistForm {
+      position: relative;
+      height: 15em;
+  
+    }
+  
+    .preview {
+      height: 15em;
+    }
+  
+    .next {
+      width: 43%;
+      position: absolute;
+      bottom: 0;
+      left: -1%;
+      font-size: 11px;
+  
+    }
+  
+    .reset {
+      width: 43%;
+      position: absolute;
+      bottom: 0;
+      right: 8%;
+      font-size: 11px;
+  
+  
+    }
+  
+    .input-field {
+      position: relative;
+      margin-top: 0.7rem;
+      margin-bottom: 0.7rem;
+    }
+  
+  
+  
+  }
+  
+  @media (min-width:600px) {
+  
+    /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+    /* ADD PLAYLIST MODAL */
+    .modal {
+      max-height: 90%;
+      margin-top: 3%;
+      width: 85%
+    }
+  
+    .addPlaylistForm {
+      position: relative;
+      height: 17em;
+  
+    }
+  
+    .preview {
+      height: 17em;
+    }
+  
+    .next {
+      width: 43%;
+      position: absolute;
+      bottom: 0;
+      font-size: 12px;
+  
+    }
+  
+    .reset {
+      width: 43%;
+      position: absolute;
+      bottom: 0;
+      right: 8%;
+      font-size: 12px;
+  
+    }
+  
+    .input-field {
+      position: relative;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
+  
+  @media (min-width:801px) {
+  
+    /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+    /* ADD PLAYLIST MODAL */
+    .modal {
+      width: 70%
+    }
+  
+    .addPlaylistForm {
+      position: relative;
+      height: 20em;
+  
+    }
+  
+    .preview {
+      height: 20em;
+    }
+  
+    .next {
+      width: 43%;
+      position: absolute;
+      bottom: 0;
+      font-size: 13px;
+  
+    }
+  
+    .reset {
+      width: 43%;
+      position: absolute;
+      bottom: 0;
+      right: 8%;
+      font-size: 13px;
+  
+    }
+  
+  
+  }
+  
+  @media (min-width:992px) {
+  
+    /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+    /* ADD PLAYLIST MODAL */
+    .modal {
+      
+      width: 60%
+    }
+  
+    .addPlaylistForm {
+      position: relative;
+      height: 20em;
+  
+    }
+  
+    .preview {
+      height: 20em;
+    }
+  
+    .next {
+      width: 43%;
+      position: absolute;
+      bottom: 0;
+      font-size: 14px;
+  
+    }
+  
+    .reset {
+      width: 43%;
+      position: absolute;
+      bottom: 0;
+      right: 8%;
+      font-size: 14px;
+  
+    }
+  
+  
+  }
+  
+  @media (min-width:1200px) {
+  
+    /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+    /* ADD PLAYLIST MODAL */
+    .modal {
+      
+      width: 55%
+    }
+  
+    .addPlaylistForm {
+      position: relative;
+      height: 23em;
+  
+    }
+  
+    .preview {
+      height: 23em;
+    }
+  
+  
+  
+  
+  
+  }

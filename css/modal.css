@@ -1,0 +1,187 @@
+/* MODAL */
+
+.modal-form-row {
+    margin-bottom: 0px;
+  } 
+  
+  #modalAdd h4{
+    border-bottom: 1px solid black;
+    padding-bottom:10px;
+  }
+
+  .focused{
+    font-size: 12px !important;
+    -webkit-transform: translateY(-140%);
+    -moz-transform: translateY(-140%);
+    -ms-transform: translateY(-140%);
+    -o-transform: translateY(-140%);
+    transform: translateY(-140%);
+}
+
+ 
+
+  .modal-footer a:first-child{
+      color:black;
+      margin-top:10px;
+      cursor: pointer;
+      margin-left: 6px;
+
+  }
+
+  .modal-footer a:first-child > i{
+    cursor: pointer;
+}
+
+.modal-footer .count {
+    color: black;
+    margin-top: 10px;
+    margin-left: 26px;
+}
+
+.modal-footer .count span {
+    font-weight: bold;
+}
+
+/* #modal-add-playlist-songs .input-field{
+    position: relative;
+    margin-top: 0;
+    margin-bottom: 0;   
+} */
+
+
+
+
+
+.preview{
+    background-image: url('../Docs/girl.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 20em;
+    background-size: cover;
+  }
+  
+  
+  @media (min-width:320px) {
+  
+    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+
+    .modal {
+      max-height: 60%;
+      margin-top:10%;
+      width:95%
+    }
+  
+   #addPlaylistForm {
+      position:relative;
+      height: 20em;
+      margin-bottom:20px;
+  
+    
+    }
+    
+    .next{
+      width:43%;
+      position: absolute;
+      bottom:0;
+      left:-5%;
+    }
+    
+    .reset{
+      width:43%;
+      position: absolute;
+      bottom:0;
+      right:1%;
+    }
+  }
+  @media (min-width:480px) {
+    /* smartphones, Android phones, landscape iPhone */
+    .modal {
+      max-height: 80%;
+      margin-top:10%;
+      width:80%
+  
+    }
+
+
+.pre{
+  font-size: 10px;
+}
+     
+    .next{
+      width:43%;
+      position: absolute;
+      bottom:0;
+      left:-1%;
+    }  
+  }
+  @media (min-width:600px) {
+    /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+  /* ADD PLAYLIST MODAL */
+  
+   .modal {
+    max-height: 90%;
+    margin-top:3%;
+    width:70%;
+  }
+  .pre{
+    font-size: 10px;
+}
+ #addPlaylistForm {
+    position:relative;
+    height: 20em;
+  
+  }
+  
+  .next{
+    width:43%;
+    position: absolute;
+    bottom:0;
+  }
+  
+  .reset{
+    width:43%;
+    position: absolute;
+    bottom:0;
+    right:8%;
+  }
+  }
+  
+  @media (min-width:801px) { 
+    /* tablet, landscape iPad, lo-res laptops ands desktops */
+    .modal {
+      max-height: 90%;
+      margin-top:3%;
+      width:55%
+    
+    }
+
+    .pre{
+        font-size: 11px;
+    }  
+  }
+  @media (min-width:992px) {
+     /* big landscape tablets, laptops, and desktops */
+     .modal {
+      max-height: 90%;
+      margin-top:3%;
+      width:48%
+    
+    }
+    .pre{
+        font-size: 12px;
+    }
+
+  }
+  @media (min-width:1200px) {
+     /* hi-res laptops and desktops */
+     .modal {
+      max-height: 70%;
+      margin-top:3%;
+      width:48%
+    
+    }
+
+    .pre{
+        font-size: 14px;
+    }  
+  }
