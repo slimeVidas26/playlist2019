@@ -12,8 +12,8 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <?php require('components/addPlaylistModal.php') ?>
-      <?php require('components/addPlaylistSongModal.php') ?>
+      <?php require('components/MODAL_addPlaylist.php') ?>
+      <?php require('components/MODAL_addSongs.php') ?>
       <?php require('components/player.php') ?>
       <br><br>
     </div>
@@ -34,6 +34,8 @@
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
   <script src="js/appendToForm.js"></script>
+  <script src="js/script.js"></script>
+
   <script src="js/Arctext/js/jquery.arctext.js"></script>
 
 
