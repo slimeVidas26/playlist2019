@@ -1,8 +1,6 @@
 (function ($) {
 
-var managePlaylist = (function(){
-
-
+var playlist = (function(){
 
 function addPlaylist(name, image, songs) {
 
@@ -25,7 +23,7 @@ function addPlaylist(name, image, songs) {
     });
   }
 
-  var insertSongToPlaylist = function () {
+  function insertSongToPlaylist () {
     $songName = $('.inputName');
     $songUrl = $('.inputUrl');
     var song = [];
@@ -48,19 +46,33 @@ return{
 }
 })();
 
+// $("#modal-add-songs input[name='playlist_name']").keyup(function(){
+//   alert($("input[name='playlist_name']").val())
+// })
+var processPlaylist = (function(){
+  $('#modal-add-songs .finishAndSave').click(function(){
+    // playlist._addPlaylist();
 
-$('#modal-add-songs .finishAndSave').click(function(){
-    // managePlaylist._addPlaylist();
+    
+
     $name = $("input[name='playlist_name']").val();
     $image = $("input[name='playlist_url']").val();
-    console.log($image);
 
-    var songs = managePlaylist._insertSongToPlaylist();
-    managePlaylist._addPlaylist($name, $image, songs);
+    console.log($name)
+    console.log($image)
+
+
+    var songs = playlist._insertSongToPlaylist();
+    playlist._addPlaylist($name, $image, songs);
     // $('#addPlaylistModal').modal('toggle');
     // $('.playlist').html('');
     // getAllPlaylists();
 });
+
+})();
+
+
+
    
 
     // end of document ready
