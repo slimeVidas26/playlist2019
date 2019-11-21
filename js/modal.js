@@ -139,8 +139,21 @@
     }
 
     function displayPreview(){
-       var imageUrl = "Docs/instrument.jpg"; 
-       $(".preview").css("background-image", "url(" + imageUrl + ")"); 
+      var urlInput = $("#addPlaylistForm input[name = 'playlist_url']");
+      console.log("urlInput",urlInput)
+      
+
+      var urlValue = urlInput.val();//  localhost/albums/Eminem-Kamikaze(2018)/Cover.jpg
+      console.log("urlValue" , urlValue);
+       var splitUrl = urlValue.split(".");
+       console.log("splitUrl" , splitUrl)
+       var extension = splitUrl[1];
+       console.log("extension" , extension)
+        if(extension ==  "jpg"){
+        $(".preview").css("background-image", "url('../albums/Eminem-Kamikaze(2018)/Cover.jpg')");
+
+        }
+       
     }
   
     return {
@@ -156,12 +169,9 @@
   var displayModal = (function(){
 
     var urlInput = $("#addPlaylistForm input[name = 'playlist_url']");
-
     urlInput.keyup(function(){
-      if(urlInput.val()==="tutututu"){
+    
         modal._displayPreview();
-
-      }
     })
 
     var btnNext = $('#addPlaylistForm .next');
