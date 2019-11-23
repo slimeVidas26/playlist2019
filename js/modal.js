@@ -94,6 +94,7 @@
       // $('#result').empty();
       var ret = {};
       var err = [];
+      var clickCount = 0;
       if (name) {
         ret.pname = $('#modalAdd .playlistName').val().trim();
         if (ret.pname == '') {
@@ -105,15 +106,31 @@
         if (ret.purl == '') {
           err.push('Playlist Url');
         }
-
+      
         console.log("err",err.length)
         console.log("ret" ,ret)
-  
       }
       if (err.length > 0) {
+
+        clickCount++;
+        console.log("clickCount",clickCount);
+
         //$('#modalAdd .next').data('target', 'alert-modal');
-        $('#modalAdd .next').attr('data-target' , "alert-modal")
+        $('#modalAdd .next').attr('data-target' , "alert-modal");
         console.log($('#modalAdd .next').attr('data-target' , "alert-modal"))
+        // $('#alert-modal .alertClose').click(function(){
+        //   $('#modalAdd .playlistUrl').focus(function(){
+        //     $(this).css('border-bottom' , 'red')
+        //   });
+        // })
+
+        $('#modalAdd .playlistUrl').change(function(e){
+          var res = $(this).val()
+         $('#modalAdd .next').attr('data-target' , "modal-add-songs")
+
+          console.log(res)
+          return res
+        })
 
         // $("#alert-modal").modal('open')
         $('#alert-modal .modal-content p').html('Missing: ' + err.join(', '));
@@ -123,8 +140,15 @@
         
         ret = null;
       }
+     
       //$('#modalAdd .next').attr('data-target' , "modal-add-songs")
+      // alert(err.length)
+      // ret.pname = $('#modalAdd .playlistName').val().trim();
+      // ret.purl = $('#modalAdd .playlistUrl').val().trim();
+      // $('#modalAdd .next').attr('data-target' , "modal-add-songs")
+
       return ret;
+
     }  
 
     //RESET FIELDS
@@ -140,19 +164,20 @@
 
     function displayPreview(){
       var urlInput = $("#addPlaylistForm input[name = 'playlist_url']");
-      console.log("urlInput",urlInput)
+     
       
 
-      var urlValue = urlInput.val();//  localhost/albums/Eminem-Kamikaze(2018)/Cover.jpg
-      console.log("urlValue" , urlValue);
-       var splitUrl = urlValue.split(".");
-       console.log("splitUrl" , splitUrl)
-       var extension = splitUrl[1];
-       console.log("extension" , extension)
-        if(extension ==  "jpg"){
-        $(".preview").css("background-image", "url('../albums/Eminem-Kamikaze(2018)/Cover.jpg')");
+      var urlValue = urlInput.val();
+      console.log("urlInput",urlValue)
+      // console.log("urlValue" , urlValue);
+      //  var splitUrl = urlValue.split(".");
+      //  console.log("splitUrl" , splitUrl)
+      //  var extension = splitUrl[1];
+      //  console.log("extension" , extension)
+      //   if(extension ==  "jpg"){
+        $(".preview").css("background-image", "url(" + urlValue + ")");
 
-        }
+        // }
        
     }
   
