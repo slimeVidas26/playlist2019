@@ -46,9 +46,7 @@ return{
 }
 })();
 
-// $("#modal-add-songs input[name='playlist_name']").keyup(function(){
-//   alert($("input[name='playlist_name']").val())
-// })
+
 var processPlaylist = (function(){
   $('#modal-add-songs .finishAndSave').click(function(){
     // playlist._addPlaylist();

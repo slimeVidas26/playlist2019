@@ -6,9 +6,12 @@
 
   var modal = (function () {
 
+
+    //VARIABLES
+
     //ADD HIDDEN FIELDS TO SONGS FORM
   
-    var fields = `  <div class="row modal-form-row">
+    var fields = `<div class="row modal-form-row">
       <div class="input-field col s12">
         <input id="playlist_name" name ="playlist_name" type="text" class="validate">
         <label for="playlist_name">Playlist Name</label>
@@ -21,9 +24,7 @@
       </div>
     </div> `;
   
-  
-  
-  
+
     var addHiddenFields = function () {
       validatePlaylistParams(true , true);
       dest.prepend(fields);
@@ -36,11 +37,6 @@
       var nameValue = nameInput.val();
       var urlValue = urlInput.val();
 
-      console.log("nameValue" , nameValue)
-      console.log("urlValue" , urlValue)
-
-
-  
       playListName.val(nameValue);
       playListUrl.val(urlValue)
   
@@ -89,12 +85,13 @@
       }, 1000);
   
     }
+
+
+    //ADD PLAYLIST FORM VALIDATION
   
     function validatePlaylistParams(name, url) {
-      // $('#result').empty();
       var ret = {};
       var err = [];
-      var clickCount = 0;
       if (name) {
         ret.pname = $('#modalAdd .playlistName').val().trim();
         if (ret.pname == '') {
@@ -107,46 +104,24 @@
           err.push('Playlist Url');
         }
       
-        console.log("err",err.length)
-        console.log("ret" ,ret)
       }
       if (err.length > 0) {
 
-        clickCount++;
-        console.log("clickCount",clickCount);
 
-        //$('#modalAdd .next').data('target', 'alert-modal');
         $('#modalAdd .next').attr('data-target' , "alert-modal");
-        console.log($('#modalAdd .next').attr('data-target' , "alert-modal"))
-        // $('#alert-modal .alertClose').click(function(){
-        //   $('#modalAdd .playlistUrl').focus(function(){
-        //     $(this).css('border-bottom' , 'red')
-        //   });
-        // })
+        
 
         $('#modalAdd .playlistUrl').change(function(e){
           var res = $(this).val()
          $('#modalAdd .next').attr('data-target' , "modal-add-songs")
 
-          console.log(res)
+         
           return res
         })
 
-        // $("#alert-modal").modal('open')
         $('#alert-modal .modal-content p').html('Missing: ' + err.join(', '));
-        //  $("#alert-modal").css('zIndex', 9999).show();
-        // $("#alert-modal").modal('toggle');
-        
-        
         ret = null;
       }
-     
-      //$('#modalAdd .next').attr('data-target' , "modal-add-songs")
-      // alert(err.length)
-      // ret.pname = $('#modalAdd .playlistName').val().trim();
-      // ret.purl = $('#modalAdd .playlistUrl').val().trim();
-      // $('#modalAdd .next').attr('data-target' , "modal-add-songs")
-
       return ret;
 
     }  
@@ -157,11 +132,13 @@
       var nameInput = $("#addPlaylistForm input[name ='playlist_name']");
       var urlInput = $("#addPlaylistForm input[name = 'playlist_url']");
   
-      var nameValue = nameInput.val('');
-      var urlValue = urlInput.val('');
+       nameInput.val('');
+      urlInput.val('');
 
     }
 
+
+//DISPLAY PREVIEW IMAGE ON PLAYER
     function displayPreview(){
       var urlInput = $("#addPlaylistForm input[name = 'playlist_url']");
      
@@ -169,16 +146,7 @@
 
       var urlValue = urlInput.val();
       console.log("urlInput",urlValue)
-      // console.log("urlValue" , urlValue);
-      //  var splitUrl = urlValue.split(".");
-      //  console.log("splitUrl" , splitUrl)
-      //  var extension = splitUrl[1];
-      //  console.log("extension" , extension)
-      //   if(extension ==  "jpg"){
-        $(".preview").css("background-image", "url(" + urlValue + ")");
-
-        // }
-       
+        $(".preview").css("background-image", "url(" + urlValue + ")"); 
     }
   
     return {
@@ -195,31 +163,23 @@
 
     var urlInput = $("#addPlaylistForm input[name = 'playlist_url']");
     urlInput.keyup(function(){
-    
         modal._displayPreview();
     })
 
     var btnNext = $('#addPlaylistForm .next');
     btnNext.click(function () {
-      // modal._validatePlaylistParams(name , url)
       modal._addHiddenFields();
     });
 
     var btnReset = $('#addPlaylistForm .reset');
     btnReset.click(function(){
       modal._resetFields();
-     
-
     })
     
-    // var displayRow = function () {
       var btnAddRow = $('#modal-add-songs .modal-footer a.left.addAnotherSong');
       btnAddRow.click(function () {
         modal._appendRow();
-      })
-    // }
-
-      
+      }) 
     })();
   
   // end of document ready
