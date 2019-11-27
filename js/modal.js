@@ -13,6 +13,12 @@
   
     var fields = `<div class="row modal-form-row">
       <div class="input-field col s12">
+        <input id="playlist_id" name ="playlist_id" type="text" class="validate">
+        <label for="playlist_id">Playlist ID</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
         <input id="playlist_name" name ="playlist_name" type="text" class="validate">
         <label for="playlist_name">Playlist Name</label>
       </div>
@@ -26,17 +32,31 @@
   
 
     var addHiddenFields = function () {
-      validatePlaylistParams(true , true);
+
+      var titleModal = $("#modalAdd .modal-content h4").text();
+      console.log("titleModal",titleModal)
+      if(titleModal==="Add New Playlist"){
+        validatePlaylistParams(false , true , true);
+      }
+      else{
+        validatePlaylistParams(true , true , true);
+      }
+      
       dest.prepend(fields);
+
+      var idInput = $("#addPlaylistForm input[name = 'playlist_id']");
       var nameInput = $("#addPlaylistForm input[name ='playlist_name']");
       var urlInput = $("#addPlaylistForm input[name = 'playlist_url']");
-  
+
+      var playListID = $("#addSongForm input[name ='playlist_id']");
       var playListName = $("#addSongForm input[name ='playlist_name']");
       var playListUrl = $("#addSongForm input[name ='playlist_url']");
   
+      var idValue = idInput.val();
       var nameValue = nameInput.val();
       var urlValue = urlInput.val();
-
+      
+      playListID.val(idValue);
       playListName.val(nameValue);
       playListUrl.val(urlValue)
   
@@ -55,6 +75,7 @@
 
     
     var row = ` <div class="row">
+    
     <div class="input-field col s12 m8">
       <input value = ""  type="text" class="validate inputUrl" name = "songs">
       <label for="song_url">Song URL</label>
@@ -89,9 +110,15 @@
 
     //ADD PLAYLIST FORM VALIDATION
   
-    function validatePlaylistParams(name, url) {
+    function validatePlaylistParams(id , name, url) {
       var ret = {};
       var err = [];
+      if (id) {
+        ret.pid = $('#modalAdd .playlistID').val().trim();
+        if (ret.pid == '') {
+          err.push('Playlist ID');
+        }
+      }
       if (name) {
         ret.pname = $('#modalAdd .playlistName').val().trim();
         if (ret.pname == '') {
@@ -164,8 +191,59 @@
 
     var btnNext = $('#addPlaylistForm .next');
     btnNext.click(function () {
-      modal._addHiddenFields();
+      var titleModal = $("#modalAdd .modal-content h4").text();
+      console.log("titleModal",titleModal)
+      if(titleModal==="Add New Playlist"){
+        modal._addHiddenFields();
+      }
+      else{
+        modal._addHiddenFields();
+        $('#modal-add-songs .modal-content h4').text("Edit Playlist Songs");
+
+        $( ".songDiv" ).remove();
+        // $(document).on('click','.edit', function(){
+          var playlistID = $("#addSongForm #playlist_id").val();
+          $.ajax({
+            url: `http://localhost/playlist2019/api/playlist/${playlistID}/songs`,
+            method:"GET"
+      
+          }).done(function(res){
+            console.log(res)
+            var playlistSongs = res.data.songs.map(function(song){
+              return ` <div class="row songDiv">
+              <div class="input-field col s12 m8">
+                <input value = "${song.name}"  type="text" class="validate inputUrl" name = "songs">
+                <label for="song_url">Song URL</label>
+              </div>
+              <div class="input-field col s12 m4">
+                <input value = "${song.url}"  type="text" class="validate inputName" name = "songs">
+                <label for="song_name">Name</label>
+              </div>
+            </div>`
+            })
+
+            $("#addSongForm").append(playlistSongs)
+            // $('modal-add-songs .modal-content h4').text("Edit Playlist Songs");
+            //   console.log(res.data)
+            //   $('#modalAdd .playlistID').val(res.data.id);
+    
+            //   $('#modalAdd .playlistName').val(res.data.name);
+            //   $('#modalAdd .playlistUrl').val(res.data.image);
+            //   $(".preview").css("background-image", "url(" + res.data.image + ")"); 
+      
+             
+      
+            //   $('#modalAdd .input-field label').addClass('active');
+            // setTimeout(function () {
+            //   $('#modalEdit .input-field label').addClass('active');
+            // }, 1);
+      });
+          
+        // });
+      }
     });
+
+    
 
     var btnReset = $('#addPlaylistForm .reset');
     btnReset.click(function(){

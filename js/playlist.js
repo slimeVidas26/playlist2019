@@ -106,6 +106,8 @@ function addPlaylist(name, image, songs) {
       }).done(function(res){
         $('#modalAdd .modal-content h4').text("Edit Playlist");
           console.log(res.data)
+          $('#modalAdd .playlistID').val(res.data.id);
+
           $('#modalAdd .playlistName').val(res.data.name);
           $('#modalAdd .playlistUrl').val(res.data.image);
           $(".preview").css("background-image", "url(" + res.data.image + ")"); 
