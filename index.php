@@ -13,8 +13,10 @@
     <div class="container">
       <br><br>
       <?php require('components/MODAL_addPlaylist.html') ?>
+
       <?php require('components/MODAL_addSongs.html') ?>
       <?php require('components/MODAL_alert.html') ?>
+
 
       <?php require('components/player.html') ?>
       <br><br>
@@ -45,7 +47,7 @@
   <script>
     $('.arcText').arctext({
       radius: 150
-    })
+    });
   </script>
 
 </body>

@@ -141,11 +141,7 @@
 //DISPLAY PREVIEW IMAGE ON PLAYER
     function displayPreview(){
       var urlInput = $("#addPlaylistForm input[name = 'playlist_url']");
-     
-      
-
       var urlValue = urlInput.val();
-      console.log("urlInput",urlValue)
         $(".preview").css("background-image", "url(" + urlValue + ")"); 
     }
   
@@ -174,7 +170,9 @@
     var btnReset = $('#addPlaylistForm .reset');
     btnReset.click(function(){
       modal._resetFields();
+     
     })
+
     
       var btnAddRow = $('#modal-add-songs .modal-footer a.left.addAnotherSong');
       btnAddRow.click(function () {
