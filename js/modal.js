@@ -202,9 +202,9 @@
 
         $( ".songDiv" ).remove();
         // $(document).on('click','.edit', function(){
-          var playlistID = $("#addSongForm #playlist_id").val();
+          var id = $("#addSongForm #playlist_id").val();
           $.ajax({
-            url: `http://localhost/playlist2019/api/playlist/${playlistID}/songs`,
+            url: `http://localhost/playlist2019/api/playlist/${id}/songs`,
             method:"GET"
       
           }).done(function(res){
@@ -212,34 +212,31 @@
             var playlistSongs = res.data.songs.map(function(song){
               return ` <div class="row songDiv">
               <div class="input-field col s12 m8">
-                <input value = "${song.name}"  type="text" class="validate inputUrl" name = "songs">
+                <input value = "${song.url}"  type="text" class="validate inputUrl" name = "songs">
                 <label for="song_url">Song URL</label>
               </div>
               <div class="input-field col s12 m4">
-                <input value = "${song.url}"  type="text" class="validate inputName" name = "songs">
+                <input value = "${song.name}"  type="text" class="validate inputName" name = "songs">
                 <label for="song_name">Name</label>
               </div>
             </div>`
             })
 
             $("#addSongForm").append(playlistSongs)
-            // $('modal-add-songs .modal-content h4').text("Edit Playlist Songs");
-            //   console.log(res.data)
-            //   $('#modalAdd .playlistID').val(res.data.id);
-    
-            //   $('#modalAdd .playlistName').val(res.data.name);
-            //   $('#modalAdd .playlistUrl').val(res.data.image);
-            //   $(".preview").css("background-image", "url(" + res.data.image + ")"); 
+            $(".finishAndSave").text("Update and Save")
+
+            $('#modalAdd .input-field label').addClass('active');
+            setTimeout(function () {
+              $('#modalEdit .input-field label').addClass('active');
+            }, 1);
+             
       
              
       
-            //   $('#modalAdd .input-field label').addClass('active');
-            // setTimeout(function () {
-            //   $('#modalEdit .input-field label').addClass('active');
-            // }, 1);
+            
       });
           
-        // });
+       
       }
     });
 

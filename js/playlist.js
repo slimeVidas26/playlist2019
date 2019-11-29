@@ -9,7 +9,7 @@
 var playlist = (function(){
 
 
-  
+  //ADD PLAYLIST
 function addPlaylist(name, image, songs) {
 
     $.ajax({
@@ -31,11 +31,36 @@ function addPlaylist(name, image, songs) {
     });
   }
 
-  
+  //UPDATE PLAYLIST 
+  var updatePlaylist = function (name, image, songs){
+    console.log('ajax call update playlist');
+    var id = $("#addSongForm #playlist_id").val();
 
+    $.ajax({
+      url: `http://localhost/playlist2019/api/playlist/${id}/songs`,
+
+      method: 'POST',
+      data: {
+        'name': name,
+        'image': image,
+        'songs': songs
+      }
+
+    }).done(function (r) {
+      console.log(r);
+      //getAllPlaylists();
+
+    }).fail(function (textStatus) {
+      console.log(textStatus);
+    });
+  }
+    
+   
+  
   function insertSongToPlaylist () {
     $songName = $('.inputName');
     $songUrl = $('.inputUrl');
+
 
     var song = [];
     for (var i = 0; i < $songName.length; i++) {
@@ -48,6 +73,8 @@ function addPlaylist(name, image, songs) {
     }
     return song;
   }
+
+  
 
   //DISPLAY ALL THE PLAYLISTS
 
@@ -98,9 +125,9 @@ function addPlaylist(name, image, songs) {
 
   var getPlaylist = function(){
     $(document).on('click','.edit', function(){
-      var playlistID = $(this).data("id")
+      var id = $(this).data("id")
       $.ajax({
-        url: `http://localhost/playlist2019/api/playlist/${playlistID}`,
+        url: `http://localhost/playlist2019/api/playlist/${id}`,
         method:"GET"
   
       }).done(function(res){
@@ -125,12 +152,7 @@ function addPlaylist(name, image, songs) {
     
   }
 
-  //UPDATE PLAYLIST 
-  var updatePlaylist = function (name, image){
-    console.log('ajax call update playlist');
-   
-    
-  }
+  
 
   
 
@@ -146,18 +168,36 @@ return{
 
 var processPlaylist = (function(){
 
+  // $(document).on('click','.test', function(){
+  //   var arrInp = $(".inputName").val()
+  //   alert(arrInp)
+  // })
+
   playlist._getAllPlaylist();
   $('#modal-add-songs .finishAndSave').click(function(){
-
-    $name = $("input[name='playlist_name']").val();
-    $image = $("input[name='playlist_url']").val();
+    var $id = $("input[name='playlist_id']").val();
+    var $name = $("input[name='playlist_name']").val();
+    var $image = $("input[name='playlist_url']").val();
     var songs = playlist._insertSongToPlaylist();
-    playlist._addPlaylist($name, $image, songs);
-    // $('.playlist').html('');
-    playlist._getAllPlaylist();
+    if(!$id){
+      playlist._addPlaylist($name, $image, songs);
+      // $('.playlist').html('');
+      playlist._getAllPlaylist();
+    }
+    else{
+      
+     playlist._updatePlaylist($name, $image, songs);
+     playlist._getAllPlaylist();
+
+    }
+    
   });
 
     playlist._getPlaylist()
+
+    
+
+   
 
   
 
