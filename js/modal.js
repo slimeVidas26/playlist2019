@@ -13,7 +13,7 @@
   
     var fields = `<div class="row modal-form-row">
       <div class="input-field col s12">
-        <input  name ="playlist_id" type="text" class="validate playlistId>
+        <input  name ="playlist_id" type="text" class="validate playlistId">
         <label for="playlist_id">Playlist ID</label>
       </div>
     </div>
@@ -202,7 +202,7 @@
 
         $( ".songDiv" ).remove();
         // $(document).on('click','.edit', function(){
-          var id = $("#addSongForm #playlist_id").val();
+          var id = $("#addSongForm .playlistId").val();
           $.ajax({
             url: `http://localhost/playlist2019/api/playlist/${id}/songs`,
             method:"GET"
@@ -221,6 +221,8 @@
               </div>
             </div>`
             })
+
+            console.log("playlistSongs",playlistSongs)
 
             $("#addSongForm").append(playlistSongs)
             $(".finishAndSave").text("Update and Save")

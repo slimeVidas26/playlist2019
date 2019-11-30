@@ -25,6 +25,7 @@ function addPlaylist(name, image, songs) {
     }).done(function (r) {
       console.log(r.data);
       //getAllPlaylists();
+      alert("Playlist added successfully");
 
     }).fail(function (textStatus) {
       console.log(textStatus);
@@ -32,28 +33,27 @@ function addPlaylist(name, image, songs) {
   }
 
   //UPDATE PLAYLIST 
-  var updatePlaylist = function (name, image, songs){
-    var id = $("#addSongForm .playlistId").val();
+  var updatePlaylist = function (name, image){
+    // var id = $("#addSongForm .playlistId").val();
+    // console.log("id from updateplaylist" , id)
 
-    $.ajax({
-      url: `http://localhost/playlist2019/api/playlist/${id}/songs`,
+    // $.ajax({
+    //   url: `http://localhost/playlist2019/api/playlist/${id}`,
 
-      method: 'POST',
-      data: {
-        'name': name,
-        'image': image,
-        'songs': songs
-      }
+    //   method: 'POST',
+    //   data: {
+    //     'name': name,
+    //     'image': image
+    //   }
 
-    }).done(function (r) {
-      console.log("r from updateplaylist",r);
-      //getAllPlaylists();
-      console.log("updated")
+    // }).done(function (r) {
+    //   console.log("r from updateplaylist",r);
+    //   //getAllPlaylists();
 
 
-    }).fail(function (textStatus) {
-      console.log(textStatus);
-    });
+    // }).fail(function (textStatus) {
+    //   console.log(textStatus);
+    // });
   }
     
    
@@ -179,23 +179,72 @@ var processPlaylist = (function(){
 
 
   $('#modal-add-songs .finishAndSave').click(function(){
+
+
+    function editPlaylistSongsAndFinish(id, songData) {
+      $.ajax({
+        url: `http://localhost/playlist2019/api/playlist/${$id}/songs`,
+  
+        method: 'POST',
+        data: {
+  
+          'songs': songData
+        }
+  
+      }).done(function (r) {
+        console.log(r.data);
+  
+      }).fail(function (textStatus) {
+        console.log(textStatus);
+      });
+    }
+
+
+
+
+
+
+
     var $id = $("input[name='playlist_id']").val();
     console.log("id from click on finish and save" , $id)
     var $name = $("input[name='playlist_name']").val();
     var $image = $("input[name='playlist_url']").val();
+    var songs = playlist._insertSongToPlaylist();
+
 
     if($id===""){
-    var songs = playlist._insertSongToPlaylist();
       playlist._addPlaylist($name, $image, songs);
       // $('.playlist').html('');
       playlist._getAllPlaylist();
     }
     else{
       // var $id = $("input[name='playlist_id']").val();
-    var songs = playlist._insertSongToPlaylist();
-     //playlist._updatePlaylist($name, $image, songs);
+     //playlist._updatePlaylist($name, $image);
 
+    //  var id = $("#addSongForm .playlistId").val();
+    //  var name = $("#addSongForm .inputName").val();
+    //  var image = $("#addSongForm .inputUrl").val();
+
+    
+     $.ajax({
+       url: `http://localhost/playlist2019/api/playlist/${$id}`,
+ 
+       method: 'POST',
+       data: {
+         'name': $name,
+         'image': $image
+       }
+ 
+     }).done(function (r) {
      
+    //  playlist._insertSongToPlaylist();
+
+   
+ 
+     }).fail(function (textStatus) {
+       console.log(textStatus);
+     });
+     editPlaylistSongsAndFinish($id, songs);
      playlist._getAllPlaylist();
 
     }
