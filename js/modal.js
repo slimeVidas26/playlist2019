@@ -13,7 +13,7 @@
   
     var fields = `<div class="row modal-form-row">
       <div class="input-field col s12">
-        <input id="playlist_id" name ="playlist_id" type="text" class="validate">
+        <input  name ="playlist_id" type="text" class="validate playlistId>
         <label for="playlist_id">Playlist ID</label>
       </div>
     </div>

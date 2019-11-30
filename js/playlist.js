@@ -33,8 +33,7 @@ function addPlaylist(name, image, songs) {
 
   //UPDATE PLAYLIST 
   var updatePlaylist = function (name, image, songs){
-    console.log('ajax call update playlist');
-    var id = $("#addSongForm #playlist_id").val();
+    var id = $("#addSongForm .playlistId").val();
 
     $.ajax({
       url: `http://localhost/playlist2019/api/playlist/${id}/songs`,
@@ -47,8 +46,10 @@ function addPlaylist(name, image, songs) {
       }
 
     }).done(function (r) {
-      console.log(r);
+      console.log("r from updateplaylist",r);
       //getAllPlaylists();
+      console.log("updated")
+
 
     }).fail(function (textStatus) {
       console.log(textStatus);
@@ -174,19 +175,27 @@ var processPlaylist = (function(){
   // })
 
   playlist._getAllPlaylist();
+
+
+
   $('#modal-add-songs .finishAndSave').click(function(){
     var $id = $("input[name='playlist_id']").val();
+    console.log("id from click on finish and save" , $id)
     var $name = $("input[name='playlist_name']").val();
     var $image = $("input[name='playlist_url']").val();
+
+    if($id===""){
     var songs = playlist._insertSongToPlaylist();
-    if(!$id){
       playlist._addPlaylist($name, $image, songs);
       // $('.playlist').html('');
       playlist._getAllPlaylist();
     }
     else{
-      
-     playlist._updatePlaylist($name, $image, songs);
+      // var $id = $("input[name='playlist_id']").val();
+    var songs = playlist._insertSongToPlaylist();
+     //playlist._updatePlaylist($name, $image, songs);
+
+     
      playlist._getAllPlaylist();
 
     }
