@@ -16,6 +16,8 @@
 
       <?php require('components/MODAL_addSongs.html') ?>
       <?php require('components/MODAL_alert.html') ?>
+      <?php require('components/MODAL_warning.html') ?>
+
 
 
       <?php require('components/player.html') ?>

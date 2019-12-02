@@ -102,7 +102,9 @@ function addPlaylist(name, image, songs) {
         <div  class="arcText">${item.name}</div>
                 <i class="material-icons playBtn">play_circle_outline</i>
             <div class="actions">
-                <i class="material-icons cancel">cancel</i>
+            <a class=" modal-trigger" href="#modal-warning">
+                <i data-id = ${item.id} class="material-icons cancel">cancel</i>
+                </a>
                 <a class=" modal-trigger" href="#modalAdd">
                 <i data-id = ${item.id} class="material-icons edit">edit</i>
                 </a>
@@ -252,6 +254,31 @@ var processPlaylist = (function(){
   });
 
     playlist._getPlaylist()
+
+    //DELETE PLAYLIST
+    $(".okDelete").on('click', function(){
+      //  alert("delete")
+      var id = $(".playlist .cancel").data("id")
+      //alert(id)
+      $.ajax({
+        url: `http://localhost/playlist2019/api/playlist/${id}`,
+  
+        method: 'DELETE',
+        
+  
+      }).done(function (r) {
+
+           playlist._getAllPlaylist();
+
+     //  playlist._insertSongToPlaylist();
+ 
+    
+  
+      }).fail(function (textStatus) {
+        console.log(textStatus);
+      });
+    });
+
 
     
 
