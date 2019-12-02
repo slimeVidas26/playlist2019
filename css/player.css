@@ -1,5 +1,6 @@
 /* PLAYER */
 .player {
+  display:none;
   position: relative;
   /* background-image: url('../Docs/player.png'); */
   background-repeat: no-repeat;

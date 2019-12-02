@@ -16,6 +16,11 @@
   background-repeat: no-repeat;
 }
 
+.mainPlaylist #spinner{
+  display:flex;
+  justify-content: center;
+}
+
 
 
 .mainPlaylist .playlist .playBtn{

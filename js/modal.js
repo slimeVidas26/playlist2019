@@ -11,24 +11,10 @@
 
     //ADD HIDDEN FIELDS TO SONGS FORM
   
-    var fields = `<div class="row modal-form-row">
-      <div class="input-field col s12">
-        <input  name ="playlist_id" type="text" class="validate playlistId">
-        <label for="playlist_id">Playlist ID</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="playlist_name" name ="playlist_name" type="text" class="validate">
-        <label for="playlist_name">Playlist Name</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="playlist_url" name="playlist_url"  type="text" class="validate">
-        <label for="playlist_url">Playlist URL</label>
-      </div>
-    </div> `;
+    var fields =
+        `<input  name ="playlist_id" type="hidden" class="validate playlistId">
+        <input id="playlist_name" name ="playlist_name" type="hidden" class="validate">
+        <input id="playlist_url" name="playlist_url"  type="hidden" class="validate">` ;
   
 
     var addHiddenFields = function () {
@@ -222,7 +208,7 @@
             </div>`
             })
 
-            console.log("playlistSongs",playlistSongs)
+            // console.log("playlistSongs",playlistSongs)
 
             $("#addSongForm").append(playlistSongs)
             $(".finishAndSave").text("Update and Save")

@@ -1,5 +1,7 @@
 (function ($) {
 
+  $("#spinner").show()
+
   // var init = function () {
 
   //   getAllPlaylists();
@@ -24,37 +26,15 @@ function addPlaylist(name, image, songs) {
 
     }).done(function (r) {
       console.log(r.data);
-      //getAllPlaylists();
-      alert("Playlist added successfully");
+      getAllPlaylist();
+      //alert("Playlist added successfully");
 
     }).fail(function (textStatus) {
       console.log(textStatus);
     });
   }
 
-  //UPDATE PLAYLIST 
-  var updatePlaylist = function (name, image){
-    // var id = $("#addSongForm .playlistId").val();
-    // console.log("id from updateplaylist" , id)
-
-    // $.ajax({
-    //   url: `http://localhost/playlist2019/api/playlist/${id}`,
-
-    //   method: 'POST',
-    //   data: {
-    //     'name': name,
-    //     'image': image
-    //   }
-
-    // }).done(function (r) {
-    //   console.log("r from updateplaylist",r);
-    //   //getAllPlaylists();
-
-
-    // }).fail(function (textStatus) {
-    //   console.log(textStatus);
-    // });
-  }
+  
     
    
   
@@ -80,21 +60,16 @@ function addPlaylist(name, image, songs) {
   //DISPLAY ALL THE PLAYLISTS
 
   var getAllPlaylist = function(){
+    $('#spinner').show();
     $.ajax({
       url: 'http://localhost/playlist2019/api/playlist',
 
       method: 'GET',
-      // data: {
-      //   'name': name,
-      //   'image': image,
-      //   'songs': songs
-      // }
 
     }).done(function (res) {
       console.log(res.data);
+      $('#spinner').hide();
       
-
-     
 
       var newPlaylist = res.data.map(function(item){
         return `<div class="col s12 m6 l4 xl3 playlist">
@@ -111,10 +86,7 @@ function addPlaylist(name, image, songs) {
             </div>`
       });
 
-      
-
-     
-
+  
       $('.mainPlaylist').html(newPlaylist)
 
      
@@ -155,6 +127,48 @@ function addPlaylist(name, image, songs) {
     
   }
 
+// EDIT PLAYLIST SONGS AND FINISH
+  function editPlaylistSongsAndFinish(id, songData) {
+    $.ajax({
+      url: `http://localhost/playlist2019/api/playlist/${id}/songs`,
+
+      method: 'POST',
+      data: {
+        'songs': songData
+      }
+
+    }).done(function (r) {
+      console.log(r.data);
+
+    }).fail(function (textStatus) {
+      console.log(textStatus);
+    });
+  }
+
+  //DELETE PLAYLIST
+  var deletePlaylist = function(){
+    $(document).on('click','.cancel', function(){
+    var id = $(this).data("id");
+      $('#modal-warning .modal-footer .okDelete').attr('data-id' , "id");
+      $('#modal-warning .modal-content h4').attr('data-id' , "id");
+      $('#modal-warning .modal-footer .okDelete').on('click', function(){
+      $.ajax({
+         url: `http://localhost/playlist2019/api/playlist/${id}`,
+  
+         method: 'DELETE',
+      }).done(function (r) {
+        getAllPlaylist();
+      }).fail(function (textStatus) {
+        console.log(textStatus);
+      });
+    })
+  });
+  }
+
+
+ 
+   
+
   
 
   
@@ -163,71 +177,31 @@ return{
     _addPlaylist:addPlaylist,
     _insertSongToPlaylist:insertSongToPlaylist,
     _getAllPlaylist:getAllPlaylist,
-    _updatePlaylist:updatePlaylist,
-    _getPlaylist:getPlaylist
+    _getPlaylist:getPlaylist,
+    _editPlaylistSongsAndFinish:editPlaylistSongsAndFinish,
+    _deletePlaylist:deletePlaylist
+
 }
 })();
 
 
 var processPlaylist = (function(){
 
-  // $(document).on('click','.test', function(){
-  //   var arrInp = $(".inputName").val()
-  //   alert(arrInp)
-  // })
 
   playlist._getAllPlaylist();
 
-
-
   $('#modal-add-songs .finishAndSave').click(function(){
-
-
-    function editPlaylistSongsAndFinish(id, songData) {
-      $.ajax({
-        url: `http://localhost/playlist2019/api/playlist/${$id}/songs`,
-  
-        method: 'POST',
-        data: {
-  
-          'songs': songData
-        }
-  
-      }).done(function (r) {
-        console.log(r.data);
-  
-      }).fail(function (textStatus) {
-        console.log(textStatus);
-      });
-    }
-
-
-
-
-
-
-
     var $id = $("input[name='playlist_id']").val();
-    console.log("id from click on finish and save" , $id)
     var $name = $("input[name='playlist_name']").val();
     var $image = $("input[name='playlist_url']").val();
     var songs = playlist._insertSongToPlaylist();
 
-
     if($id===""){
       playlist._addPlaylist($name, $image, songs);
-      // $('.playlist').html('');
       playlist._getAllPlaylist();
     }
     else{
-      // var $id = $("input[name='playlist_id']").val();
-     //playlist._updatePlaylist($name, $image);
-
-    //  var id = $("#addSongForm .playlistId").val();
-    //  var name = $("#addSongForm .inputName").val();
-    //  var image = $("#addSongForm .inputUrl").val();
-
-    
+      
      $.ajax({
        url: `http://localhost/playlist2019/api/playlist/${$id}`,
  
@@ -238,15 +212,13 @@ var processPlaylist = (function(){
        }
  
      }).done(function (r) {
-     
-    //  playlist._insertSongToPlaylist();
-
-   
+    
  
      }).fail(function (textStatus) {
        console.log(textStatus);
      });
-     editPlaylistSongsAndFinish($id, songs);
+
+     playlist._editPlaylistSongsAndFinish($id, songs);
      playlist._getAllPlaylist();
 
     }
@@ -256,37 +228,9 @@ var processPlaylist = (function(){
     playlist._getPlaylist()
 
     //DELETE PLAYLIST
-    $(".okDelete").on('click', function(){
-      //  alert("delete")
-      var id = $(".playlist .cancel").data("id")
-      //alert(id)
-      $.ajax({
-        url: `http://localhost/playlist2019/api/playlist/${id}`,
+      playlist._deletePlaylist();
   
-        method: 'DELETE',
-        
-  
-      }).done(function (r) {
-
-           playlist._getAllPlaylist();
-
-     //  playlist._insertSongToPlaylist();
  
-    
-  
-      }).fail(function (textStatus) {
-        console.log(textStatus);
-      });
-    });
-
-
-    
-
-   
-
-  
-
-  
 })();
     // end of document ready
 })(jQuery); // end of jQuery name space

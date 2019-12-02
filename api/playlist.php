@@ -82,7 +82,7 @@ function playlists() {
 	switch ($_SERVER['REQUEST_METHOD']) {
 	case 'GET':
 		$data = array();
-		$stmt = $conn->prepare("SELECT id,name,image FROM playlists");
+		$stmt = $conn->prepare("SELECT id,name,image FROM playlists ORDER BY id DESC");
 		if ($stmt->execute()) {
 			while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 				$data[] = $row;
@@ -101,6 +101,7 @@ function playlists() {
 				$okresult = !empty($p['songs'][$i]['name']) && !empty($p['songs'][$i]['url']);
 			}
 			if ($okresult) {
+				
 				$stmt = $conn->prepare("INSERT INTO playlists(name,image,songs) VALUES(:name, :image, :songs)");
 				$stmt->execute(array(
 					'name' => $p['name'],
