@@ -187,7 +187,6 @@
         $('#modal-add-songs .modal-content h4').text("Edit Playlist Songs");
 
         $( ".songDiv" ).remove();
-        // $(document).on('click','.edit', function(){
           var id = $("#addSongForm .playlistId").val();
           $.ajax({
             url: `http://localhost/playlist2019/api/playlist/${id}/songs`,
@@ -208,8 +207,6 @@
             </div>`
             })
 
-            // console.log("playlistSongs",playlistSongs)
-
             $("#addSongForm").append(playlistSongs)
             $(".finishAndSave").text("Update and Save")
 
@@ -217,14 +214,8 @@
             setTimeout(function () {
               $('#modalEdit .input-field label').addClass('active');
             }, 1);
-             
-      
-             
-      
-            
-      });
-          
-       
+                  
+      }); 
       }
     });
 

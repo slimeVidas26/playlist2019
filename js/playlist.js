@@ -75,7 +75,7 @@ function addPlaylist(name, image, songs) {
         return `<div class="col s12 m6 l4 xl3 playlist">
         <img src=${item.image}  alt="preview img" class="center">
         <div  class="arcText">${item.name}</div>
-                <i class="material-icons playBtn">play_circle_outline</i>
+                <i data-id = ${item.id} class="material-icons playBtn">play_circle_outline</i>
             <div class="actions">
             <a class=" modal-trigger" href="#modal-warning">
                 <i data-id = ${item.id} class="material-icons cancel">cancel</i>
@@ -98,9 +98,8 @@ function addPlaylist(name, image, songs) {
 
   //GET EXISTING PLAYLIST
 
-  var getPlaylist = function(){
-    $(document).on('click','.edit', function(){
-      var id = $(this).data("id")
+  var getPlaylist = function(id){
+     
       $.ajax({
         url: `http://localhost/playlist2019/api/playlist/${id}`,
         method:"GET"
@@ -122,10 +121,36 @@ function addPlaylist(name, image, songs) {
         }, 1);
   });
       
-    });
+    
     
     
   }
+
+  //GET PLAYLIST SONGS
+  var getPlaylistSongs = function(id){
+     
+    $.ajax({
+      url: `http://localhost/playlist2019/api/playlist/${id}/songs`,
+      method:"GET"
+
+    }).done(function(res){
+     //console.log(res.data.songs)
+     var playlistSongArr = res.data.songs;
+     //console.log(playlistSongArr)
+     var listSongs = playlistSongArr.map(function(item , index){
+       return   `<li class="collection-item"><span>${index+1}.</span>${item.name}</li>`;
+     })
+     console.log($(listSongs))
+
+     console.log($('.info.listSongs ul'))
+
+     $('.player .info .listSongs ul').html(listSongs);
+});
+    
+  
+  
+  
+}
 
 // EDIT PLAYLIST SONGS AND FINISH
   function editPlaylistSongsAndFinish(id, songData) {
@@ -179,7 +204,8 @@ return{
     _getAllPlaylist:getAllPlaylist,
     _getPlaylist:getPlaylist,
     _editPlaylistSongsAndFinish:editPlaylistSongsAndFinish,
-    _deletePlaylist:deletePlaylist
+    _deletePlaylist:deletePlaylist,
+    _getPlaylistSongs:getPlaylistSongs
 
 }
 })();
@@ -225,10 +251,28 @@ var processPlaylist = (function(){
     
   });
 
-    playlist._getPlaylist()
+   //GET PLAYLIST
+
+   
+    $(document).on('click','.edit', function(){
+      var playlistID = $(this).data("id")
+      playlist._getPlaylist(playlistID);
+      
+    });
+    
 
     //DELETE PLAYLIST
       playlist._deletePlaylist();
+
+
+  //SHOW PLAYER FUNCTION
+
+  $(document).on('click' , '.playBtn' , function(){
+    $(".player").slideDown("slow");
+    var playlistID = $(this).data("id");
+    playlist._getPlaylistSongs(playlistID);
+   
+  })
   
  
 })();
