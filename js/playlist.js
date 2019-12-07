@@ -10,6 +10,8 @@
 
 var playlist = (function(){
 
+  
+
 
   //ADD PLAYLIST
 function addPlaylist(name, image, songs) {
@@ -59,15 +61,46 @@ function addPlaylist(name, image, songs) {
 
   //DISPLAY ALL THE PLAYLISTS
 
-  var getAllPlaylist = function(){
+  var getAllPlaylist = function(query){
     $('#spinner').show();
+    if(query){
+
+      $.ajax({
+        url: `http://localhost/playlist2019/api/playlist/${query}`,
+  
+        method: 'GET',
+  
+      }).done(function (res) {
+        console.log(res.data);
+        $('#spinner').hide();
+        var newQuery = res.data.map(function(item){
+          return `<div class="col s12 m6 l4 xl3 playlist">
+          <img src=${item.image}  alt="preview img" class="center">
+          <div  class="arcText">${item.name}</div>
+                  <i data-id = ${item.id} class="material-icons playBtn">play_circle_outline</i>
+              <div class="actions">
+              <a class=" modal-trigger" href="#modal-warning">
+                  <i data-id = ${item.id} class="material-icons cancel">cancel</i>
+                  </a>
+                  <a class=" modal-trigger" href="#modalAdd">
+                  <i data-id = ${item.id} class="material-icons edit">edit</i>
+                  </a>
+              </div>`
+        });
+
+        $('.mainPlaylist').html(newQuery)
+
+      })
+    }
+    else{
+    
     $.ajax({
       url: 'http://localhost/playlist2019/api/playlist',
 
       method: 'GET',
 
     }).done(function (res) {
-      console.log(res.data);
+      //console.log(res.data);
       $('#spinner').hide();
       
 
@@ -94,6 +127,7 @@ function addPlaylist(name, image, songs) {
     }).fail(function (textStatus) {
       console.log(textStatus);
     });
+  }
   }
 
   //GET EXISTING PLAYLIST
@@ -136,15 +170,44 @@ function addPlaylist(name, image, songs) {
     }).done(function(res){
      //console.log(res.data.songs)
      var playlistSongArr = res.data.songs;
-     //console.log(playlistSongArr)
+     console.log("playlistSongArr" , playlistSongArr)
+     
      var listSongs = playlistSongArr.map(function(item , index){
-       return   `<li class="collection-item"><span>${index+1}.</span>${item.name}</li>`;
+       return   `<a><li class="collection-item"><span>${index+1}.</span>${item.name}</li></a>`;
      })
-     console.log($(listSongs))
 
-     console.log($('.info.listSongs ul'))
+     var songName  = playlistSongArr.map(function(item){
+       console.log(item.name.length)
+      //  console.log(str.slice(4, 19));
+       let songShort  = item.name.substring(0,20);
+       return songShort;
+     })
 
+     
      $('.player .info .listSongs ul').html(listSongs);
+    $('.listSongs ul a li:first').find("span").remove().addClass("current");
+    $('.listSongs ul a li:first').addClass("current");
+
+     $('.nowPlaying').append(`${songName[0]}`);
+
+      $(document).on('click' , '.listSongs ul a li' , function(){
+
+        if( $(this).is('.current') ) {
+          $(this).removeClass( "current");
+          ($(this).prepend(`<span>.</span>`));
+      }
+      else {
+          $( "li.current" ).removeClass( "current" );
+          $(this).addClass( "current" );
+          $(this).find( "span" ).remove();
+          $('.nowPlaying').html('<span>NOW PLAYING :</span>'+$(this).text().substring(0,20));
+          
+      }
+       
+      })
+
+   
+
 });
     
   
@@ -271,8 +334,20 @@ var processPlaylist = (function(){
     $(".player").slideDown("slow");
     var playlistID = $(this).data("id");
     playlist._getPlaylistSongs(playlistID);
-   
+    
   })
+
+  $('#search').keyup(function(){
+    var search = $(this).val();
+    if(search != '')
+    {
+      playlist._getAllPlaylist(search);
+        }
+    else
+    {
+     playlist._getAllPlaylist();
+    }
+   });
   
  
 })();

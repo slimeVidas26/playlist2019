@@ -17,12 +17,22 @@ try {
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	// operate request
 	if ($_GET['type'] == 'playlist') {
+
 		// playlist
 		if (isset($_GET['id'])) {
 			playlist_item($_GET['id']);
-		} else {
+			
+		}
+		else if (isset($_GET['query'])) {
+			playlists($_GET['query']);
+			
+		}
+		else {
 			playlists();
 		}
+
+
+
 	} else {
 		// songs
 		playlist_songs($_GET['id']);
@@ -77,23 +87,61 @@ function playlist_item($id) {
 	}
 }
 
-function playlists() {
+function playlists($query = NULL) {
 	global $conn;
 	switch ($_SERVER['REQUEST_METHOD']) {
 	case 'GET':
-		$data = array();
-		$stmt = $conn->prepare("SELECT id,name,image FROM playlists ORDER BY id DESC");
-		if ($stmt->execute()) {
-			while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-				$data[] = $row;
+		if($query){
+			$q = $_GET["query"];
+			$data = array();
+	
+          $stmt = $conn->prepare("SELECT * FROM playlists WHERE id LIKE '%" . $q . "%'OR name LIKE '%".$q."%'OR image LIKE '%".$q."%'");
+
+			if ($stmt->execute()) {
+				while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+					$data[] = $row;
+				}
 			}
 		}
+		else{
+			$data = array();
+			$stmt = $conn->prepare("SELECT id,name,image FROM playlists ORDER BY id DESC");
+			if ($stmt->execute()) {
+				while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+					$data[] = $row;
+				}
+			}
+		 }
+	
 		response(TRUE, $data, TRUE);
 		break;
 	case 'POST':
 		$okresult = false;
 		$data = NULL;
 		$p = &$_POST;
+		if (!empty($p['name']) && !empty($p['image']) && !empty($p['songs']) && is_array($p['songs'])) {
+			$okresult = true;
+			$c = count($p['songs']);
+			for ($i = 0; $i < $c && $okresult; $i++) {
+				$okresult = !empty($p['songs'][$i]['name']) && !empty($p['songs'][$i]['url']);
+			}
+			if ($okresult) {
+				
+				$stmt = $conn->prepare("INSERT INTO playlists(name,image,songs) VALUES(:name, :image, :songs)");
+				$stmt->execute(array(
+					'name' => $p['name'],
+					'image' => $p['image'],
+					'songs' => json_encode($p['songs'], TRUE),
+
+				));
+				$data = [
+					'id' => $conn->lastInsertId(),
+
+				];
+
+			}
+		}
+
 		if (!empty($p['name']) && !empty($p['image']) && !empty($p['songs']) && is_array($p['songs'])) {
 			$okresult = true;
 			$c = count($p['songs']);
