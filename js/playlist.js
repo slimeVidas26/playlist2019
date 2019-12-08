@@ -185,7 +185,7 @@ function addPlaylist(name, image, songs) {
 
      
      $('.player .info .listSongs ul').html(listSongs);
-    $('.listSongs ul a li:first').find("span").remove().addClass("current");
+    $('.listSongs ul a li:first').find("span").hide();
     $('.listSongs ul a li:first').addClass("current");
 
      $('.nowPlaying').append(`${songName[0]}`);
@@ -194,12 +194,12 @@ function addPlaylist(name, image, songs) {
 
         if( $(this).is('.current') ) {
           $(this).removeClass( "current");
-          ($(this).prepend(`<span>.</span>`));
+          $(this).find( "span" ).show();
       }
       else {
           $( "li.current" ).removeClass( "current" );
           $(this).addClass( "current" );
-          $(this).find( "span" ).remove();
+          $(this).find( "span" ).hide();
           $('.nowPlaying').html('<span>NOW PLAYING :</span>'+$(this).text().substring(0,20));
           
       }
