@@ -1,5 +1,21 @@
 /* MAIN-PLAYLISTS */
 
+
+/*ROTATION*/
+
+.rotate {
+  -webkit-animation: rotation 4s infinite linear;
+}
+
+@-webkit-keyframes rotation {
+  from {
+      -webkit-transform: rotate(0deg);
+  }
+  to {
+      -webkit-transform: rotate(359deg);
+  }
+}
+
 .mainPlaylist{
   position: relative;
   background-position: center top;

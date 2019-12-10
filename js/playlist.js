@@ -77,7 +77,7 @@ function addPlaylist(name, image, songs) {
           return `<div class="col s12 m6 l4 xl3 playlist">
           <img src=${item.image}  alt="preview img" class="center">
           <div  class="arcText">${item.name}</div>
-                  <i data-id = ${item.id} class="material-icons playBtn">play_circle_outline</i>
+          <i data-id = ${item.id} class="material-icons playBtn">play_circle_outline</i>
               <div class="actions">
               <a class=" modal-trigger" href="#modal-warning">
                   <i data-id = ${item.id} class="material-icons cancel">cancel</i>
@@ -105,7 +105,7 @@ function addPlaylist(name, image, songs) {
       
 
       var newPlaylist = res.data.map(function(item){
-        return `<div class="col s12 m6 l4 xl3 playlist">
+        return `<div  class="col s12 m6 l4 xl3 playlist">
         <img src=${item.image}  alt="preview img" class="center">
         <div  class="arcText">${item.name}</div>
                 <i data-id = ${item.id} class="material-icons playBtn">play_circle_outline</i>
@@ -202,7 +202,6 @@ function addPlaylist(name, image, songs) {
       else {
           $( "li.current" ).removeClass( "current" );
           $(this).addClass( "current" );
-          // $(this).find( "span" ).hide();
           $('.nowPlaying').html($(this).text());
           $('.nowPlaying').textMarquee({
             mode:'loop'
@@ -344,10 +343,58 @@ var processPlaylist = (function(){
     $('.nowPlaying').textMarquee({
           mode:'loop'
         });
+        
 
         $(this).text() == 'play_circle_outline' ?
-         $(this).text('pause_circle_outline' ):
-         $(this).text('play_circle_outline' );
+         $(this).text('pause_circle_outline' ).parent().addClass('rotate').attr("isPlaying", "true"):
+        $(this).text('play_circle_outline' ).parent().removeClass('rotate').attr("isPlaying", "false");;
+
+         //rotation
+        //  $(this).parent().addClass('rotate');
+          $(this).prev().hide();
+          //  var isActive = $(this).parent().attr("isPlaying", "true")
+          //  console.log("isActive",isActive)
+        //  $( ".playlist" ).removeClass( "rotate" );
+
+        if( $(this).parent().attr("isPlaying")=== "true" ) {
+          $( ".playlist" ).removeClass( ".rotate" ).attr("isPlaying" , "false");
+          //$(this).prev().show();
+          alert("toto")
+         
+
+      }
+      // else {
+      //     $( "li.current" ).removeClass( "current" );
+      //     $(this).addClass( "current" );
+      //     $('.nowPlaying').html($(this).text());
+      //     $('.nowPlaying').textMarquee({
+      //       mode:'loop'
+      //     });
+          
+      // }
+      //    if( $(this).is('.rotate') ) {
+      //     $(this).removeClass( "rotate");
+      //     // $(this).find( "span" ).show();
+
+      // }
+      // else {
+      //     $( ".playlist" ).removeClass( "rotate" );
+      //     $(this).addClass( "rotate" );
+      // }
+
+        //  return `<div class="col s12 m6 l4 xl3 playlist">
+        //  <img src=${item.image}  alt="preview img" class="center">
+        //  <div  class="arcText">${item.name}</div>
+        //  <i data-id = ${item.id} class="material-icons playBtn">play_circle_outline</i>
+        //      <div class="actions">
+        //      <a class=" modal-trigger" href="#modal-warning">
+        //          <i data-id = ${item.id} class="material-icons cancel">cancel</i>
+        //          </a>
+        //          <a class=" modal-trigger" href="#modalAdd">
+        //          <i data-id = ${item.id} class="material-icons edit">edit</i>
+        //          </a>
+        //      </div>`
+
 
       
 
