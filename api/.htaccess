@@ -2,7 +2,7 @@ Options -Indexes
 
 RewriteEngine on
 RewriteRule ^playlist$ ./playlist.php?type=playlist [L]
-RewriteRule ^playlist/([a-zA-Z0-9.-]+)$ playlist.php?type=playlist&query=$1 [L]
+RewriteRule ^playlist/([a-zA-Z.-]+)$ playlist.php?type=playlist&query=$1 [L]
 RewriteRule ^playlist/([0-9]+)$ playlist.php?type=playlist&id=$1 [L]
 RewriteRule ^playlist/([0-9]+)/songs$ playlist.php?type=songs&id=$1 [L]
 

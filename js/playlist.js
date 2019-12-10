@@ -344,6 +344,11 @@ var processPlaylist = (function(){
     $('.nowPlaying').textMarquee({
           mode:'loop'
         });
+
+        $(this).text() == 'play_circle_outline' ?
+         $(this).text('pause_circle_outline' ):
+         $(this).text('play_circle_outline' );
+
       
 
 
