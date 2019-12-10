@@ -104,7 +104,8 @@
   z-index: 29;
   width: 40%;
   z-index: 30;
-  font-family: 'Righteous', cursive;}
+  font-family: 'Righteous', cursive;
+}
 
 .audio-control img{
   max-width:90%;
@@ -112,16 +113,36 @@
   z-index: 31;
 }
 
-.nowPlaying{
-  font-weight: bold;
+.wrapper{
+  background-color: rgb(255, 0, 170);
+  display: flex;
+  align-items: center;
+
+}
+
+.wrapper .nowPlayingTitle{
   z-index: 31;
-  text-align: center;
-  max-width:90%;
+  max-width:30%;
+  display:inline-block;
+  font-size:1em;
+  background-color: yellow;
     }
 
-.nowPlaying span{
+.wrapper .nowPlaying{
+  z-index: 31;
+  max-width:75%;
+  display:inline-block;
+  font-size:1em;
+  background-color: blue;
+
+
+    }
+
+   
+
+/* .nowPlaying span{
   font-family: 'Righteous', cursive;
-}
+} */
 
 .listSongs{
   z-index: 31;
@@ -141,10 +162,18 @@
 .listSongs .collection-item {
   background-color: transparent;
   border-bottom: none;
-  
+  padding:0.3em;
+  border-radius:10px;
+}
+
+.listSongs .collection-item span {
+ margin-right:1em;
+
 }
 .listSongs .current {
-  font-weight:bold;
+  /* font-weight:bold; */
+  background-color:green;
+  
   
 }
 
@@ -178,7 +207,7 @@
   }
 
   /* INFO */
-  .nowPlaying{
+  .wrapper .nowPlaying{
 font-size:0.55em;
 
   }
@@ -190,7 +219,6 @@ font-size:0.55em;
   .listSongs .collection-item {
     line-height: 1.4em;
     font-size: 0.6em;
-    padding:0;
   }
 }
 
@@ -228,7 +256,6 @@ font-size:0.8em;
   .listSongs .collection-item {
     line-height: 1.3em;
     font-size: 0.8em;
-    padding:0;
 
   } 
 }
@@ -253,7 +280,7 @@ font-size:0.8em;
   }
 
     /* INFO */
-  .nowPlaying{
+    .wrapper .nowPlaying{
 font-size:1em;
   }
 
@@ -264,7 +291,6 @@ font-size:1em;
   .listSongs .collection-item {
     line-height: 1.4em;
     font-size: 1em;
-    padding:0;
 
   } 
 }
@@ -290,7 +316,7 @@ font-size:1em;
   }
 
    /* INFO */
-  .nowPlaying{
+   .wrapper .nowPlaying{
 font-size:1em;
   }
 
@@ -323,7 +349,7 @@ font-size:1em;
     height: 400px;
   }
   /* INFO */
-  .nowPlaying{
+  .wrapper .nowPlaying{
 font-size:1em;
   }
 
@@ -334,7 +360,6 @@ font-size:1em;
   .listSongs .collection-item {
     line-height: 1.5em;
     font-size: 1em;
-    padding:0;
 
   }
 }
@@ -359,9 +384,13 @@ font-size:1em;
   }
 
     /* INFO */
-  .nowPlaying{
+    .wrapper .nowPlaying{
 font-size:1em;
   }
+
+  .nowPlayingTitle{
+    font-size:1em;
+      }
 
 .listSongs ul{
   height:11em;
@@ -370,6 +399,5 @@ font-size:1em;
   .listSongs .collection-item {
     line-height: 1.6em;
     font-size: 1.1em;
-    padding:0;
   } 
 }

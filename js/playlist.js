@@ -173,34 +173,40 @@ function addPlaylist(name, image, songs) {
      console.log("playlistSongArr" , playlistSongArr)
      
      var listSongs = playlistSongArr.map(function(item , index){
-       return   `<a><li class="collection-item"><span>${index+1}.</span>${item.name}</li></a>`;
+       return   `<a><li class="collection-item"><span>${index+1}</span>${item.name}</li></a>`;
      })
 
      var songName  = playlistSongArr.map(function(item){
        console.log(item.name.length)
       //  console.log(str.slice(4, 19));
-       let songShort  = item.name.substring(0,20);
-       return songShort;
+       return item.name;
      })
 
      
      $('.player .info .listSongs ul').html(listSongs);
-    $('.listSongs ul a li:first').find("span").hide();
+    // $('.listSongs ul a li:first').find("span").hide();
     $('.listSongs ul a li:first').addClass("current");
 
      $('.nowPlaying').append(`${songName[0]}`);
+     $('.nowPlaying').textMarquee({
+      mode:'loop'
+    });
 
       $(document).on('click' , '.listSongs ul a li' , function(){
 
         if( $(this).is('.current') ) {
           $(this).removeClass( "current");
-          $(this).find( "span" ).show();
+          // $(this).find( "span" ).show();
+
       }
       else {
           $( "li.current" ).removeClass( "current" );
           $(this).addClass( "current" );
-          $(this).find( "span" ).hide();
-          $('.nowPlaying').html('<span>NOW PLAYING :</span>'+$(this).text().substring(0,20));
+          // $(this).find( "span" ).hide();
+          $('.nowPlaying').html($(this).text());
+          $('.nowPlaying').textMarquee({
+            mode:'loop'
+          });
           
       }
        
@@ -334,6 +340,13 @@ var processPlaylist = (function(){
     $(".player").slideDown("slow");
     var playlistID = $(this).data("id");
     playlist._getPlaylistSongs(playlistID);
+
+    $('.nowPlaying').textMarquee({
+          mode:'loop'
+        });
+      
+
+
     
   })
 
