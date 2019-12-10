@@ -114,7 +114,6 @@
 }
 
 .wrapper{
-  background-color: rgb(255, 0, 170);
   display: flex;
   align-items: center;
 
@@ -125,7 +124,6 @@
   max-width:30%;
   display:inline-block;
   font-size:1em;
-  background-color: yellow;
     }
 
 .wrapper .nowPlaying{
@@ -133,7 +131,6 @@
   max-width:75%;
   display:inline-block;
   font-size:1em;
-  background-color: blue;
 
 
     }
@@ -151,19 +148,25 @@
   .listSongs ul{
     overflow:auto;
     z-index: 90;
+    display:grid;
+      align-content: space-evenly;
+    
+    
+    
     }
 
-.listSongs ul li .play {
+/* .listSongs ul li .play {
   font-size: 1em;
  position:relative;
  left:-4px;
-}
+} */
 
 .listSongs .collection-item {
   background-color: transparent;
   border-bottom: none;
   padding:0.3em;
   border-radius:10px;
+  
 }
 
 .listSongs .collection-item span {
@@ -212,6 +215,11 @@ font-size:0.55em;
 
   }
 
+  .wrapper .nowPlayingTitle{
+    display:none
+    
+      }
+
 .listSongs ul{
   height:5em;
   }
@@ -244,10 +252,15 @@ font-size:0.55em;
 
     /* INFO */
 
-  .nowPlaying{
+  .wrapper .nowPlaying{
 font-size:0.8em;
 
   }
+
+  .wrapper .nowPlayingTitle{
+    display:none
+    
+      }
 
 .listSongs ul{
   height:7em;
@@ -284,6 +297,13 @@ font-size:0.8em;
 font-size:1em;
   }
 
+  .wrapper .nowPlayingTitle{
+    display:block;
+    font-size:0.6em;
+
+    
+      }
+
 .listSongs ul{
   height:9em;
   }
@@ -316,9 +336,13 @@ font-size:1em;
   }
 
    /* INFO */
-   .wrapper .nowPlaying{
+  .wrapper .nowPlaying{
 font-size:1em;
   }
+
+  .wrapper .nowPlayingTitle{
+    font-size:0.8em;
+      }
 
 .listSongs ul{
   height:10em;
@@ -352,6 +376,10 @@ font-size:1em;
   .wrapper .nowPlaying{
 font-size:1em;
   }
+
+  .wrapper .nowPlayingTitle{
+    font-size:0.8em;
+      }
 
 .listSongs ul{
   height:11em;
@@ -394,10 +422,12 @@ font-size:1em;
 
 .listSongs ul{
   height:11em;
+
   }
 
   .listSongs .collection-item {
     line-height: 1.6em;
     font-size: 1.1em;
+    
   } 
 }
