@@ -35,7 +35,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-image: url('../Docs/item3.png');
+  background-image: url('../Docs/speaker1.png');
   background-repeat: no-repeat;
   height: 150px;
   ;
@@ -52,7 +52,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-image: url('../Docs/pause1.png');
+   background-image: url('../Docs/pause1.png');
   /* background-color: chartreuse; */
   background-repeat: no-repeat;
   height: 150px;

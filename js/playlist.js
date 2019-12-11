@@ -357,9 +357,9 @@ var processPlaylist = (function(){
         //  $( ".playlist" ).removeClass( "rotate" );
 
         if( $(this).parent().attr("isPlaying")=== "true" ) {
-          $( ".playlist" ).removeClass( ".rotate" ).attr("isPlaying" , "false");
+          $(this).parent().siblings().removeClass( "rotate" ).attr("isPlaying" , "false");
           //$(this).prev().show();
-          alert("toto")
+        
          
 
       }
