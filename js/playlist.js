@@ -126,13 +126,7 @@ function addPlaylist(name, image, songs) {
             </div>`
       });
 
-  
       $('.mainPlaylist').html(newPlaylist)
-
-    
-
-     
-
     }).fail(function (textStatus) {
       console.log(textStatus);
     });
@@ -172,38 +166,34 @@ function addPlaylist(name, image, songs) {
   //GET PLAYLIST SONGS
   var getPlaylistSongs = function(id){
 
-    
-     
     $.ajax({
       url: `http://localhost/playlist2019/api/playlist/${id}/songs`,
       method:"GET",
-      // crossDomain: true,
-      // dataType: 'jsonp'
-      
-
     }).done(function(res){
 
-    //   var myAudio = new Audio("https://ia800309.us.archive.org/33/items/HalfADozenSlicesOfJazzCake/LiquidJazzProject-VeneersMadeOfJazz.mp3");
-    // myAudio.play();
      console.log("res.data.songs",res.data.songs)
      var playlistSongArr = res.data.songs;
      console.log("playlistSongArr" , playlistSongArr)
      
      var listSongs = playlistSongArr.map(function(item , index){
-       return   `<a><li class="collection-item"><span>${index+1}</span>${item.name}</li></a>`;
+       return   `<a><li data-url = ${item.url} class="collection-item"><span>${index+1}</span>${item.name}</li></a>`;
      })
 
-     var songName  = playlistSongArr.map(function(item){
+     var songName  = playlistSongArr.map(function(item,index){
        console.log(item.name)
+       console.log("index" , index)
        var objSong = {
          name:item.name,
-         url:item.url
+         url:item.url,
+         index: index
+
        }
         console.log("objSong",objSong);
        return objSong;
      })
 
      console.log("songName",songName)
+     console.log("songName.length",songName.length)
       // var myAudio = new Audio("https://archive.org/details/VA-DJ_S.R._-_Arrogant_Music_14-2016/02+Gucci+Mane+%26+Future+-+Selling+Heroin.mp3");
       //  $('.audio-control').html('<audio autoplay><source src="Docs/file_example.mp3"></audio>');
       //console.log("myAudio" , myAudio);
@@ -215,14 +205,19 @@ function addPlaylist(name, image, songs) {
       myAudio.play();
 
       var switchTrack = function(){
+       
         if(songName_index == (songName.length - 1)){
           songName_index = 0;
         } else {
-          songName_index++;	
+          songName_index++;
+          myAudio.src = songName[songName_index].url;
+      myAudio.play();
+
         }
       }
 
       $(myAudio).on('ended', function(){
+      
         switchTrack();
     });
     
@@ -241,25 +236,27 @@ function addPlaylist(name, image, songs) {
 
         if( $(this).is('.current') ) {
           $(this).removeClass( "current");
-          // $(this).find( "span" ).show();
           myAudio.pause();
 
       }
       else {
-        myAudio.play();
+      
           $( "li.current" ).removeClass( "current" );
           $(this).addClass( "current" );
           $('.nowPlaying').html($(this).text());
           $('.nowPlaying').textMarquee({
             mode:'loop'
           });
+          var url =$(this).data("url"); 
+          myAudio.src = url ;
+          myAudio.play();
           
       }
        
       })
 
-   
-
+}).fail(function (textStatus) {
+  console.log(textStatus);
 });
     
   
