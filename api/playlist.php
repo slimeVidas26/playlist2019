@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 if (!empty($_GET['404'])
 	|| empty($_GET['type'])

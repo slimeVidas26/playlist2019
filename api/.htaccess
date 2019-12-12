@@ -1,5 +1,7 @@
 Options -Indexes 
 
+
+
 RewriteEngine on
 RewriteRule ^playlist$ ./playlist.php?type=playlist [L]
 RewriteRule ^playlist/([a-zA-Z.-]+)$ playlist.php?type=playlist&query=$1 [L]

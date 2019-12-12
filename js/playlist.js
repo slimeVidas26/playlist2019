@@ -1,4 +1,11 @@
+
+
 (function ($) {
+//AUDIO
+  var myAudio = new Audio();
+
+ 
+
 
   $("#spinner").show()
 
@@ -11,7 +18,7 @@
 var playlist = (function(){
 
   
-
+  
 
   //ADD PLAYLIST
 function addPlaylist(name, image, songs) {
@@ -122,6 +129,8 @@ function addPlaylist(name, image, songs) {
   
       $('.mainPlaylist').html(newPlaylist)
 
+    
+
      
 
     }).fail(function (textStatus) {
@@ -162,13 +171,21 @@ function addPlaylist(name, image, songs) {
 
   //GET PLAYLIST SONGS
   var getPlaylistSongs = function(id){
+
+    
      
     $.ajax({
       url: `http://localhost/playlist2019/api/playlist/${id}/songs`,
-      method:"GET"
+      method:"GET",
+      // crossDomain: true,
+      // dataType: 'jsonp'
+      
 
     }).done(function(res){
-     //console.log(res.data.songs)
+
+    //   var myAudio = new Audio("https://ia800309.us.archive.org/33/items/HalfADozenSlicesOfJazzCake/LiquidJazzProject-VeneersMadeOfJazz.mp3");
+    // myAudio.play();
+     console.log("res.data.songs",res.data.songs)
      var playlistSongArr = res.data.songs;
      console.log("playlistSongArr" , playlistSongArr)
      
@@ -177,29 +194,59 @@ function addPlaylist(name, image, songs) {
      })
 
      var songName  = playlistSongArr.map(function(item){
-       console.log(item.name.length)
-      //  console.log(str.slice(4, 19));
-       return item.name;
+       console.log(item.name)
+       var objSong = {
+         name:item.name,
+         url:item.url
+       }
+        console.log("objSong",objSong);
+       return objSong;
      })
 
+     console.log("songName",songName)
+      // var myAudio = new Audio("https://archive.org/details/VA-DJ_S.R._-_Arrogant_Music_14-2016/02+Gucci+Mane+%26+Future+-+Selling+Heroin.mp3");
+      //  $('.audio-control').html('<audio autoplay><source src="Docs/file_example.mp3"></audio>');
+      //console.log("myAudio" , myAudio);
+
      
+
+      var songName_index = 0;
+      myAudio.src = songName[songName_index].url;
+      myAudio.play();
+
+      var switchTrack = function(){
+        if(songName_index == (songName.length - 1)){
+          songName_index = 0;
+        } else {
+          songName_index++;	
+        }
+      }
+
+      $(myAudio).on('ended', function(){
+        switchTrack();
+    });
+    
      $('.player .info .listSongs ul').html(listSongs);
     // $('.listSongs ul a li:first').find("span").hide();
     $('.listSongs ul a li:first').addClass("current");
 
-     $('.nowPlaying').append(`${songName[0]}`);
+     $('.nowPlaying').append(`${songName[0].name}`);
      $('.nowPlaying').textMarquee({
       mode:'loop'
     });
 
       $(document).on('click' , '.listSongs ul a li' , function(){
 
+        
+
         if( $(this).is('.current') ) {
           $(this).removeClass( "current");
           // $(this).find( "span" ).show();
+          myAudio.pause();
 
       }
       else {
+        myAudio.play();
           $( "li.current" ).removeClass( "current" );
           $(this).addClass( "current" );
           $('.nowPlaying').html($(this).text());
@@ -283,6 +330,7 @@ var processPlaylist = (function(){
 
 
   playlist._getAllPlaylist();
+ 
 
   $('#modal-add-songs .finishAndSave').click(function(){
     var $id = $("input[name='playlist_id']").val();
@@ -336,6 +384,9 @@ var processPlaylist = (function(){
   //SHOW PLAYER FUNCTION
 
   $(document).on('click' , '.playBtn' , function(){
+
+    
+
     $(".player").slideDown("slow");
     var playlistID = $(this).data("id");
     playlist._getPlaylistSongs(playlistID);
@@ -344,6 +395,8 @@ var processPlaylist = (function(){
           mode:'loop'
         });
         
+
+       
 
         $(this).text() == 'play_circle_outline' ?
          $(this).text('pause_circle_outline' ).parent().addClass('rotate').attr("isPlaying", "true"):
@@ -363,43 +416,7 @@ var processPlaylist = (function(){
          
 
       }
-      // else {
-      //     $( "li.current" ).removeClass( "current" );
-      //     $(this).addClass( "current" );
-      //     $('.nowPlaying').html($(this).text());
-      //     $('.nowPlaying').textMarquee({
-      //       mode:'loop'
-      //     });
-          
-      // }
-      //    if( $(this).is('.rotate') ) {
-      //     $(this).removeClass( "rotate");
-      //     // $(this).find( "span" ).show();
-
-      // }
-      // else {
-      //     $( ".playlist" ).removeClass( "rotate" );
-      //     $(this).addClass( "rotate" );
-      // }
-
-        //  return `<div class="col s12 m6 l4 xl3 playlist">
-        //  <img src=${item.image}  alt="preview img" class="center">
-        //  <div  class="arcText">${item.name}</div>
-        //  <i data-id = ${item.id} class="material-icons playBtn">play_circle_outline</i>
-        //      <div class="actions">
-        //      <a class=" modal-trigger" href="#modal-warning">
-        //          <i data-id = ${item.id} class="material-icons cancel">cancel</i>
-        //          </a>
-        //          <a class=" modal-trigger" href="#modalAdd">
-        //          <i data-id = ${item.id} class="material-icons edit">edit</i>
-        //          </a>
-        //      </div>`
-
-
-      
-
-
-    
+       
   })
 
   $('#search').keyup(function(){
