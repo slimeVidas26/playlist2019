@@ -184,6 +184,7 @@ function playlist_songs($id) {
 		}
 		response(TRUE, [
 			'songs' => empty($data['songs']) ? [] : json_decode($data['songs'], TRUE),
+
 		]);
 		break;
 	case 'POST':

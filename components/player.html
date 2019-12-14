@@ -1,33 +1,40 @@
 <div class="player">
-       <div class="ellipse">
-       </div>
-       <div class="item">
-      </div>
-      <div class="pause">
+    <div class="ellipse">
+    </div>
+    <div class="item">
+    </div>
+    <div class="playerActions">
         <!-- <img class = "pauseImg" src="Docs/pauseBtn.png" alt=""> -->
-       
-        <img class = "cancelImg" src="Docs/cancel.png" alt="">
-        <img class = "updateImg" src="Docs/update.png" alt="">
+
+
+        <a class=" modal-trigger" href="#modal-warning">
+            <!-- <i data-id = ${item.id} class="material-icons cancel">cancel</i> -->
+            <img class="cancelImg" src="Docs/cancel.png" alt="">
+        </a>
+        <a class=" modal-trigger" href="#modalAdd">
+            <!-- <i data-id = ${item.id} class="material-icons edit">edit</i> -->
+            <img class="updateImg" src="Docs/update.png" alt="">
+        </a>
         <div class="info">
             <div class="audio-control">
                 <!-- <img src="Docs/audio-control-layout.png"  alt=""> -->
                 <audio controls>
-                       
-                      </audio>
-                
+
+                </audio>
+
             </div>
 
             <div class="wrapper">
-                <div class = "nowPlayingTitle">Now Playing</div>
+                <div class="nowPlayingTitle">Now Playing</div>
                 <div class="nowPlaying"></div>
             </div>
-            
+
             <div class="collection listSongs">
                 <ul>
-                     
-                    </ul>
+
+                </ul>
             </div>
-            </div>
-      </div>
-      
-     </div>
+        </div>
+    </div>
+
+</div>

@@ -38,7 +38,6 @@
   background-image: url('../Docs/speaker1.png');
   background-repeat: no-repeat;
   height: 150px;
-  ;
   background-size: contain;
   background-size: 100%;
   background-position: center center;
@@ -47,7 +46,7 @@
   width: 100%;
 }
 
-.pause {
+.playerActions {
 
   position: absolute;
   top: 0;
@@ -205,7 +204,7 @@
     height: 160px;
   }
 
-  .pause {
+  .playerActions {
     height: 160px;
   }
 
@@ -246,7 +245,7 @@ font-size:0.55em;
     height: 240px;
   }
 
-  .pause {
+  .playerActions {
     height: 240px;
   }
 
@@ -288,7 +287,7 @@ font-size:0.8em;
     height: 300px;
   }
 
-  .pause {
+  .playerActions {
     height: 300px;
   }
 
@@ -331,7 +330,7 @@ font-size:1em;
     height: 360px;
   }
 
-  .pause {
+  .playerActions {
     height: 360px;
   }
 
@@ -369,7 +368,7 @@ font-size:1em;
     height: 400px;
   }
 
-  .pause {
+  .playerActions {
     height: 400px;
   }
   /* INFO */
@@ -407,7 +406,7 @@ font-size:1em;
     height: 400px;
   }
 
-  .pause {
+  .playerActions {
     height: 400px;
   }
 

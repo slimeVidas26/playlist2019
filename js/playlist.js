@@ -170,14 +170,21 @@ function addPlaylist(name, image, songs) {
       url: `http://localhost/playlist2019/api/playlist/${id}/songs`,
       method:"GET",
     }).done(function(res){
+       
+      console.log("id" , `${id}`)
 
      console.log("res.data.songs",res.data.songs)
      var playlistSongArr = res.data.songs;
      console.log("playlistSongArr" , playlistSongArr)
-     
+     $('.updateImg').attr('data-id' ,`${id}`);
+
+     //var imageUrl =`${res.data.songs.url}`; 
+      //$(".item").css("background-image", "url(" + imageUrl + ")"); 
      var listSongs = playlistSongArr.map(function(item , index){
        return   `<a><li data-url = ${item.url} class="collection-item"><span>${index+1}</span>${item.name}</li></a>`;
      })
+
+     console.log("listSongs" , listSongs)
 
      var songName  = playlistSongArr.map(function(item,index){
        console.log(item.name)
@@ -194,12 +201,7 @@ function addPlaylist(name, image, songs) {
 
      console.log("songName",songName)
      console.log("songName.length",songName.length)
-      // var myAudio = new Audio("https://archive.org/details/VA-DJ_S.R._-_Arrogant_Music_14-2016/02+Gucci+Mane+%26+Future+-+Selling+Heroin.mp3");
-      //  $('.audio-control').html('<audio autoplay><source src="Docs/file_example.mp3"></audio>');
-      //console.log("myAudio" , myAudio);
-
-     
-
+    
       var songName_index = 0;
       myAudio.src = songName[songName_index].url;
       myAudio.play();
@@ -208,12 +210,30 @@ function addPlaylist(name, image, songs) {
        
         if(songName_index == (songName.length - 1)){
           songName_index = 0;
+          myAudio.src = songName[songName_index].url;
+          myAudio.play();
+          $('.nowPlaying').html(`${songName[0].name}`);
+          $('.nowPlaying').textMarquee({
+            mode:'loop'
+          });
         } else {
+          $('.listSongs ul a li').eq(songName_index).removeClass("current");
+
           songName_index++;
           myAudio.src = songName[songName_index].url;
-      myAudio.play();
+          myAudio.play();
+          $('.nowPlaying').html(`${songName[songName_index].name}`);
+          $('.nowPlaying').textMarquee({
+            mode:'loop'
+          });
+
+          $('.listSongs ul a li').eq(songName_index).addClass("current");
+
+
 
         }
+
+      
       }
 
       $(myAudio).on('ended', function(){
@@ -222,7 +242,6 @@ function addPlaylist(name, image, songs) {
     });
     
      $('.player .info .listSongs ul').html(listSongs);
-    // $('.listSongs ul a li:first').find("span").hide();
     $('.listSongs ul a li:first').addClass("current");
 
      $('.nowPlaying').append(`${songName[0].name}`);
@@ -284,8 +303,10 @@ function addPlaylist(name, image, songs) {
 
   //DELETE PLAYLIST
   var deletePlaylist = function(){
-    $(document).on('click','.cancel', function(){
+    $(document).on('click','.cancel , .cancelImg', function(){
     var id = $(this).data("id");
+    $('.cancelImg').attr('data-id' ,"id");
+
       $('#modal-warning .modal-footer .okDelete').attr('data-id' , "id");
       $('#modal-warning .modal-content h4').attr('data-id' , "id");
       $('#modal-warning .modal-footer .okDelete').on('click', function(){
@@ -367,11 +388,15 @@ var processPlaylist = (function(){
    //GET PLAYLIST
 
    
-    $(document).on('click','.edit', function(){
+    $(document).on('click','.edit , .updateImg', function(){
       var playlistID = $(this).data("id")
       playlist._getPlaylist(playlistID);
       
     });
+
+    
+
+   
     
 
     //DELETE PLAYLIST
@@ -385,6 +410,8 @@ var processPlaylist = (function(){
     
 
     $(".player").slideDown("slow");
+   
+      
     var playlistID = $(this).data("id");
     playlist._getPlaylistSongs(playlistID);
 
@@ -400,12 +427,9 @@ var processPlaylist = (function(){
         $(this).text('play_circle_outline' ).parent().removeClass('rotate').attr("isPlaying", "false");;
 
          //rotation
-        //  $(this).parent().addClass('rotate');
+      
           $(this).prev().hide();
-          //  var isActive = $(this).parent().attr("isPlaying", "true")
-          //  console.log("isActive",isActive)
-        //  $( ".playlist" ).removeClass( "rotate" );
-
+         
         if( $(this).parent().attr("isPlaying")=== "true" ) {
           $(this).parent().siblings().removeClass( "rotate" ).attr("isPlaying" , "false");
           //$(this).prev().show();
