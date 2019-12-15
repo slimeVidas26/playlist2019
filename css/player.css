@@ -46,12 +46,29 @@
   width: 100%;
 }
 
+.itemIsPlaying {
+  
+  display:none;
+   position: absolute;
+  /* top: 0;
+  left: 0; */
+   background-image: url('../Docs/isPlaying.png');
+  background-repeat: no-repeat;
+  height: 150px;
+  background-size: contain;
+  background-size: 100%;
+  background-position: center center;
+  /* opacity:0.3; */
+   z-index: 21;
+  width: 100%;  
+}
+
 .playerActions {
 
   position: absolute;
   top: 0;
   left: 0;
-   background-image: url('../Docs/pause1.png');
+   /* background-image: url('../Docs/pause1.png'); */
   /* background-color: chartreuse; */
   background-repeat: no-repeat;
   height: 150px;
@@ -63,13 +80,13 @@
   display: grid;
 }
 
-.pauseImg {
+/* .pauseImg {
   width: 8%;
   margin: auto 17%;
-  /* background-color: crimson; */
+   background-color: crimson; 
   cursor: pointer;
   display:inline-block;
-}
+} */
 
 .cancelImg {
     position: absolute;
@@ -77,17 +94,19 @@
     right: 2%;
     cursor: pointer;
     display: block;
-    width:4%;
+    width:6%;
+    font-size: 2.5em;
   
 }
 
-.updateImg {
+.editImg {
   position: absolute;
   bottom: 37%;
   right: 1.5%;
   cursor: pointer;
   display: block;
   width:6%;
+  font-size: 2.5em;
 
 }
 
@@ -405,8 +424,25 @@ font-size:1em;
   .item {
     height: 400px;
   }
+   .itemIsPlaying {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 335px;
+    width: 335px;
+    top: 8%;
+    left: 3.4%;
+  }
+
+  .itemIsPlaying .playBtn {
+    font-size: 70px;
+    color:white;
+  }
 
   .playerActions {
+    display:flex;
+    align-items: center;
+    justify-content: flex-end;
     height: 400px;
   }
 

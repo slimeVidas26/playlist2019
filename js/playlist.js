@@ -133,6 +133,41 @@ function addPlaylist(name, image, songs) {
   }
   }
 
+  //GET PLAYLIST IMAGE(URL)
+
+  var getPlaylistImage = function(id){
+     
+    $.ajax({
+      url: `http://localhost/playlist2019/api/playlist/${id}`,
+      method:"GET"
+
+    }).done(function(res){
+        console.log(res.data)
+        $(".itemIsPlaying").addClass("itemIsPlaying");
+        // $(this).css('background-image','url('+bg[1]+','+bg[0]+')');
+      $(".itemIsPlaying").css('background-image', 'url(' + res.data.image +' )');
+      $(".itemIsPlaying").css('background-size', '100%');
+      
+      $(".itemIsPlaying").css('background-position', '8% 50%'); 
+      $(".itemIsPlaying").css('border-radius','50%'); 
+
+      // $(".itemIsPlaying").css('border-radius', '50%'); 
+
+ 
+
+ 
+
+       
+
+    
+    
+});
+    
+  
+  
+  
+}
+
   //GET EXISTING PLAYLIST
 
   var getPlaylist = function(id){
@@ -177,6 +212,7 @@ function addPlaylist(name, image, songs) {
      var playlistSongArr = res.data.songs;
      console.log("playlistSongArr" , playlistSongArr)
      $('.updateImg').attr('data-id' ,`${id}`);
+     getPlaylistImage(id);
 
      //var imageUrl =`${res.data.songs.url}`; 
       //$(".item").css("background-image", "url(" + imageUrl + ")"); 
@@ -304,7 +340,8 @@ function addPlaylist(name, image, songs) {
   //DELETE PLAYLIST
   var deletePlaylist = function(){
     $(document).on('click','.cancel , .cancelImg', function(){
-    var id = $(this).data("id");
+    var id = $(".cancel").data("id");
+    
     $('.cancelImg').attr('data-id' ,"id");
 
       $('#modal-warning .modal-footer .okDelete').attr('data-id' , "id");
@@ -388,9 +425,13 @@ var processPlaylist = (function(){
    //GET PLAYLIST
 
    
-    $(document).on('click','.edit , .updateImg', function(){
-      var playlistID = $(this).data("id")
+    $(document).on('click','.edit , .editImg', function(){
+      var playlistID = $(".edit").data("id")
+      $('.editImg').attr('data-id' ,"playlistID");
+
       playlist._getPlaylist(playlistID);
+
+      
       
     });
 
@@ -406,12 +447,12 @@ var processPlaylist = (function(){
   //SHOW PLAYER FUNCTION
 
   $(document).on('click' , '.playBtn' , function(){
+    $(".item").hide();
+    
+    $(".player").slideDown("slow");
+    $(".itemIsPlaying").show();
 
     
-
-    $(".player").slideDown("slow");
-   
-      
     var playlistID = $(this).data("id");
     playlist._getPlaylistSongs(playlistID);
 
