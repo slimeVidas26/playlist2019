@@ -18,7 +18,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-image: url('../Docs/ellipse1.png');
+  background-image: url('../Docs/ellipse2.png');
   background-repeat: no-repeat;
   height: 150px;
   ;
@@ -142,6 +142,7 @@
   max-width:30%;
   display:inline-block;
   font-size:1em;
+  margin-right:10px;
     }
 
 .wrapper .nowPlaying{
@@ -184,6 +185,8 @@
   border-bottom: none;
   padding:0.3em;
   border-radius:10px;
+  width:95%;
+  font-size:1rem;
   
 }
 
@@ -193,7 +196,8 @@
 }
 .listSongs .current {
   /* font-weight:bold; */
-  background-color:green;
+  background-color:black;
+  color:white;
   
   
 }
@@ -446,6 +450,10 @@ font-size:1em;
     height: 400px;
   }
 
+  .playerActions a {
+    color:black;
+  }
+
     /* INFO */
     .wrapper .nowPlaying{
 font-size:1em;
@@ -462,7 +470,7 @@ font-size:1em;
 
   .listSongs .collection-item {
     line-height: 1.6em;
-    font-size: 1.1em;
+    font-size: 1em;
     
   } 
 }
