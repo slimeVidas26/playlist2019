@@ -113,8 +113,8 @@ function addPlaylist(name, image, songs) {
 
       var newPlaylist = res.data.map(function(item){
         return `<div  class="col s12 m6 l4 xl3 playlist">
-        <img src=${item.image}  alt="preview img" class="center">
-        <div  class="arcText">${item.name}</div>
+             <img src=${item.image}  alt="preview img" class="center">
+             <div  class="arcText">${item.name}</div>
                 <i data-id = ${item.id} class="material-icons playBtn">play_circle_outline</i>
             <div class="actions">
             <a class=" modal-trigger" href="#modal-warning">
@@ -481,7 +481,7 @@ var processPlaylist = (function(){
          
         if( $(this).parent().attr("isPlaying")=== "true" ) {
           $(this).parent().siblings().removeClass( "rotate" ).attr("isPlaying" , "false");
-          //$(this).prev().show();
+          $(this).prev().show();
         
          
 
