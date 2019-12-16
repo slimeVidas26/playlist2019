@@ -239,8 +239,12 @@ function addPlaylist(name, image, songs) {
      console.log("songName.length",songName.length)
     
       var songName_index = 0;
-      myAudio.src = songName[songName_index].url;
-      myAudio.play();
+      // myAudio.src = songName[songName_index].url;
+       myAudio.play();
+
+      myAudio = $(".audio-control audio");
+      myAudio.attr("src"  ,  songName[songName_index].url);
+
 
       var switchTrack = function(){
        
@@ -248,7 +252,7 @@ function addPlaylist(name, image, songs) {
           songName_index = 0;
           myAudio.src = songName[songName_index].url;
           myAudio.play();
-          $('.nowPlaying').html(`${songName[0].name}`);
+          $('.nowPlaying').html(`Now Playing : ${songName[0].name}`);
           $('.nowPlaying').textMarquee({
             mode:'loop'
           });
@@ -256,14 +260,15 @@ function addPlaylist(name, image, songs) {
           $('.listSongs ul a li').eq(songName_index).removeClass("current");
 
           songName_index++;
-          myAudio.src = songName[songName_index].url;
+          myAudio.attr("src"  ,  songName[songName_index].url);
+          $('.listSongs ul a li').eq(songName_index).addClass("current");
+
           myAudio.play();
           $('.nowPlaying').html(`${songName[songName_index].name}`);
           $('.nowPlaying').textMarquee({
             mode:'loop'
           });
 
-          $('.listSongs ul a li').eq(songName_index).addClass("current");
 
 
 
@@ -280,7 +285,7 @@ function addPlaylist(name, image, songs) {
      $('.player .info .listSongs ul').html(listSongs);
     $('.listSongs ul a li:first').addClass("current");
 
-     $('.nowPlaying').append(`${songName[0].name}`);
+     $('.nowPlaying').append(`Now Playing : ${songName[0].name}`);
      $('.nowPlaying').textMarquee({
       mode:'loop'
     });
@@ -298,12 +303,14 @@ function addPlaylist(name, image, songs) {
       
           $( "li.current" ).removeClass( "current" );
           $(this).addClass( "current" );
-          $('.nowPlaying').html($(this).text());
+          $('.nowPlaying').html(`Now Playing :${$(this).text()}`);
           $('.nowPlaying').textMarquee({
             mode:'loop'
           });
           var url =$(this).data("url"); 
-          myAudio.src = url ;
+          //myAudio.src = url ;
+          myAudio.attr("src"  , url);
+
           myAudio.play();
           
       }
@@ -447,6 +454,7 @@ var processPlaylist = (function(){
   //SHOW PLAYER FUNCTION
 
   $(document).on('click' , '.playBtn' , function(){
+
     $(".item").hide();
     
     $(".player").slideDown("slow");
