@@ -458,6 +458,8 @@ var processPlaylist = (function(){
     $(".item").hide();
     
     $(".player").slideDown("slow");
+    //  $(".player").css("opacity" , 0.2);
+
     $(".itemIsPlaying").show();
 
     
@@ -467,6 +469,15 @@ var processPlaylist = (function(){
     $('.nowPlaying').textMarquee({
           mode:'loop'
         });
+
+        //show background image
+        $('#index-banner').fadeTo('slow', 0.3, function()
+{
+    $(this).css('background-image', 'url("Docs/audience.jpg")');
+}).fadeTo('slow', 1);
+        // $('#index-banner').css('background-image', 'url("Docs/audience.jpg")');
+        $('#index-banner').css('height', '100vh');
+
         
 
        

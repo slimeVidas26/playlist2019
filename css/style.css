@@ -11,6 +11,19 @@
   padding: 0;
 }
 
+/* body */
+#index-banner{
+  /* background-image: url('../Docs/audience.jpg'); */
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-size: 100%;
+  background-position: center center;
+
+} 
+ 
+
+
+
 /*SCROLLBAR */
 ::-webkit-scrollbar {
   width: 12px;
