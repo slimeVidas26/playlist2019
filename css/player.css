@@ -227,6 +227,14 @@
   
 }
 
+.listSongs .currentStop {
+  /* font-weight:bold; */
+  background-color:red;
+  color:black;
+  
+  
+}
+
 .listSongs a {
   color:black;
   cursor: pointer;

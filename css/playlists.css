@@ -30,7 +30,15 @@
   background-position: center center;
   background-size: 100% auto;
   background-repeat: no-repeat;
+  opacity:0.5
 }
+
+.mainPlaylist .playlist:hover{
+  
+  opacity:1
+}
+
+
 
 .mainPlaylist #spinner{
   display:flex;
@@ -109,6 +117,7 @@
     margin-bottom:1em;
      width: 83%; 
     border-radius:50% ;
+    
   
   }
   

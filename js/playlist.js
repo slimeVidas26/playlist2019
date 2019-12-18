@@ -217,7 +217,7 @@ function addPlaylist(name, image, songs) {
      //var imageUrl =`${res.data.songs.url}`; 
       //$(".item").css("background-image", "url(" + imageUrl + ")"); 
      var listSongs = playlistSongArr.map(function(item , index){
-       return   `<a><li data-url = ${item.url} class="collection-item"><span>${index+1}</span>${item.name}</li></a>`;
+       return   `<a><li data-id = ${id} data-url = ${item.url} class="collection-item"><span>${index+1}</span>${item.name}</li></a>`;
      })
 
      console.log("listSongs" , listSongs)
@@ -239,11 +239,14 @@ function addPlaylist(name, image, songs) {
      console.log("songName.length",songName.length)
     
       var songName_index = 0;
-      // myAudio.src = songName[songName_index].url;
-       myAudio.play();
+       myAudio.src = songName[songName_index].url;
+       //myAudio.play();
 
       myAudio = $(".audio-control audio");
       myAudio.attr("src"  ,  songName[songName_index].url);
+      
+
+     
 
 
       var switchTrack = function(){
@@ -263,7 +266,7 @@ function addPlaylist(name, image, songs) {
           myAudio.attr("src"  ,  songName[songName_index].url);
           $('.listSongs ul a li').eq(songName_index).addClass("current");
 
-          myAudio.play();
+          document.getElementById('boom').play();
           $('.nowPlaying').html(`${songName[songName_index].name}`);
           $('.nowPlaying').textMarquee({
             mode:'loop'
@@ -291,18 +294,83 @@ function addPlaylist(name, image, songs) {
     });
 
       $(document).on('click' , '.listSongs ul a li' , function(){
-
+       console.log($(this).parent())
         
+       var playing = false;
+
+       if (playing == false) {
+        document.getElementById('boom').play();
+          playing = true;
+          document.getElementById('boom').pause();
+
+      } else {
+        document.getElementById('boom').pause();
+          playing = false;
+      }
+
 
         if( $(this).is('.current') ) {
-          $(this).removeClass( "current");
-          myAudio.pause();
+           $(this).removeClass( "current");
+           $(this).addClass( "currentStop");
+           document.getElementById('boom').pause();
+           $('.itemIsPlaying').removeClass('rotate')
+           playing = false;
+           $('.nowPlaying').html(`Stop Sound :${$(this).text()}`);
+          //  $(this).siblings().removeClass( "currentStop");
+           //$( "li.currentStop" ).removeClass( "currentStop" );
+
+           if ($('.playlist').hasClass('rotate')) {  
+            $('.playlist').removeClass('rotate');        
+           }  
+         
+      }
+      else if($(this).is('.currentStop')){
+        $(this).removeClass( "currentStop");
+        $(this).addClass( "current");
+        document.getElementById('boom').play();
+        $('.itemIsPlaying').addClass('rotate');
+        playing = true;
+        $('.nowPlaying').html(`Now Playing :${$(this).text()}`);
+          $('.nowPlaying').textMarquee({
+            mode:'loop'
+          });
+         
+
+
+          
+          // $(this).siblings().removeClass( "currentStop");
+          var playlistId = $(this).data("id");
+          console.log("playlistId",playlistId);
+          
+
+          var $p = $('.playlist i.material-icons.playBtn').filter(function() { 
+            return $(this).data("id") == playlistId;
+          });
+            
+
+          $p.parent().addClass('rotate')
+
+
+          
+          
+
+          
+
+          
+
+         
+         
+         
+         
 
       }
       else {
-      
+     // alert("toto")
           $( "li.current" ).removeClass( "current" );
+          $( "li.currentStop" ).removeClass( "currentStop" );
+
           $(this).addClass( "current" );
+           $('.itemIsPlaying').addClass('rotate');
           $('.nowPlaying').html(`Now Playing :${$(this).text()}`);
           $('.nowPlaying').textMarquee({
             mode:'loop'
@@ -310,8 +378,7 @@ function addPlaylist(name, image, songs) {
           var url =$(this).data("url"); 
           //myAudio.src = url ;
           myAudio.attr("src"  , url);
-
-          myAudio.play();
+          document.getElementById('boom').play();
           
       }
        
@@ -455,6 +522,8 @@ var processPlaylist = (function(){
 
   $(document).on('click' , '.playBtn' , function(){
 
+    myAudio = $(".audio-control audio");
+
     $(".item").hide();
     
     $(".player").slideDown("slow");
@@ -482,21 +551,37 @@ var processPlaylist = (function(){
 
        
 
-        $(this).text() == 'play_circle_outline' ?
-         $(this).text('pause_circle_outline' ).parent().addClass('rotate').attr("isPlaying", "true"):
-        $(this).text('play_circle_outline' ).parent().removeClass('rotate').attr("isPlaying", "false");;
-
+        // $(this).text() == 'play_circle_outline' ?
+        //  $(this).text('pause_circle_outline' ).parent().addClass('rotate').attr("isPlaying", "true").
+        //  $(".itemIsPlaying").addClass('rotate'):
+        // $(this).text('play_circle_outline' ).parent().removeClass('rotate').attr("isPlaying", "false");
+        // $(".itemIsPlaying").addClass('rotate');
          //rotation
+
+         if($(this).text() == 'play_circle_outline'){
+          $(this).text('pause_circle_outline' ).parent().addClass('rotate').attr("isPlaying", "true")
+          $(".itemIsPlaying").addClass('rotate')
+          document.getElementById('boom').pause()
+
+         }
+         else {
+          $(this).text('play_circle_outline' ).parent().removeClass('rotate').attr("isPlaying", "false")
+          $(".itemIsPlaying").removeClass('rotate');
+          document.getElementById('boom').play()
+         }
       
           $(this).prev().hide();
          
         if( $(this).parent().attr("isPlaying")=== "true" ) {
           $(this).parent().siblings().removeClass( "rotate" ).attr("isPlaying" , "false");
           $(this).prev().show();
-        
-         
 
-      }
+          }
+        
+      //    if(document.getElementById('boom').pause()){
+      //       $(".itemIsPlaying").removeClass('rotate');
+
+      // }
        
   })
 
