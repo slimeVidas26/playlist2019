@@ -30,8 +30,11 @@
   background-position: center center;
   background-size: 100% auto;
   background-repeat: no-repeat;
-  opacity:0.5
+   opacity:0.5 
+  
 }
+
+
 
 .mainPlaylist .playlist:hover{
   
