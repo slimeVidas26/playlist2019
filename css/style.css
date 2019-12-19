@@ -53,8 +53,22 @@
 } */
 
 nav{
-  background-color:#26a69a;
+  background-color: rgba(0,0,0,0)!important;
 }
+
+nav ul a { 
+  color:black;
+}
+
+nav .input-field label.active i {
+  color: black;
+}
+nav .input-field label i {
+  color: rgba(0, 0, 0, 0.7);
+  -webkit-transition: color .3s;
+  transition: color .3s;
+}
+
 
 .search {
   cursor: pointer;

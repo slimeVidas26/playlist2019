@@ -260,6 +260,16 @@
     height: 160px;
   }
 
+  .itemIsPlaying {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 335px;
+    width: 335px;
+    top: 8%;
+    left: 3.4%;
+  }
+
   .playerActions {
     height: 160px;
   }
@@ -299,6 +309,16 @@ font-size:0.55em;
 
   .item {
     height: 240px;
+  }
+
+  .itemIsPlaying {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 335px;
+    width: 335px;
+    top: 8%;
+    left: 3.4%;
   }
 
   .playerActions {
@@ -341,6 +361,16 @@ font-size:0.8em;
 
   .item {
     height: 300px;
+  }
+
+  .itemIsPlaying {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 335px;
+    width: 335px;
+    top: 8%;
+    left: 3.4%;
   }
 
   .playerActions {
@@ -392,6 +422,16 @@ font-size:1em;
     height: 360px;
   }
 
+  .itemIsPlaying {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 335px;
+    width: 335px;
+    top: 8%;
+    left: 3.4%;
+  }
+
   .playerActions {
     height: 360px;
   }
@@ -428,6 +468,16 @@ font-size:1em;
 
   .item {
     height: 400px;
+  }
+
+  .itemIsPlaying {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 335px;
+    width: 335px;
+    top: 8%;
+    left: 3.4%;
   }
 
   .playerActions {
