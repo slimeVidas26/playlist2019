@@ -4,9 +4,6 @@
 //AUDIO
   var myAudio = new Audio();
 
- 
-
-
   $("#spinner").show()
 
   // var init = function () {
@@ -81,7 +78,7 @@ function addPlaylist(name, image, songs) {
         console.log(res.data);
         $('#spinner').hide();
         var newQuery = res.data.map(function(item){
-          return `<div class="col s12 m6 l4 xl3 playlist">
+          return `<div  class="col s12 m6 l4 xl3 playlist" isPlaying = "false">
           <img src=${item.image}  alt="preview img" class="center">
           <div  class="arcText">${item.name}</div>
           <i data-id = ${item.id} class="material-icons playBtn">play_circle_outline</i>
@@ -112,7 +109,7 @@ function addPlaylist(name, image, songs) {
       
 
       var newPlaylist = res.data.map(function(item){
-        return `<div  class="col s12 m6 l4 xl3 playlist">
+        return `<div   class="col s12 m6 l4 xl3 playlist"  isPlaying ="false">
              <img src=${item.image}  alt="preview img" class="center">
              <div  class="arcText">${item.name}</div>
                 <i data-id = ${item.id} class="material-icons playBtn">play_circle_outline</i>
@@ -142,7 +139,7 @@ function addPlaylist(name, image, songs) {
       method:"GET"
 
     }).done(function(res){
-        console.log(res.data)
+        //console.log(res.data)
         $(".itemIsPlaying").addClass("itemIsPlaying");
         // $(this).css('background-image','url('+bg[1]+','+bg[0]+')');
       $(".itemIsPlaying").css('background-image', 'url(' + res.data.image +' )');
@@ -206,11 +203,11 @@ function addPlaylist(name, image, songs) {
       method:"GET",
     }).done(function(res){
        
-      console.log("id" , `${id}`)
+      //console.log("id" , `${id}`)
 
-     console.log("res.data.songs",res.data.songs)
+    //  console.log("res.data.songs",res.data.songs)
      var playlistSongArr = res.data.songs;
-     console.log("playlistSongArr" , playlistSongArr)
+    //  console.log("playlistSongArr" , playlistSongArr)
      $('.updateImg').attr('data-id' ,`${id}`);
      getPlaylistImage(id);
 
@@ -220,35 +217,32 @@ function addPlaylist(name, image, songs) {
        return   `<a><li data-id = ${id} data-url = ${item.url} class="collection-item"><span>${index+1}</span>${item.name}</li></a>`;
      })
 
-     console.log("listSongs" , listSongs)
+     //console.log("listSongs" , listSongs)
 
      var songName  = playlistSongArr.map(function(item,index){
-       console.log(item.name)
-       console.log("index" , index)
+       //console.log(item.name)
+       //console.log("index" , index)
        var objSong = {
          name:item.name,
          url:item.url,
          index: index
 
        }
-        console.log("objSong",objSong);
+        //console.log("objSong",objSong);
        return objSong;
      })
 
-     console.log("songName",songName)
-     console.log("songName.length",songName.length)
+     //console.log("songName",songName)
+     //console.log("songName.length",songName.length)
     
       var songName_index = 0;
-       myAudio.src = songName[songName_index].url;
+      var myAudio = $(".audio-control audio");
+       //myAudio.src = songName[songName_index].url;
        //myAudio.play();
 
-      myAudio = $(".audio-control audio");
+       
       myAudio.attr("src"  ,  songName[songName_index].url);
       
-
-     
-
-
       var switchTrack = function(){
        
         if(songName_index == (songName.length - 1)){
@@ -266,7 +260,7 @@ function addPlaylist(name, image, songs) {
           myAudio.attr("src"  ,  songName[songName_index].url);
           $('.listSongs ul a li').eq(songName_index).addClass("current");
 
-          document.getElementById('boom').play();
+          $('#boom').get(0).play();
           $('.nowPlaying').html(`${songName[songName_index].name}`);
           $('.nowPlaying').textMarquee({
             mode:'loop'
@@ -299,20 +293,21 @@ function addPlaylist(name, image, songs) {
        var playing = false;
 
        if (playing == false) {
-        document.getElementById('boom').play();
+        $('#boom').get(0).play();
           playing = true;
-          document.getElementById('boom').pause();
+          //$('#boom').get(0).pause();
 
       } else {
-        document.getElementById('boom').pause();
+        $('#boom').get(0).pause();
           playing = false;
       }
 
 
         if( $(this).is('.current') ) {
+          
            $(this).removeClass( "current");
            $(this).addClass( "currentStop");
-           document.getElementById('boom').pause();
+           $('#boom').get(0).pause();
            $('.itemIsPlaying').removeClass('rotate')
            playing = false;
            $('.nowPlaying').html(`Stop Sound :${$(this).text()}`);
@@ -325,9 +320,10 @@ function addPlaylist(name, image, songs) {
          
       }
       else if($(this).is('.currentStop')){
+        
         $(this).removeClass( "currentStop");
         $(this).addClass( "current");
-        document.getElementById('boom').play();
+        $('#boom').get(0).play();
         $('.itemIsPlaying').addClass('rotate');
         playing = true;
         $('.nowPlaying').html(`Now Playing :${$(this).text()}`);
@@ -346,29 +342,18 @@ function addPlaylist(name, image, songs) {
           var $p = $('.playlist i.material-icons.playBtn').filter(function() { 
             return $(this).data("id") == playlistId;
           });
+
+          // console.log("p" , $p)
             
 
           $p.parent().addClass('rotate')
 
-
-          
-          
-
-          
-
-          
-
-         
-         
-         
-         
-
       }
-      else {
-     // alert("toto")
+      // else if (!$(this).hasClass("current") && !$(this).hasClass("currentStop")) {
+        else{
+        
           $( "li.current" ).removeClass( "current" );
           $( "li.currentStop" ).removeClass( "currentStop" );
-
           $(this).addClass( "current" );
            $('.itemIsPlaying').addClass('rotate');
           $('.nowPlaying').html(`Now Playing :${$(this).text()}`);
@@ -378,7 +363,7 @@ function addPlaylist(name, image, songs) {
           var url =$(this).data("url"); 
           //myAudio.src = url ;
           myAudio.attr("src"  , url);
-          document.getElementById('boom').play();
+          $('#boom').get(0).play();
           
       }
        
@@ -524,11 +509,11 @@ var processPlaylist = (function(){
 
     myAudio = $(".audio-control audio");
 
-    $(".item").hide();
+    
     
     $(".player").slideDown("slow");
     //  $(".player").css("opacity" , 0.2);
-
+    $(".item").hide();
     $(".itemIsPlaying").show();
 
     
@@ -547,42 +532,52 @@ var processPlaylist = (function(){
         // $('#index-banner').css('background-image', 'url("Docs/audience.jpg")');
         $('#index-banner').css('height', '100vh');
 
-        
-
-       
-
-        // $(this).text() == 'play_circle_outline' ?
-        //  $(this).text('pause_circle_outline' ).parent().addClass('rotate').attr("isPlaying", "true").
-        //  $(".itemIsPlaying").addClass('rotate'):
-        // $(this).text('play_circle_outline' ).parent().removeClass('rotate').attr("isPlaying", "false");
-        // $(".itemIsPlaying").addClass('rotate');
-         //rotation
-
-         if($(this).text() == 'play_circle_outline'){
-          $(this).text('pause_circle_outline' ).parent().addClass('rotate').attr("isPlaying", "true")
-          $(".itemIsPlaying").addClass('rotate')
-          document.getElementById('boom').pause()
-
-         }
-         else {
-          $(this).text('play_circle_outline' ).parent().removeClass('rotate').attr("isPlaying", "false")
-          $(".itemIsPlaying").removeClass('rotate');
-          document.getElementById('boom').play()
-         }
       
-          $(this).prev().hide();
-         
-        if( $(this).parent().attr("isPlaying")=== "true" ) {
-          $(this).parent().siblings().removeClass( "rotate" ).attr("isPlaying" , "false");
-          $(this).prev().show();
 
-          }
         
-      //    if(document.getElementById('boom').pause()){
-      //       $(".itemIsPlaying").removeClass('rotate');
 
-      // }
+       const activePlaylist = $('.playlist').filter(function(){
+         //console.log("this" , $(this));
+         return $(this).attr("isPlaying")=="true"
+       });
+
+       console.log("activePlaylist",activePlaylist);
+
+       if(activePlaylist.length >0){
+        activePlaylist.each(function(){
+          $(this).find(".playBtn").text("play_circle_outline");
+         
+      });
+       }
+      
+       $(this).parent().attr("isPlaying") === "false" ? 
+          $(this).text("pause_circle_outline").parent().attr("isPlaying" , "true").addClass( "rotate" )
+           .siblings().removeClass("rotate")
+           :
+           $(this).text("play_circle_outline").parent().attr("isPlaying" , "false").removeClass( "rotate" )
+
+          
+           $(this).parent().attr("isPlaying") === "false" ? 
+           $(".itemIsPlaying").removeClass('rotate')
+            :
+            $(".itemIsPlaying").addClass('rotate')
+
+            $(this).parent().attr("isPlaying") === "false" ? 
+            $("#boom").get(0).play()
+            :
+            $("#boom").get(0).pause()
+
+         
+
+      
+
+
+        
+
+
        
+
+             
   })
 
   $('#search').keyup(function(){
