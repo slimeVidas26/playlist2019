@@ -287,45 +287,35 @@ function addPlaylist(name, image, songs) {
       mode:'loop'
     });
 
-      $(document).on('click' , '.listSongs ul a li' , function(){
-       console.log($(this).parent())
-        
-       var playing = false;
+      $(".listSongs ul a").on('click' , ' li' , function(){
+       //console.log($(this).parent())
 
-       if (playing == false) {
-        $('#boom').get(0).play();
-          playing = true;
-          //$('#boom').get(0).pause();
-
-      } else {
-        $('#boom').get(0).pause();
-          playing = false;
-      }
-
-
+       
+     
         if( $(this).is('.current') ) {
           
            $(this).removeClass( "current");
            $(this).addClass( "currentStop");
            $('#boom').get(0).pause();
            $('.itemIsPlaying').removeClass('rotate')
-           playing = false;
+           //playing = false;
            $('.nowPlaying').html(`Stop Sound :${$(this).text()}`);
           //  $(this).siblings().removeClass( "currentStop");
            //$( "li.currentStop" ).removeClass( "currentStop" );
+           
 
            if ($('.playlist').hasClass('rotate')) {  
             $('.playlist').removeClass('rotate');        
            }  
          
       }
-      else if($(this).is('.currentStop')){
+       else if($(this).hasClass('currentStop')){
         
         $(this).removeClass( "currentStop");
         $(this).addClass( "current");
         $('#boom').get(0).play();
         $('.itemIsPlaying').addClass('rotate');
-        playing = true;
+        //playing = true;
         $('.nowPlaying').html(`Now Playing :${$(this).text()}`);
           $('.nowPlaying').textMarquee({
             mode:'loop'
@@ -347,15 +337,19 @@ function addPlaylist(name, image, songs) {
             
 
           $p.parent().addClass('rotate')
+          
 
       }
       // else if (!$(this).hasClass("current") && !$(this).hasClass("currentStop")) {
-        else{
-        
-          $( "li.current" ).removeClass( "current" );
+          else{
+
+           
+
+              $( "li.current" ).removeClass( "current" );
           $( "li.currentStop" ).removeClass( "currentStop" );
           $(this).addClass( "current" );
            $('.itemIsPlaying').addClass('rotate');
+           //$(".nowPlaying").replaceWith(`Now Playing :${$(this).text()}`);
           $('.nowPlaying').html(`Now Playing :${$(this).text()}`);
           $('.nowPlaying').textMarquee({
             mode:'loop'
@@ -364,8 +358,13 @@ function addPlaylist(name, image, songs) {
           //myAudio.src = url ;
           myAudio.attr("src"  , url);
           $('#boom').get(0).play();
+
+            }
+
           
-      }
+        
+  
+       
        
       })
 
