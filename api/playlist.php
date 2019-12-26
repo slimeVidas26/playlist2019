@@ -7,6 +7,11 @@ if (!empty($_GET['404'])
 }
 
 try {
+
+	// $servername = "localhost"; 
+	// $dbname = "nemorakc_playlist"; 
+	// $password = "trottinette" ;
+	// $username = "rg512"; 
 	// db connection
 	$servername = "localhost";
 	$username = "root";

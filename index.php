@@ -9,6 +9,8 @@
   <nav role="navigation">
     <?php require('components/nav.html') ?>
   </nav>
+
+  
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
@@ -29,11 +31,11 @@
   </div>
   <br><br>
   </div>
+  
   <footer class="page-footer orange">
     <?php require('components/footer.html') ?>
 
   </footer>
-
 
   <!--  Scripts-->
 

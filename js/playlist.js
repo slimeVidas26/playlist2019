@@ -70,8 +70,9 @@ function addPlaylist(name, image, songs) {
     if(query){
 
       $.ajax({
-        url: `http://localhost/playlist2019/api/playlist/${query}`,
-  
+         url: `http://localhost/playlist2019/api/playlist/${query}`,
+        // url: `http://localhost/music-player/api/playlist/${query}`,
+        // url: `http://nemorak.com/api/playlist/${query}`,
         method: 'GET',
   
       }).done(function (res) {
@@ -97,9 +98,12 @@ function addPlaylist(name, image, songs) {
       })
     }
     else{
-    
+      console.log("toto");
     $.ajax({
-      url: 'http://localhost/playlist2019/api/playlist',
+     
+       url: 'http://localhost/playlist2019/api/playlist',
+      // url: `http://nemorak.com/api/playlist`,
+
 
       method: 'GET',
 
