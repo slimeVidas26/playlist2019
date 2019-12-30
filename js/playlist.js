@@ -98,7 +98,6 @@ function addPlaylist(name, image, songs) {
       })
     }
     else{
-      console.log("toto");
     $.ajax({
      
        url: 'http://localhost/playlist2019/api/playlist',
@@ -507,13 +506,10 @@ var processPlaylist = (function(){
 
 
   //SHOW PLAYER FUNCTION
-
-  $(document).on('click' , '.playBtn' , function(){
+  $(document).on('click' , 'i.material-icons.playBtn' , function(){
 
     myAudio = $(".audio-control audio");
-
-    
-    
+//show player
     $(".player").slideDown("slow");
     //  $(".player").css("opacity" , 0.2);
     $(".item").hide();
@@ -534,53 +530,91 @@ var processPlaylist = (function(){
 }).fadeTo('slow', 1);
         // $('#index-banner').css('background-image', 'url("Docs/audience.jpg")');
         $('#index-banner').css('height', '100vh');
+//////////////////////////////////////////////////////////////////////////////
 
-      
 
-        
+ 
 
-       const activePlaylist = $('.playlist').filter(function(){
-         //console.log("this" , $(this));
-         return $(this).attr("isPlaying")=="true"
-       });
 
-       console.log("activePlaylist",activePlaylist);
 
-       if(activePlaylist.length >0){
-        activePlaylist.each(function(){
-          $(this).find(".playBtn").text("play_circle_outline");
-         
-      });
-       }
-      
-       $(this).parent().attr("isPlaying") === "false" ? 
-          $(this).text("pause_circle_outline").parent().attr("isPlaying" , "true").addClass( "rotate" )
-           .siblings().removeClass("rotate")
-           :
-           $(this).text("play_circle_outline").parent().attr("isPlaying" , "false").removeClass( "rotate" )
+
+/////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+        const activePlaylist = $('.playlist').filter(function(){
+          //console.log("this" , $(this));
+          return $(this).attr("isplaying")=="true" });
+          
+          //const textBtn = ($(this).text ());
+
 
           
-           $(this).parent().attr("isPlaying") === "false" ? 
-           $(".itemIsPlaying").removeClass('rotate')
-            :
-            $(".itemIsPlaying").addClass('rotate')
-
-            $(this).parent().attr("isPlaying") === "false" ? 
-            $("#boom").get(0).play()
-            :
-            $("#boom").get(0).pause()
-
-         
-
-      
-
-
+          // switch (textBtn){
+          
+          // case "play_circle_outline":
+          
+          // $(this).text ("pause_circle_outline");
+          //  $("#boom").get(0).play();
+          // $(this).parent().addClass('rotate').attr(  "isplaying" , "true");
+          // break;
+          
+          
+          // case "pause_circle_outline":
         
+          // $(this).text ("play_circle_outline");
+          // // $("#boom").get(0).pause();
+          // $(this).parent().removeClass('rotate').attr(  "isplaying" , "false");
+          // break;
+          
+                
+          // }
+
+          if($(this).text()=="pause_circle_outline"){ 
+            $('#boom').get(0).pause();
+            $(this).text("play_circle_outline");
+            return;
+         } 
+         if($(this).text()=="play_circle_outline"){
+             setTimeout(function () {      
+              $('#boom').get(0).play();   
+         }, 150);
+         $(this).text("pause_circle_outline");
+         }    
+          
+          if(activePlaylist.length >0){
+             activePlaylist.each(function(){
+                $(this).find(".playBtn").text("play_circle_outline")
+                .parent ().attr( "isplaying","false" ).removeClass('rotate');
+               })}
+
+              
 
 
-       
+               $('.playlist').each(function(){
+                 if($(this).attr('isplaying')=="false"){
+                  $("#boom").get(0).pause();
+ 
+                 }
+                 else{
+                  $("#boom").get(0).play(); 
+                 }
+              
+              
+               })
 
-             
+
+           
+     
+          
   })
 
   $('#search').keyup(function(){
