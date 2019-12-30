@@ -2,20 +2,13 @@
 
 (function ($) {
 //AUDIO
-  var myAudio = new Audio();
+  var myAudio = $("#sound");
+  var songName_index = 0;
 
   $("#spinner").show()
 
-  // var init = function () {
-
-  //   getAllPlaylists();
-
-  // }
-
 var playlist = (function(){
 
-  
-  
 
   //ADD PLAYLIST
 function addPlaylist(name, image, songs) {
@@ -39,10 +32,7 @@ function addPlaylist(name, image, songs) {
       console.log(textStatus);
     });
   }
-
   
-    
-   
   
   function insertSongToPlaylist () {
     $songName = $('.inputName');
@@ -60,8 +50,6 @@ function addPlaylist(name, image, songs) {
     }
     return song;
   }
-
-  
 
   //DISPLAY ALL THE PLAYLISTS
 
@@ -142,30 +130,14 @@ function addPlaylist(name, image, songs) {
       method:"GET"
 
     }).done(function(res){
-        //console.log(res.data)
         $(".itemIsPlaying").addClass("itemIsPlaying");
-        // $(this).css('background-image','url('+bg[1]+','+bg[0]+')');
       $(".itemIsPlaying").css('background-image', 'url(' + res.data.image +' )');
       $(".itemIsPlaying").css('background-size', '100%');
       
       $(".itemIsPlaying").css('background-position', '8% 50%'); 
-      $(".itemIsPlaying").css('border-radius','50%'); 
-
-      // $(".itemIsPlaying").css('border-radius', '50%'); 
-
- 
-
- 
-
-       
-
+      $(".itemIsPlaying").css('border-radius','50%');    
     
-    
-});
-    
-  
-  
-  
+}); 
 }
 
   //GET EXISTING PLAYLIST
@@ -192,10 +164,32 @@ function addPlaylist(name, image, songs) {
           $('#modalEdit .input-field label').addClass('active');
         }, 1);
   });
-      
-    
-    
-    
+       
+  }
+
+  var switchTrack = function(collection){
+        
+    if(songName_index == (collection.length - 1)){
+      songName_index = 0;
+      myAudio.src = collection[songName_index].url;
+      myAudio.play();
+      $('.nowPlaying').html(`Now Playing : ${songName[0].name}`);
+      $('.nowPlaying').textMarquee({
+        mode:'loop'
+      });
+    } else {
+      $('.listSongs ul a li').eq(songName_index).removeClass("current");
+
+      songName_index++;
+      myAudio.attr("src"  ,  collection[songName_index].url);
+      $('.listSongs ul a li').eq(songName_index).addClass("current");
+
+      myAudio.get(0).play();
+      $('.nowPlaying').html(`${collection[songName_index].name}`);
+      $('.nowPlaying').textMarquee({
+        mode:'loop'
+      });
+    }
   }
 
   //GET PLAYLIST SONGS
@@ -205,81 +199,28 @@ function addPlaylist(name, image, songs) {
       url: `http://localhost/playlist2019/api/playlist/${id}/songs`,
       method:"GET",
     }).done(function(res){
-       
-      //console.log("id" , `${id}`)
-
-    //  console.log("res.data.songs",res.data.songs)
      var playlistSongArr = res.data.songs;
-    //  console.log("playlistSongArr" , playlistSongArr)
      $('.updateImg').attr('data-id' ,`${id}`);
      getPlaylistImage(id);
 
-     //var imageUrl =`${res.data.songs.url}`; 
-      //$(".item").css("background-image", "url(" + imageUrl + ")"); 
      var listSongs = playlistSongArr.map(function(item , index){
        return   `<a><li data-id = ${id} data-url = ${item.url} class="collection-item"><span>${index+1}</span>${item.name}</li></a>`;
      })
 
-     //console.log("listSongs" , listSongs)
-
      var songName  = playlistSongArr.map(function(item,index){
-       //console.log(item.name)
-       //console.log("index" , index)
        var objSong = {
          name:item.name,
          url:item.url,
          index: index
 
        }
-        //console.log("objSong",objSong);
        return objSong;
      })
 
-     //console.log("songName",songName)
-     //console.log("songName.length",songName.length)
-    
-      var songName_index = 0;
-      var myAudio = $(".audio-control audio");
-       //myAudio.src = songName[songName_index].url;
-       //myAudio.play();
-
-       
-      myAudio.attr("src"  ,  songName[songName_index].url);
+     $(myAudio).attr("src",songName[songName_index].url);
       
-      var switchTrack = function(){
-       
-        if(songName_index == (songName.length - 1)){
-          songName_index = 0;
-          myAudio.src = songName[songName_index].url;
-          myAudio.play();
-          $('.nowPlaying').html(`Now Playing : ${songName[0].name}`);
-          $('.nowPlaying').textMarquee({
-            mode:'loop'
-          });
-        } else {
-          $('.listSongs ul a li').eq(songName_index).removeClass("current");
-
-          songName_index++;
-          myAudio.attr("src"  ,  songName[songName_index].url);
-          $('.listSongs ul a li').eq(songName_index).addClass("current");
-
-          $('#boom').get(0).play();
-          $('.nowPlaying').html(`${songName[songName_index].name}`);
-          $('.nowPlaying').textMarquee({
-            mode:'loop'
-          });
-
-
-
-
-        }
-
-      
-      }
-
       $(myAudio).on('ended', function(){
-      
-        switchTrack();
+        switchTrack(songName);
     });
     
      $('.player .info .listSongs ul').html(listSongs);
@@ -291,63 +232,40 @@ function addPlaylist(name, image, songs) {
     });
 
       $(".listSongs ul a").on('click' , ' li' , function(){
-       //console.log($(this).parent())
-
-       
-     
         if( $(this).is('.current') ) {
           
            $(this).removeClass( "current");
            $(this).addClass( "currentStop");
-           $('#boom').get(0).pause();
+           $(myAudio).get(0).pause();
            $('.itemIsPlaying').removeClass('rotate')
-           //playing = false;
            $('.nowPlaying').html(`Stop Sound :${$(this).text()}`);
-          //  $(this).siblings().removeClass( "currentStop");
-           //$( "li.currentStop" ).removeClass( "currentStop" );
-           
-
+         
            if ($('.playlist').hasClass('rotate')) {  
             $('.playlist').removeClass('rotate');        
            }  
          
       }
        else if($(this).hasClass('currentStop')){
-        
         $(this).removeClass( "currentStop");
         $(this).addClass( "current");
-        $('#boom').get(0).play();
+        myAudio.get(0).play();
         $('.itemIsPlaying').addClass('rotate');
-        //playing = true;
         $('.nowPlaying').html(`Now Playing :${$(this).text()}`);
           $('.nowPlaying').textMarquee({
             mode:'loop'
           });
          
-
-
-          
-          // $(this).siblings().removeClass( "currentStop");
           var playlistId = $(this).data("id");
           console.log("playlistId",playlistId);
           
-
           var $p = $('.playlist i.material-icons.playBtn').filter(function() { 
             return $(this).data("id") == playlistId;
           });
 
-          // console.log("p" , $p)
-            
-
           $p.parent().addClass('rotate')
           
-
       }
-      // else if (!$(this).hasClass("current") && !$(this).hasClass("currentStop")) {
           else{
-
-           
-
               $( "li.current" ).removeClass( "current" );
           $( "li.currentStop" ).removeClass( "currentStop" );
           $(this).addClass( "current" );
@@ -358,26 +276,16 @@ function addPlaylist(name, image, songs) {
             mode:'loop'
           });
           var url =$(this).data("url"); 
-          //myAudio.src = url ;
-          myAudio.attr("src"  , url);
-          $('#boom').get(0).play();
+          $(myAudio).attr("src"  , url);
+          $(myAudio).get(0).play();
 
             }
-
-          
-        
-  
-       
-       
       })
 
 }).fail(function (textStatus) {
   console.log(textStatus);
 });
     
-  
-  
-  
 }
 
 // EDIT PLAYLIST SONGS AND FINISH
@@ -420,14 +328,6 @@ function addPlaylist(name, image, songs) {
     })
   });
   }
-
-
- 
-   
-
-  
-
-  
 
 return{
     _addPlaylist:addPlaylist,
@@ -491,24 +391,77 @@ var processPlaylist = (function(){
       $('.editImg').attr('data-id' ,"playlistID");
 
       playlist._getPlaylist(playlistID);
-
-      
-      
+ 
     });
 
-    
-
-   
-    
-
+  
     //DELETE PLAYLIST
       playlist._deletePlaylist();
+    //end of delete playlist
 
+    $(document).on('click' , 'i.material-icons.playBtn' , function(){
+
+
+      
+
+      //         $(this).text("pause_circle_outline")
+      //         $(this).parent().attr("isplaying" , "true")
+
+             
+                if($(this).text()=="pause_circle_outline"){ 
+               myAudio.get(0).pause();
+               $(this).text("play_circle_outline");
+               $(this).parent().removeClass("rotate");
+               $(".itemIsPlaying").removeClass("rotate");
+               return;
+            
+            } 
+            if($(this).text()=="play_circle_outline"){
+              const activePlaylist = $('.playlist').filter(function(){
+                return $(this).attr("isplaying")=="true" });
+
+                // if(activePlaylist.length >0){
+                //   activePlaylist.each(function(){
+                //     $(this).find(".playBtn").text("play_circle_outline").parent().siblings().attr("isplaying" , "false").removeClass("rotate");
+                   
+                // });
+                //  }
+       
+                console.log(activePlaylist);
+                $(".player").slideDown("slow");
+                $('#index-banner').fadeTo('slow', 0.3, function(){
+                  $(this).css('background-image', 'url("Docs/audience.jpg")');
+                   }).fadeTo('slow', 1);
+                  $('#index-banner').css('height', '100vh');
+                  $(".item").hide();
+                  $(".itemIsPlaying").show().addClass("rotate");
+                  var playlistID = $(this).data("id");
+                 playlist._getPlaylistSongs(playlistID);
+       
+                  $('.nowPlaying').textMarquee({
+                        mode:'loop'
+                      });
+              $(this).text("pause_circle_outline");
+                setTimeout(function () {      
+               myAudio.get(0).play();
+               
+            }, 150);
+            $(this).parent().attr("isplaying" , "true").addClass("rotate")
+            // $(this).parent().siblings().attr("isplaying" , "false").removeClass("rotate")
+            // $(this).siblings().text("play_circle_outline")
+
+        
+            }  
+            
+           
+            
+            
+          
+    });
 
   //SHOW PLAYER FUNCTION
-  $(document).on('click' , 'i.material-icons.playBtn' , function(){
+  $(document).on('click' , 'i.materialbbbb-icons.playBtn2' , function(){
 
-    myAudio = $(".audio-control audio");
 //show player
     $(".player").slideDown("slow");
     //  $(".player").css("opacity" , 0.2);
@@ -523,35 +476,12 @@ var processPlaylist = (function(){
           mode:'loop'
         });
 
-        //show background image
-        $('#index-banner').fadeTo('slow', 0.3, function()
-{
-    $(this).css('background-image', 'url("Docs/audience.jpg")');
-}).fadeTo('slow', 1);
-        // $('#index-banner').css('background-image', 'url("Docs/audience.jpg")');
+        $('#index-banner').fadeTo('slow', 0.3, function(){
+        $(this).css('background-image', 'url("Docs/audience.jpg")');
+         }).fadeTo('slow', 1);
         $('#index-banner').css('height', '100vh');
-//////////////////////////////////////////////////////////////////////////////
-
-
- 
-
-
-
-
-/////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
 
         const activePlaylist = $('.playlist').filter(function(){
-          //console.log("this" , $(this));
           return $(this).attr("isplaying")=="true" });
           
           //const textBtn = ($(this).text ());
@@ -578,38 +508,12 @@ var processPlaylist = (function(){
                 
           // }
 
-          if($(this).text()=="pause_circle_outline"){ 
-            $('#boom').get(0).pause();
-            $(this).text("play_circle_outline");
-            return;
-         } 
-         if($(this).text()=="play_circle_outline"){
-             setTimeout(function () {      
-              $('#boom').get(0).play();   
-         }, 150);
-         $(this).text("pause_circle_outline");
-         }    
-          
-          if(activePlaylist.length >0){
-             activePlaylist.each(function(){
-                $(this).find(".playBtn").text("play_circle_outline")
-                .parent ().attr( "isplaying","false" ).removeClass('rotate');
-               })}
+        
 
               
 
 
-               $('.playlist').each(function(){
-                 if($(this).attr('isplaying')=="false"){
-                  $("#boom").get(0).pause();
- 
-                 }
-                 else{
-                  $("#boom").get(0).play(); 
-                 }
-              
-              
-               })
+             
 
 
            
