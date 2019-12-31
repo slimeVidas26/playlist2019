@@ -4,6 +4,8 @@
 //AUDIO
   var myAudio = $("#sound");
   var songName_index = 0;
+   var activePlaylist = $('.playlist').filter(function(){
+    return $(this).attr("isplaying")=="true" });
 
   $("#spinner").show()
 
@@ -55,6 +57,7 @@ function addPlaylist(name, image, songs) {
 
   var getAllPlaylist = function(query){
     $('#spinner').show();
+    console.log("activePlaylist in get all playlists" , activePlaylist)
     if(query){
 
       $.ajax({
@@ -398,128 +401,120 @@ var processPlaylist = (function(){
     //DELETE PLAYLIST
       playlist._deletePlaylist();
     //end of delete playlist
+    
 
     $(document).on('click' , 'i.material-icons.playBtn' , function(){
 
+         //var currentPlaylist = $(this).parent();
+        //  console.log("parent" , $(this).parent())
 
-      
+        //  console.log("currentPlaylist" , currentPlaylist)
+        //  currentPlaylist.attr("isplaying" , "true");
+         //activePlaylist.push(currentPlaylist);
+        //  if(activePlaylist.index(currentPlaylist) === -1){
+        //   activePlaylist.push(currentPlaylist)
+        //  }
+        
 
-      //         $(this).text("pause_circle_outline")
-      //         $(this).parent().attr("isplaying" , "true")
+          //console.log(activePlaylist)
+        //  if(activePlaylist.index(currentPlaylist)==-1){
+        //   activePlaylist.push(currentPlaylist);
+        //  }
+
+//         var newItem = "NEW_ITEM_TO_ARRAY";
+// var array = ["OLD_ITEM_1", "OLD_ITEM_2"];
+
+// array.indexOf(newItem) === -1 ? array.push(newItem) : console.log("This item already exists");
+
+// console.log(array)
+
+        
+         
+        
+         //console.log(activePlaylist.index(currentPlaylist))
+        //  var index = activePlaylist.index(currentPlaylist); 
+        //  console.log("index" , index)
+     
 
              
                 if($(this).text()=="pause_circle_outline"){ 
-               myAudio.get(0).pause();
-               $(this).text("play_circle_outline");
-               $(this).parent().removeClass("rotate");
-               $(".itemIsPlaying").removeClass("rotate");
-               return;
-            
-            } 
-            if($(this).text()=="play_circle_outline"){
-              const activePlaylist = $('.playlist').filter(function(){
-                return $(this).attr("isplaying")=="true" });
 
-                // if(activePlaylist.length >0){
-                //   activePlaylist.each(function(){
-                //     $(this).find(".playBtn").text("play_circle_outline").parent().siblings().attr("isplaying" , "false").removeClass("rotate");
+                 
+                 
+
+                    myAudio.get(0).pause();
+                    $(this).text("play_circle_outline");
+                    $(this).parent().removeClass("rotate").attr("isplaying" , "false");
+                    $(".itemIsPlaying").removeClass("rotate");
+                    return;
+                  }
+              
+            
+            
+                if($(this).text()=="play_circle_outline"){
+
+                      //   if(activePlaylist.length == 0){
+                      //     activePlaylist.push($(this).parent())
+                      //     console.log("activePlaylist",activePlaylist);
+                      //     $(".player").slideDown("slow");
+                      //     $('#index-banner').fadeTo('slow', 0.3, function(){
+                      //       $(this).css('background-image', 'url("Docs/audience.jpg")');
+                      //       }).fadeTo('slow', 1);
+                      //       $('#index-banner').css('height', '100vh');
+                      //       $(".item").hide();
+                      //       $(".itemIsPlaying").show().addClass("rotate");
+                      //       var playlistID = $(this).data("id");
+                      //       playlist._getPlaylistSongs(playlistID);
+                
+                      //       $('.nowPlaying').textMarquee({
+                      //             mode:'loop'
+                      //           });
+                      //   $(this).text("pause_circle_outline");
+                      //     setTimeout(function () {      
+                      //   myAudio.get(0).play();
+                      // }, 150);
+                      // $(this).parent().attr("isplaying" , "true").addClass("rotate");
+                      
+
+                        
+                    
+                            
+                      //   }else{
+
+                          console.log("activePlaylist >0" , activePlaylist);
+                          $(".item").hide();
+                          $(".itemIsPlaying").show().addClass("rotate");
+                          var playlistID = $(this).data("id");
+                        playlist._getPlaylistSongs(playlistID);
+              
+                          $('.nowPlaying').textMarquee({
+                                mode:'loop'
+                              });
+                      $(this).text("pause_circle_outline");
+                        setTimeout(function () {      
+                      myAudio.get(0).play();
+                      
+                    }, 150);
+                    $(this).parent().attr("isplaying" , "true").addClass("rotate")
+                    $(this).parent().siblings().attr("isplaying" , "false").removeClass("rotate").find(".playBtn").text("play_circle_outline");;
+
                    
-                // });
-                //  }
-       
-                console.log(activePlaylist);
-                $(".player").slideDown("slow");
-                $('#index-banner').fadeTo('slow', 0.3, function(){
-                  $(this).css('background-image', 'url("Docs/audience.jpg")');
-                   }).fadeTo('slow', 1);
-                  $('#index-banner').css('height', '100vh');
-                  $(".item").hide();
-                  $(".itemIsPlaying").show().addClass("rotate");
-                  var playlistID = $(this).data("id");
-                 playlist._getPlaylistSongs(playlistID);
-       
-                  $('.nowPlaying').textMarquee({
-                        mode:'loop'
-                      });
-              $(this).text("pause_circle_outline");
-                setTimeout(function () {      
-               myAudio.get(0).play();
-               
-            }, 150);
-            $(this).parent().attr("isplaying" , "true").addClass("rotate")
-            // $(this).parent().siblings().attr("isplaying" , "false").removeClass("rotate")
-            // $(this).siblings().text("play_circle_outline")
 
-        
-            }  
-            
-           
-            
-            
-          
+                  //   activePlaylist.each(function(){
+                  //     $(this).find(".playBtn").text("play_circle_outline")
+                  //     .parent().siblings()
+                  //     .attr("isplaying" , "false")
+                  //     .removeClass("rotate");
+                    
+                  // });
+
+                        }
+                
+                // }  
+                 
     });
 
-  //SHOW PLAYER FUNCTION
-  $(document).on('click' , 'i.materialbbbb-icons.playBtn2' , function(){
-
-//show player
-    $(".player").slideDown("slow");
-    //  $(".player").css("opacity" , 0.2);
-    $(".item").hide();
-    $(".itemIsPlaying").show();
-
-    
-    var playlistID = $(this).data("id");
-    playlist._getPlaylistSongs(playlistID);
-
-    $('.nowPlaying').textMarquee({
-          mode:'loop'
-        });
-
-        $('#index-banner').fadeTo('slow', 0.3, function(){
-        $(this).css('background-image', 'url("Docs/audience.jpg")');
-         }).fadeTo('slow', 1);
-        $('#index-banner').css('height', '100vh');
-
-        const activePlaylist = $('.playlist').filter(function(){
-          return $(this).attr("isplaying")=="true" });
-          
-          //const textBtn = ($(this).text ());
-
-
-          
-          // switch (textBtn){
-          
-          // case "play_circle_outline":
-          
-          // $(this).text ("pause_circle_outline");
-          //  $("#boom").get(0).play();
-          // $(this).parent().addClass('rotate').attr(  "isplaying" , "true");
-          // break;
-          
-          
-          // case "pause_circle_outline":
-        
-          // $(this).text ("play_circle_outline");
-          // // $("#boom").get(0).pause();
-          // $(this).parent().removeClass('rotate').attr(  "isplaying" , "false");
-          // break;
-          
-                
-          // }
-
-        
-
-              
-
-
-             
-
-
-           
-     
-          
-  })
+  
 
   $('#search').keyup(function(){
     var search = $(this).val();
