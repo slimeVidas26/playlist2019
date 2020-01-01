@@ -133,9 +133,12 @@ function addPlaylist(name, image, songs) {
       method:"GET"
 
     }).done(function(res){
+      
         $(".itemIsPlaying").addClass("itemIsPlaying");
-      $(".itemIsPlaying").css('background-image', 'url(' + res.data.image +' )');
+       $(".itemIsPlaying").css('background-image', 'url(' + res.data.image +' )');
       $(".itemIsPlaying").css('background-size', '100%');
+      $(".itemIsPlaying").css('background-color', 'yellow' );
+
       
       $(".itemIsPlaying").css('background-position', '8% 50%'); 
       $(".itemIsPlaying").css('border-radius','50%');    
