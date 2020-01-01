@@ -63,6 +63,8 @@
   width: 100%;  
 }
 
+
+
 .playerActions {
 
   position: absolute;
@@ -571,6 +573,6 @@ font-weight: bold;
 
   audio {
     width: 300px;
-    height: 54px;
+    height: 36px;
 }
 }

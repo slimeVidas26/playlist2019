@@ -482,6 +482,11 @@ var processPlaylist = (function(){
                       //   }else{
 
                           console.log("activePlaylist >0" , activePlaylist);
+                          $(".player").slideDown("slow");
+                         $('#index-banner').fadeTo('slow', 0.3, function(){
+                           $(this).css('background-image', 'url("Docs/audience.jpg")');
+                           }).fadeTo('slow', 1);
+                           $('#index-banner').css('height', '100vh');
                           $(".item").hide();
                           $(".itemIsPlaying").show().addClass("rotate");
                           var playlistID = $(this).data("id");
