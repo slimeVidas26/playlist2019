@@ -489,7 +489,8 @@ var processPlaylist = (function(){
                          $('#index-banner').fadeTo('slow', 0.3, function(){
                            $(this).css('background-image', 'url("Docs/audience.jpg")');
                            }).fadeTo('slow', 1);
-                           $('#index-banner').css('height', '100vh');
+                           $('#index-banner').css('display', 'block');
+
                           $(".item").hide();
                           $(".itemIsPlaying").show().addClass("rotate");
                           var playlistID = $(this).data("id");

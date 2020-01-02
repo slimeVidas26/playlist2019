@@ -16,14 +16,14 @@
   }
 }
 
-.mainPlaylist{
+/* .mainPlaylist{
   position: relative;
   background-position: center top;
   background-size: 100% auto;
   background-repeat: no-repeat;
   margin: 0 auto;
   width: 100%;
-}
+} */
 
 .mainPlaylist .playlist{
   position:relative;
@@ -104,11 +104,24 @@
   display:block;
 }
 
+.mainPlaylist .playlist .center{
+  box-sizing: border-box;
+}
+
 @media (min-width:320px) {
    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
   .mainPlaylist .playlist .actions .material-icons{
     font-size: 2.2em;
     margin:0;
+  }
+
+  .mainPlaylist{
+    position: relative;
+    background-position: center top;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    width: 65%;
   }
 
   .mainPlaylist .playlist .center{
@@ -118,7 +131,7 @@
     margin-right: auto;
     margin-top:40px;
     margin-bottom:1em;
-     width: 83%; 
+     width: 65%; 
     border-radius:50% ;
     
   
@@ -134,6 +147,15 @@
   /* smartphones, Android phones, landscape iPhone */
   .mainPlaylist .playlist .actions .material-icons{
     font-size: 3em;
+  }
+
+  .mainPlaylist{
+    position: relative;
+    background-position: center top;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    width: 100%;
   }
 
   .mainPlaylist .playlist .playBtn{
@@ -181,6 +203,15 @@
       font-size: 2em;
     }
 
+    .mainPlaylist{
+      position: relative;
+      background-position: center top;
+      background-size: 100% auto;
+      background-repeat: no-repeat;
+      margin: 0 auto;
+      width: 100%;
+    }
+
     .mainPlaylist .playlist .center{
       position:relative;
       display: block;
@@ -208,6 +239,15 @@
     font-size: 2.5em;
   } 
 
+  .mainPlaylist{
+    position: relative;
+    background-position: center top;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    width: 100%;
+  }
+
   .mainPlaylist .playlist .center{
     position:relative;
     display: block;
@@ -233,6 +273,15 @@
     margin-top:30px;
   } 
 
+  .mainPlaylist{
+    position: relative;
+    background-position: center top;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    width: 100%;
+  }
+
   .mainPlaylist .playlist .center{
     position:relative;
     display: block;
@@ -256,6 +305,15 @@
   .mainPlaylist .playlist .actions .material-icons{
     font-size: 1.7em;
   } 
+
+  .mainPlaylist{
+    position: relative;
+    background-position: center top;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    width: 100%;
+  }
 
   .mainPlaylist .playlist .center{
     position:relative;
