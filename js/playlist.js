@@ -74,14 +74,14 @@ function addPlaylist(name, image, songs) {
           <img src=${item.image}  alt="preview img" class="center">
           <div  class="arcText">${item.name}</div>
           <i data-id = ${item.id} class="material-icons playBtn">play_circle_outline</i>
-              <div class="actions">
+             
               <a class=" modal-trigger" href="#modal-warning">
                   <i data-id = ${item.id} class="material-icons cancel">cancel</i>
                   </a>
                   <a class=" modal-trigger" href="#modalAdd">
                   <i data-id = ${item.id} class="material-icons edit">edit</i>
                   </a>
-              </div>`
+             `
         });
 
         $('.mainPlaylist').html(newQuery)
@@ -107,14 +107,13 @@ function addPlaylist(name, image, songs) {
              <img src=${item.image}  alt="preview img" class="center">
              <div  class="arcText">${item.name}</div>
                 <i data-id = ${item.id} class="material-icons playBtn">play_circle_outline</i>
-            <div class="actions">
+           
             <a class=" modal-trigger" href="#modal-warning">
                 <i data-id = ${item.id} class="material-icons cancel">cancel</i>
                 </a>
                 <a class=" modal-trigger" href="#modalAdd">
                 <i data-id = ${item.id} class="material-icons edit">edit</i>
-                </a>
-            </div>`
+                </a>`
       });
 
       $('.mainPlaylist').html(newPlaylist)

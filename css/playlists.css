@@ -77,27 +77,22 @@
 
 }
 
-.mainPlaylist .playlist .actions{
+/* .mainPlaylist .playlist .actions{
   position:absolute;
   top:20%;
   width:100%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
+} */
 
-.mainPlaylist .playlist .actions .material-icons{
+.mainPlaylist .playlist .material-icons{
 
-  color:rebeccapurple;
-  text-align: left;
-  float: left;
+  color:white;
   cursor: pointer;
-  padding-top:4px;
 }
-.mainPlaylist .playlist .actions .cancel{
-  text-align: right;
-  width:50%;
-  padding-left:130px;
-  padding-right:0.1em;
+
+.mainPlaylist .playlist .cancel{
+  position: absolute;
    display:block; 
 }
 
@@ -106,13 +101,9 @@
 
 }
 
-.mainPlaylist .playlist .actions .edit{
-  text-align:left;
-  width:50%;
-  padding-right:130px;
-  padding-left:0.4em;
+.mainPlaylist .playlist .edit{
+  position: absolute;
    display:block; 
-
 }
 
 .mainPlaylist .playlist:hover .edit{
@@ -137,8 +128,8 @@
 
 @media (min-width:320px) {
    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
-  .mainPlaylist .playlist .actions .material-icons{
-    font-size: 2em;
+  .mainPlaylist .playlist .material-icons{
+    font-size: 1.5em;
     /* margin:0; */
   }
 
@@ -169,6 +160,19 @@
     
   
   }
+
+  .mainPlaylist .playlist .cancel{
+    top: 30%;
+    left : 37%;
+   
+  }
+  
+ 
+  
+  .mainPlaylist .playlist .edit{
+    top: 30%;
+    right : 37%;
+  }
   
   .arcText { 
     font-size:1.8em;
@@ -179,7 +183,7 @@
 @media (min-width:480px) { 
 
   /* smartphones, Android phones, landscape iPhone */
-  .mainPlaylist .playlist .actions .material-icons{
+  .mainPlaylist .playlist .material-icons{
     font-size: 3.5em;
   }
 
@@ -211,6 +215,18 @@
   
   }
 
+  .mainPlaylist .playlist .cancel{
+    top: 20%;
+    left : 37%;
+  }
+  
+  
+  
+  .mainPlaylist .playlist .edit{
+    top: 20%;
+    right : 37%;
+  }
+
   
   .mainPlaylist .playlist:hover .cancel{
     display:block;
@@ -233,8 +249,8 @@
 @media (min-width:600px) {
    /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
     /* MAIN-PLAYLISTS */
-    .mainPlaylist .playlist .actions .material-icons{
-      font-size: 3.5em;
+    .mainPlaylist .playlist .material-icons{
+      font-size: 3em;
     }
 
     .mainPlaylist .playlist .playBtn{
@@ -262,17 +278,17 @@
       border-radius:50% ;
     
     }
-
-    /* .mainPlaylist .playlist .playBtn{
-      position: absolute;
-      top: 44%;
-      width: 95%;
-      text-align: center;
-      font-size: 5em;
-      color: white;
-      cursor: pointer;
-      
-    } */
+    .mainPlaylist .playlist .cancel{
+      top: 20%;
+      left : 35%;
+    }
+    
+    
+    
+    .mainPlaylist .playlist .edit{
+      top: 20%;
+      right : 35%;
+    }
     
     .arcText{ 
       
@@ -285,7 +301,7 @@
    }
 @media (min-width:801px) { 
   /* tablet, landscape iPad, lo-res laptops ands desktops */
-  .mainPlaylist .playlist .actions .material-icons{
+  .mainPlaylist .playlist .material-icons{
     font-size: 3em;
   } 
 
@@ -323,7 +339,7 @@
 }
 @media (min-width:992px) {
    /* big landscape tablets, laptops, and desktops */
-  .mainPlaylist .playlist .actions .material-icons{
+  .mainPlaylist .playlist .material-icons{
     font-size: 2.5em;
     /* margin-top:30px; */
   }
@@ -362,7 +378,7 @@
 }
 @media (min-width:1200px) {
    /* hi-res laptops and desktops */
-  .mainPlaylist .playlist .actions .material-icons{
+  .mainPlaylist .playlist .material-icons{
     font-size: 2em;
   } 
   .mainPlaylist .playlist .playBtn{
