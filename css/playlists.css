@@ -86,7 +86,8 @@
 }
 
 .mainPlaylist .playlist .actions .material-icons{
-  color:white;
+
+  color:rebeccapurple;
   text-align: left;
   float: left;
   cursor: pointer;
@@ -97,7 +98,12 @@
   width:50%;
   padding-left:130px;
   padding-right:0.1em;
-   display:none; 
+   display:block; 
+}
+
+.mainPlaylist .playlist:hover .cancel{
+  display:block;
+
 }
 
 .mainPlaylist .playlist .actions .edit{
@@ -105,7 +111,12 @@
   width:50%;
   padding-right:130px;
   padding-left:0.4em;
-   display:none 
+   display:block; 
+
+}
+
+.mainPlaylist .playlist:hover .edit{
+  display:block;
 
 }
 
@@ -127,8 +138,8 @@
 @media (min-width:320px) {
    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
   .mainPlaylist .playlist .actions .material-icons{
-    font-size: 2.2em;
-    margin:0;
+    font-size: 2em;
+    /* margin:0; */
   }
 
   .mainPlaylist .playlist .playBtn{
@@ -169,7 +180,7 @@
 
   /* smartphones, Android phones, landscape iPhone */
   .mainPlaylist .playlist .actions .material-icons{
-    font-size: 3em;
+    font-size: 3.5em;
   }
 
   .mainPlaylist .playlist .playBtn{
@@ -223,7 +234,7 @@
    /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
     /* MAIN-PLAYLISTS */
     .mainPlaylist .playlist .actions .material-icons{
-      font-size: 3em;
+      font-size: 3.5em;
     }
 
     .mainPlaylist .playlist .playBtn{
@@ -313,7 +324,7 @@
 @media (min-width:992px) {
    /* big landscape tablets, laptops, and desktops */
   .mainPlaylist .playlist .actions .material-icons{
-    font-size: 3em;
+    font-size: 2.5em;
     /* margin-top:30px; */
   }
   
@@ -352,7 +363,7 @@
 @media (min-width:1200px) {
    /* hi-res laptops and desktops */
   .mainPlaylist .playlist .actions .material-icons{
-    font-size: 3em;
+    font-size: 2em;
   } 
   .mainPlaylist .playlist .playBtn{
     font-size: 4.5em;
