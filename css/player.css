@@ -670,6 +670,8 @@ font-weight: bold;
 }
 }
 @media only screen and (min-width: 992px)and (max-width: 1099px) {
+
+  
   .itemIsPlaying {
     display: flex;
     align-items: center;
