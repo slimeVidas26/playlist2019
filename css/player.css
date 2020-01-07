@@ -51,7 +51,7 @@
    position: absolute;
   /* top: 0;
   left: 0; */
-   background-image: url('../Docs/isPlaying.png');
+   background-image: url('../Docs/isPlaying1.png');
   background-repeat: no-repeat;
   height: 150px;
   background-size: contain;
@@ -133,7 +133,7 @@
   display: flex;
   align-items: center;
   position: absolute;
-  bottom: 0;
+  bottom: 13%;
   width:90%;
   padding-left:35px;
 
@@ -154,6 +154,9 @@
   max-width:75%;
   display:inline-block;
   font-size:1em;
+  color: #428bca;
+
+
 
 
     }
@@ -196,7 +199,7 @@
   border-bottom: none;
   padding:0.3em;
   border-radius:10px;
-  width:100%;
+  width:85%;
   font-size:1rem;
   color:white;
   
@@ -237,7 +240,7 @@
 .audio-control {
   position: absolute;
   top: 4%;
-  left: 10%;
+  left: 4%;
   width : 100%;
 
 }
@@ -620,7 +623,6 @@ font-size:1em;
     .wrapper .nowPlaying{
 font-size:1em;
 text-align: right;
-color:#428bca;
 font-weight: bold;
   }
 
@@ -751,7 +753,21 @@ font-weight: bold;
     left: 3.2%;
   }
 }
-@media only screen and (min-width: 800px)and (max-width: 899px) {
+@media only screen and (min-width: 861px)and (max-width: 899px) {
+  .itemIsPlaying {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30vw;
+    height: 30vw;
+    top: 13%;
+    left: 3.2%;
+  }
+
+ 
+}
+
+@media only screen and (min-width: 800px)and (max-width: 860px) {
   .itemIsPlaying {
     display: flex;
     align-items: center;
@@ -771,7 +787,7 @@ font-weight: bold;
     justify-content: center;
     width: 30vw;
     height: 30vw;
-    top: 12%;
+    top: 10%;
     left: 3.3%;
   }
 
@@ -784,7 +800,7 @@ font-weight: bold;
     justify-content: center;
     width: 30vw;
     height: 30vw;
-    top: 18%;
+    top: 14%;
     left: 3.2%;
   }
 
@@ -797,13 +813,25 @@ font-weight: bold;
     justify-content: center;
     width: 32vw;
     height: 32vw;
-    top: 12%;
+    top: 11%;
     left: 3.2%;
   }
 
  
 }
-@media only screen and (min-width: 500px)and (max-width: 554px) {
+@media only screen and (min-width: 531px)and (max-width: 554px) {
+  .itemIsPlaying {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32vw;
+    height: 32vw;
+    top: 14%;
+    left: 3.2%;
+  }
+}
+
+@media only screen and (min-width: 500px)and (max-width: 530px) {
   .itemIsPlaying {
     display: flex;
     align-items: center;
@@ -813,8 +841,6 @@ font-weight: bold;
     top: 16%;
     left: 3.2%;
   }
-
- 
 }
 
 @media only screen and (min-width : 421px) and (max-width: 460px) {
