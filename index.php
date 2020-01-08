@@ -52,9 +52,22 @@
 
 
   <script>
-    $('.arcText').arctext({
-      radius: 150
-    });
+    (function ($) {
+
+      // $('.arcText').arctext({
+      //   radius: 150
+      // });
+
+      $('.arcText').arctext( {
+						radius		: 150, 
+						dir			: 1, 
+						animation	: {
+							speed	: 300,
+							easing  : 'ease-out'
+						}
+					});
+					return false;
+  })(jQuery);
   </script>
 
 </body>
