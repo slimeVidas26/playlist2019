@@ -20,7 +20,7 @@
     var addHiddenFields = function () {
 
       var titleModal = $("#modalAdd .modal-content h4").text();
-      console.log("titleModal",titleModal)
+      // console.log("titleModal",titleModal)
       if(titleModal==="Add New Playlist"){
         validatePlaylistParams(false , true , true);
       }
@@ -178,7 +178,7 @@
     var btnNext = $('#addPlaylistForm .next');
     btnNext.click(function () {
       var titleModal = $("#modalAdd .modal-content h4").text();
-      console.log("titleModal",titleModal)
+      // console.log("titleModal",titleModal)
       if(titleModal==="Add New Playlist"){
         modal._addHiddenFields();
       }

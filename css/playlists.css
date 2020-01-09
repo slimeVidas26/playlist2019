@@ -93,7 +93,7 @@
 
 .mainPlaylist .playlist .cancel{
   position: absolute;
-   display:block; 
+   display:none; 
 }
 
 .mainPlaylist .playlist:hover .cancel{
@@ -103,7 +103,7 @@
 
 .mainPlaylist .playlist .edit{
   position: absolute;
-   display:block; 
+   display:none; 
 }
 
 .mainPlaylist .playlist:hover .edit{

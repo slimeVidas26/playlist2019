@@ -45,9 +45,10 @@
   <script src="js/init.js"></script>
   <script src="js/modal.js"></script>
   <script src="js/playlist.js"></script>
-   <script src="audio.js"></script>
-
   <script src="js/Arctext/js/jquery.arctext.js"></script>
+
+   <!-- <script src="audio.js"></script> -->
+
 
 
 

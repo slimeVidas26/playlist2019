@@ -27,8 +27,9 @@ function addPlaylist(name, image, songs) {
 
     }).done(function (r) {
       console.log(r.data);
+      console.log(`Playlist ${r.data.id} added successfully`);
+
       getAllPlaylist();
-      //alert("Playlist added successfully");
 
     }).fail(function (textStatus) {
       console.log(textStatus);
@@ -55,11 +56,13 @@ function addPlaylist(name, image, songs) {
 
   //DISPLAY ALL THE PLAYLISTS
 
+  
+
+ 
   var getAllPlaylist = function(query){
     $('#spinner').show();
-    console.log("activePlaylist in get all playlists" , activePlaylist)
-    if(query){
 
+    if(query !== undefined){
       $.ajax({
          url: `http://localhost/playlist2019/api/playlist/${query}`,
         // url: `http://localhost/music-player/api/playlist/${query}`,
@@ -69,6 +72,8 @@ function addPlaylist(name, image, songs) {
       }).done(function (res) {
         console.log(res.data);
         $('#spinner').hide();
+        console.log("activePlaylist in get all playlists with query")
+
         var newQuery = res.data.map(function(item){
           return `<div  class="col s12 m6 l4 xl3 playlist" isPlaying = "false">
           <img src=${item.image}  alt="preview img" class="center">
@@ -101,6 +106,7 @@ function addPlaylist(name, image, songs) {
       //console.log(res.data);
       $('#spinner').hide();
       
+      console.log("activePlaylist in get all playlists without query")
 
       var newPlaylist = res.data.map(function(item){
         return `<div   class="col s12 m6 l4 xl3 playlist"  isPlaying ="false">
@@ -122,6 +128,8 @@ function addPlaylist(name, image, songs) {
     });
   }
   }
+
+
 
   //GET PLAYLIST IMAGE(URL)
 
@@ -340,6 +348,7 @@ return{
     _addPlaylist:addPlaylist,
     _insertSongToPlaylist:insertSongToPlaylist,
     _getAllPlaylist:getAllPlaylist,
+
     _getPlaylist:getPlaylist,
     _editPlaylistSongsAndFinish:editPlaylistSongsAndFinish,
     _deletePlaylist:deletePlaylist,
@@ -528,14 +537,17 @@ var processPlaylist = (function(){
 
   $('#search').keyup(function(){
     var search = $(this).val();
-    if(search != '')
+    
+    if(search !== undefined)
     {
+      //console.log("search",search)
       playlist._getAllPlaylist(search);
         }
     else
     {
      playlist._getAllPlaylist();
     }
+    
    });
   
  
