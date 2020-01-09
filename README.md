@@ -19,7 +19,6 @@ Technologies :
 * ES6 Features
 
 Mp3 files and images from:https://archive.org
-https://archive.org
-[GitHub](http://github.com)
+
 
 
