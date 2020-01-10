@@ -53,11 +53,12 @@
 } */
 
 nav{
-  background-color: rgba(0,0,0,0)!important;
+  /* background-color: rgba(0,0,0,0)!important; */
+  background-color:#ff9800!important;
 }
 
 nav ul a { 
-  color:black;
+  color:white;
 }
 
 nav .input-field label.active i {
