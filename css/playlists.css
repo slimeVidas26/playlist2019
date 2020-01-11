@@ -25,6 +25,10 @@
   width: 100%;
 } */
 
+.resume { 
+  display:none;
+}
+
 .mainPlaylist .playlist{
   position:relative;
   background-position: center center;

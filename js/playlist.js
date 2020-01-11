@@ -11,6 +11,8 @@
 
 var playlist = (function(){
 
+  
+
 
   //ADD PLAYLIST
 function addPlaylist(name, image, songs) {
@@ -359,6 +361,21 @@ return{
 
 
 var processPlaylist = (function(){
+
+  //SHOW RESUME
+  
+
+  
+    $('.resumeBtn').on('click',function(){
+    
+      $(this).text()=="Playlist" ?  $(this).text('About Me'):$(this).text("Playlist");
+      $('.resume').toggle();
+      $('.playlist').toggle();
+      $('.player').hide()
+
+    })
+    
+  
 
 
   playlist._getAllPlaylist();
