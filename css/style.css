@@ -62,7 +62,7 @@ nav ul a {
 }
 
 nav .input-field label.active i {
-  color: black;
+  color: white;
 }
 nav .input-field label i {
   color: rgba(0, 0, 0, 0.7);
@@ -73,6 +73,7 @@ nav .input-field label i {
 
 .search {
   cursor: pointer;
+  
 }
 
 

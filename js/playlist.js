@@ -365,19 +365,77 @@ var processPlaylist = (function(){
   //SHOW RESUME
   
 
-  
-    $('.resumeBtn').on('click',function(){
+  // $(document).on('click','.resumePlaylist', function(){
     
-      $(this).text()=="Playlist" ?  $(this).text('About Me'):$(this).text("Playlist");
-      $('.resume').toggle();
-      $('.playlist').toggle();
-      $('.player').hide()
+     $('.resumePlaylist').on('click',function(){
+    
+      // $(this).text()=="About Me" ?  $(this).text("Playlist"):$(this).text("About Me");
+      // $('.resume').toggle();
+      // $('.playlist').toggle();
+      // $('.player').toggle()
 
-    })
+      switch ($(this).text()) {
+        case "About Me":
+          $(this).text("Playlist");
+          $('.resume').fadeIn();
+          $('.playlist').fadeOut();
+          $('.player').fadeOut();
+          $('.nav-wrapper form').fadeOut();
+          break;
+         
+
+          case "Playlist":
+            switch (activePlaylist>0) {
+              case true:
+                $(this).text("About Me");
+                $('.resume').fadeOut();
+                $('.playlist').fadeIn();
+                $('.player').fadeIn();
+                $('.nav-wrapper form').fadeIn();
+      
+                break;
+                case false:
+                  $(this).text("About Me");
+                  $('.resume').fadeOut();
+                  $('.playlist').fadeIn();
+                  $('.player').fadeOut();
+                  $('.nav-wrapper form').fadeIn();
+        
+                  break;
+      
+        default:
+          break;
+            }
+      }
+
+    });
+
+    // switch (residence) {
+    //   case "Playlist":
+    //     switch (activePlaylist) {
+    //       case true:
+    //         $(this).text("About Me");
+    //         $('.resume').fadeOut();
+    //         $('.playlist').fadeIn();
+    //         $('.player').fadeIn();
+    //         $('.nav-wrapper form').fadeIn();
+  
+    //         break;
+    //         case false:
+    //           $(this).text("About Me");
+    //           $('.resume').fadeOut();
+    //           $('.playlist').fadeIn();
+    //           $('.player').fadeIn();
+    //           $('.nav-wrapper form').fadeIn();
+    
+    //           break;
+    //       default:
+    //         break;
+    //     }
+     
+    // }
     
   
-
-
   playlist._getAllPlaylist();
  
 
