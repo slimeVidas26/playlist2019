@@ -7,7 +7,9 @@
    var activePlaylist = $('.playlist').filter(function(){
     return $(this).attr("isplaying")=="true" });
 
-  $("#spinner").show()
+    console.log(activePlaylist.length)
+
+  $("#spinner").show();
 
 var playlist = (function(){
 
@@ -367,73 +369,42 @@ var processPlaylist = (function(){
 
   // $(document).on('click','.resumePlaylist', function(){
     
-     $('.resumePlaylist').on('click',function(){
-    
-      // $(this).text()=="About Me" ?  $(this).text("Playlist"):$(this).text("About Me");
-      // $('.resume').toggle();
-      // $('.playlist').toggle();
-      // $('.player').toggle()
-
+     $('a.resumePlaylist').on('click',function(){
+  
       switch ($(this).text()) {
-        case "About Me":
-          $(this).text("Playlist");
-          $('.resume').fadeIn();
-          $('.playlist').fadeOut();
-          $('.player').fadeOut();
-          $('.nav-wrapper form').fadeOut();
-          break;
+
+          case "About Me":
+
+              $(this).text("Playlist");
+              $('.resume').fadeIn();
+              $('.playlist').fadeOut();
+              $('.player').fadeOut();
+              $('.nav-wrapper form').fadeOut();
+
          
+          break;
 
           case "Playlist":
-            switch (activePlaylist>0) {
-              case true:
-                $(this).text("About Me");
-                $('.resume').fadeOut();
-                $('.playlist').fadeIn();
-                $('.player').fadeIn();
-                $('.nav-wrapper form').fadeIn();
-      
-                break;
-                case false:
-                  $(this).text("About Me");
-                  $('.resume').fadeOut();
-                  $('.playlist').fadeIn();
-                  $('.player').fadeOut();
-                  $('.nav-wrapper form').fadeIn();
-        
-                  break;
-      
-        default:
-          break;
-            }
+              $(this).text("About Me");
+              $('.resume').fadeOut();
+              $('.playlist').fadeIn();
+              $('.nav-wrapper form').fadeIn();
+              if(activePlaylist.length == 0){
+                
+                $('.player').fadeOut();
+              
+              }
+              else{
+                
+                 $('.player').fadeIn();
+                
+              }
+              break; 
       }
 
     });
 
-    // switch (residence) {
-    //   case "Playlist":
-    //     switch (activePlaylist) {
-    //       case true:
-    //         $(this).text("About Me");
-    //         $('.resume').fadeOut();
-    //         $('.playlist').fadeIn();
-    //         $('.player').fadeIn();
-    //         $('.nav-wrapper form').fadeIn();
-  
-    //         break;
-    //         case false:
-    //           $(this).text("About Me");
-    //           $('.resume').fadeOut();
-    //           $('.playlist').fadeIn();
-    //           $('.player').fadeIn();
-    //           $('.nav-wrapper form').fadeIn();
     
-    //           break;
-    //       default:
-    //         break;
-    //     }
-     
-    // }
     
   
   playlist._getAllPlaylist();
@@ -568,8 +539,9 @@ var processPlaylist = (function(){
                     
                             
                       //   }else{
+                        activePlaylist.push($(this).parent())
+                        console.log("activePlaylist > 0" , activePlaylist.length);
 
-                          console.log("activePlaylist >0" , activePlaylist);
                           $(".player").slideDown("slow");
                          $('#index-banner').fadeTo('slow', 0.3, function(){
                            $(this).css('background-image', 'url("Docs/audience.jpg")');
@@ -587,10 +559,11 @@ var processPlaylist = (function(){
                       $(this).text("pause_circle_outline");
                         setTimeout(function () {      
                       myAudio.get(0).play();
-                      
+
                     }, 150);
+
                     $(this).parent().attr("isplaying" , "true").addClass("rotate")
-                    $(this).parent().siblings().attr("isplaying" , "false").removeClass("rotate").find(".playBtn").text("play_circle_outline");;
+                    $(this).parent().siblings().attr("isplaying" , "false").removeClass("rotate").find(".playBtn").text("play_circle_outline");
 
                    
 
