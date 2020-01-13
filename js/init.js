@@ -1,11 +1,11 @@
-(function ($) {
-
-    
-   
+(function($) {
 
     $(function () {
         $('.sidenav').sidenav();
     });
+
+  
+
 
 
 

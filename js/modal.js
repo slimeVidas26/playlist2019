@@ -1,6 +1,7 @@
 
 (function ($) {
 
+
   // MODAL
   $('.modal').modal();
 
