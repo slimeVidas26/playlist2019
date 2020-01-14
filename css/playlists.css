@@ -16,6 +16,10 @@
   }
 }
 
+.lang , .social { 
+  text-align: center;
+}
+
 /* .mainPlaylist{
   position: relative;
   background-position: center top;

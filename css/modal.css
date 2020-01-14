@@ -1,6 +1,6 @@
 /* MODAL */
 
-.modal-form-row {
+.modal-form-row  {
     margin-bottom: 0px;
   } 
   
@@ -114,7 +114,13 @@
       position: absolute;
       bottom:0;
       left:-1%;
-    }  
+    } 
+    
+    .input-field {
+      position: relative;
+      margin-top: 1rem;
+       margin-bottom: 0; 
+  }
   }
   @media (min-width:600px) {
     /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
@@ -159,7 +165,9 @@
 
     .pre{
         font-size: 11px;
-    }  
+    } 
+    
+    
   }
   @media (min-width:992px) {
      /* big landscape tablets, laptops, and desktops */
