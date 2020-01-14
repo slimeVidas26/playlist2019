@@ -61,6 +61,12 @@ nav ul a {
   color:white;
 }
 
+/* nav ul a:nth-of-type(2):before {
+  content : "";
+  font-family: "Material Icons";
+  content: "\e5cc";
+} */
+
 nav .input-field label.active i {
   color: white;
 }

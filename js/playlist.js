@@ -369,13 +369,28 @@ var processPlaylist = (function(){
 
   // $(document).on('click','.resumePlaylist', function(){
     
-     $('a.resumePlaylist').on('click',function(){
+     $('a.resumePlaylist').on('click',function(e){
+      console.log(e.target)
+      console.log($(this).text())
+      console.log($(this).children())
+
+    
+
+    var myStr = $(this).text();
+    var textBtn =myStr.slice(myStr.length - 8).trim() 
+    console.log("textBtn",textBtn);
+
+    
   
-      switch ($(this).text()) {
+      switch (textBtn) {
 
           case "About Me":
-
-              $(this).text("Playlist");
+              $(this).text("Playlist")
+              console.log("this" , $(this))
+              //console.log("children" , $(this).children(":first"))
+              $(this).append('<i class="material-icons left">playlist_play</i>');
+              // $(this).prepend('<i class="material-icons left">playlist_play</i>');
+              
               $('.resume').fadeIn();
               $('.playlist').fadeOut();
               $('.player').fadeOut();
@@ -384,8 +399,13 @@ var processPlaylist = (function(){
          
           break;
 
-          case "Playlist":
-              $(this).text("About Me");
+          case "ist_play":
+              $(this).text("About Me")
+              console.log("this" , $(this))
+              //console.log("children" , $(this).children(":first"))
+              $(this).prepend('<i class="material-icons left">face</i>');
+              // $(this).prepend('<i class="material-icons left">playlist_play</i>');
+
               $('.resume').fadeOut();
               $('.playlist').fadeIn();
               $('.nav-wrapper form').fadeIn();
@@ -400,6 +420,8 @@ var processPlaylist = (function(){
                 
               }
               break; 
+              default:
+    
       }
 
     });
