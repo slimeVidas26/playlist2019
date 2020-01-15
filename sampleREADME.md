@@ -4,9 +4,10 @@
 
 ***INSERT GRAPHIC HERE (include hyperlink in image)***
 
-# Repository Title Goes Here
+# Audio Playlist
 
 > Subtitle or Short Description Goes Here
+> An SPA and CRUD application that allow to add , remove , update and delete  audio playlists.
 
 > ideally one sentence
 
