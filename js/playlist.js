@@ -328,7 +328,8 @@ function addPlaylist(name, image, songs) {
   //DELETE PLAYLIST
   var deletePlaylist = function(){
     $(document).on('click','.cancel , .cancelImg', function(){
-    var id = $(".cancel").data("id");
+    var id = $(this).data("id");
+    console.log(id)
     
     $('.cancelImg').attr('data-id' ,"id");
 
@@ -606,7 +607,10 @@ var processPlaylist = (function(){
   
 
   $('#search').keyup(function(){
-    var search = $(this).val();
+    var search = $(this).val().toLowerCase();
+console.log("search" , search)
+  
+
     
     if(search !== undefined)
     {

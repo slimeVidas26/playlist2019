@@ -97,7 +97,7 @@ function playlists($query = NULL) {
 	switch ($_SERVER['REQUEST_METHOD']) {
 	case 'GET':
 		if($query){
-			$q = $_GET["query"];
+			$q = strtolower($_GET["query"]);
 			$data = array();
 	
           $stmt = $conn->prepare("SELECT * FROM playlists WHERE id LIKE '%" . $q . "%'OR name LIKE '%".$q."%'OR image LIKE '%".$q."%'");
