@@ -1,5 +1,8 @@
 <a href="http://fvcproductions.com"><img src="Docs/readme/playlist.png" title="nemorak.com" alt="nemorak.com"></a>
 
+<video width="320" height="240" controls>
+  <source src="Docs/readme/Audio_Playlist.mp4" type="video/mp4">
+</video>
 <!-- [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com) -->
 
 <!-- ***INSERT GRAPHIC HERE (include hyperlink in image)*** -->
@@ -36,9 +39,9 @@
 - Use <a href="http://recordit.co/" target="_blank">**Recordit**</a> to create quicks screencasts of your desktop and export them as `GIF`s.
 - For terminal sessions, there's <a href="https://github.com/chjj/ttystudio" target="_blank">**ttystudio**</a> which also supports exporting `GIF`s.
 
-**Recordit**
+**Demo**
 
-![Recordit GIF](http://g.recordit.co/iLN6A0vSD8.gif)
+![Recordit GIF](<a href="https://www.loom.com/share/8feb5fac427a4c10a52e3c2fab8ccb8b"> <p>Audio Playlist - Watch Video</p> <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/8feb5fac427a4c10a52e3c2fab8ccb8b-with-play.gif"> </a>)
 
 **ttystudio**
 
@@ -53,6 +56,7 @@
 ## Screenshots
 
 > Or Contributors/People
+
 
 | <a href="http://fvcproductions.com" target="_blank">**FVCproductions**</a> | <a href="http://fvcproductions.com" target="_blank">**FVCproductions**</a> | <a href="http://fvcproductions.com" target="_blank">**FVCproductions**</a> |
 | :---: |:---:| :---:|
