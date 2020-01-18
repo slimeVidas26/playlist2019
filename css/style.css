@@ -12,15 +12,14 @@
 }
 
 /* body */
-#index-banner{
-  /* background-image: url('../Docs/audience.jpg'); */
+#index-banner {
   background-repeat: no-repeat;
   background-size: contain;
   background-size: 100%;
   background-position: center center;
 
-} 
- 
+}
+
 
 
 
@@ -48,28 +47,22 @@
 }
 
 /* NAVBAR */
-/* nav ul a{
-  display:inline-block;
-} */
 
-nav{
-  /* background-color: rgba(0,0,0,0)!important; */
-  background-color:#ff9800!important;
+
+nav {
+  background-color: #ff9800 !important;
 }
 
-nav ul a { 
-  color:white;
+nav ul a {
+  color: white;
 }
 
-/* nav ul a:nth-of-type(2):before {
-  content : "";
-  font-family: "Material Icons";
-  content: "\e5cc";
-} */
+
 
 nav .input-field label.active i {
   color: white;
 }
+
 nav .input-field label i {
   color: rgba(0, 0, 0, 0.7);
   -webkit-transition: color .3s;
@@ -79,9 +72,5 @@ nav .input-field label i {
 
 .search {
   cursor: pointer;
-  
+
 }
-
-
-
-

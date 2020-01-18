@@ -146,28 +146,7 @@ function playlists($query = NULL) {
 			}
 		}
 
-		// if (!empty($p['name']) && !empty($p['image']) && !empty($p['songs']) && is_array($p['songs'])) {
-		// 	$okresult = true;
-		// 	$c = count($p['songs']);
-		// 	for ($i = 0; $i < $c && $okresult; $i++) {
-		// 		$okresult = !empty($p['songs'][$i]['name']) && !empty($p['songs'][$i]['url']);
-		// 	}
-		// 	if ($okresult) {
-				
-		// 		$stmt = $conn->prepare("INSERT INTO playlists(name,image,songs) VALUES(:name, :image, :songs)");
-		// 		$stmt->execute(array(
-		// 			'name' => $p['name'],
-		// 			'image' => $p['image'],
-		// 			'songs' => json_encode($p['songs'], TRUE),
-
-		// 		));
-		// 		$data = [
-		// 			'id' => $conn->lastInsertId(),
-
-		// 		];
-
-		// 	}
-		// }
+		
 		response($okresult, $data);
 
 		break;
