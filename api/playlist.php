@@ -97,10 +97,9 @@ function playlists($query = NULL) {
 	switch ($_SERVER['REQUEST_METHOD']) {
 	case 'GET':
 		if($query){
-			$q = strtolower($_GET["query"]);
+			$q =$_GET["query"];
 			$data = array();
-	
-          $stmt = $conn->prepare("SELECT * FROM playlists WHERE id LIKE '%" . $q . "%'OR name LIKE '%".$q."%'OR image LIKE '%".$q."%'");
+          $stmt = $conn->prepare("SELECT * FROM playlists WHERE id LIKE '%" . $q . "%'OR lower(name) LIKE '%".$q."%'OR lower(image) LIKE '%".$q."%'");
 
 			if ($stmt->execute()) {
 				while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {

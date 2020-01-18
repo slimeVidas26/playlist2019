@@ -607,7 +607,7 @@ var processPlaylist = (function(){
   
 
   $('#search').keyup(function(){
-    var search = $(this).val().toLowerCase();
+    var search = $(this).val();
 console.log("search" , search)
   
 

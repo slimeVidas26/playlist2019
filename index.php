@@ -47,8 +47,6 @@
   <script src="js/init.js"></script>
   <script src="js/modal.js"></script>
   <script src="js/playlist.js"></script>
-
-   <!-- <script src="audio.js"></script> -->
    <script src="js/Arctext/js/jquery.arctext.js"></script>
 
 
@@ -56,19 +54,19 @@
   <script>
     (function ($) {
 
-      // $('.arcText').arctext({
-      //   radius: 150
-      // });
+      $('.arcText').arctext({
+        radius: 150
+      });
 
-      $('.arcText').arctext( {
-						radius		: 150, 
-						dir			: 1, 
-						animation	: {
-							speed	: 300,
-							easing  : 'ease-out'
-						}
-					});
-					return false;
+      // $('.arcText').arctext( {
+			// 			radius		: 150, 
+			// 			dir			: 1, 
+			// 			animation	: {
+			// 				speed	: 300,
+			// 				easing  : 'ease-out'
+			// 			}
+			// 		});
+			// 		return false;
   })(jQuery);
   </script>
 
