@@ -1,5 +1,4 @@
 
-
 **Demo**
 
 ![Recordit GIF](Docs/readme/demo.gif)
@@ -16,7 +15,6 @@
 > A CRUD and SPA application that allow to add create ,  remove , update , delete , and of course  listen  to your favorite songs.
 
 > Jquery , PHP , Materialize
-
 
 **Technologies**
 
