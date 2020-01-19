@@ -12,7 +12,13 @@ try {
 	// $dbname = "nemorakc_playlist"; 
 	// $password = "trottinette" ;
 	// $username = "rg512"; 
+
 	// db connection
+	// $servername = "localhost"; 
+	// $dbname = "nemorakc_playlist"; 
+	// $password = "trottinette" ;
+	// $username = "nemorakc_rg512"; 
+
 	$servername = "localhost";
 	$username = "root";
 	$password = "";

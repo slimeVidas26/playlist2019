@@ -20,6 +20,8 @@
 
       $.ajax({
         url: 'http://localhost/playlist2019/api/playlist',
+        url: 'http://nemorak.com/api/playlist',
+
 
         method: 'POST',
         data: {
@@ -68,8 +70,7 @@
       if (query !== undefined) {
         $.ajax({
           url: `http://localhost/playlist2019/api/playlist/${query}`,
-          // url: `http://localhost/music-player/api/playlist/${query}`,
-          // url: `http://nemorak.com/api/playlist/${query}`,
+           url: `http://nemorak.com/api/playlist/${query}`,
           method: 'GET',
 
         }).done(function (res) {
@@ -99,7 +100,7 @@
         $.ajax({
 
           url: 'http://localhost/playlist2019/api/playlist',
-          // url: `http://nemorak.com/api/playlist`,
+           url: `http://nemorak.com/api/playlist`,
 
 
           method: 'GET',
@@ -138,6 +139,8 @@
 
       $.ajax({
         url: `http://localhost/playlist2019/api/playlist/${id}`,
+        url: `http://nemorak.com/api/playlist/${id}`,
+
         method: "GET"
 
       }).done(function (res) {
@@ -161,6 +164,8 @@
 
       $.ajax({
         url: `http://localhost/playlist2019/api/playlist/${id}`,
+        url: `http://nemorak.com/api/playlist/${id}`,
+
         method: "GET"
 
       }).done(function (res) {
@@ -212,6 +217,8 @@
 
       $.ajax({
         url: `http://localhost/playlist2019/api/playlist/${id}/songs`,
+        url: `http://nemorak.com/api/playlist/${id}/songs`,
+
         method: "GET",
       }).done(function (res) {
         var playlistSongArr = res.data.songs;
@@ -305,6 +312,8 @@
     function editPlaylistSongsAndFinish(id, songData) {
       $.ajax({
         url: `http://localhost/playlist2019/api/playlist/${id}/songs`,
+        url: `http://nemorak.com/api/playlist/${id}/songs`,
+
 
         method: 'POST',
         data: {
@@ -332,6 +341,8 @@
         $('#modal-warning .modal-footer .okDelete').on('click', function () {
           $.ajax({
             url: `http://localhost/playlist2019/api/playlist/${id}`,
+            url: `http://nemorak.com/api/playlist/${id}`,
+
 
             method: 'DELETE',
           }).done(function (r) {
@@ -438,6 +449,8 @@
 
         $.ajax({
           url: `http://localhost/playlist2019/api/playlist/${$id}`,
+          url: `http://nemorak.com/api/playlist/${$id}`,
+
 
           method: 'POST',
           data: {
