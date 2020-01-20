@@ -71,7 +71,7 @@
 
 
 
-.cancelImg {
+#cancelImg {
   position: absolute;
   top: 36%;
   right: 2%;
@@ -82,7 +82,7 @@
 
 }
 
-.editImg {
+#editImg {
   position: absolute;
   bottom: 37%;
   right: 1.5%;
@@ -284,8 +284,8 @@ audio {
   }
 
 
-  .cancelImg,
-  .editImg {
+  #cancelImg,
+  #editImg {
     font-size: 1.5em;
   }
 
@@ -347,8 +347,8 @@ audio {
     height: 1.5em;
   }
 
-  .cancelImg,
-  .editImg {
+  #cancelImg,
+  #editImg {
     font-size: 2.5em;
   }
 
@@ -409,8 +409,8 @@ audio {
     height: 2em;
   }
 
-  .cancelImg,
-  .editImg {
+  #cancelImg,
+  #editImg {
     font-size: 2.5em;
   }
 
@@ -457,8 +457,8 @@ audio {
     font-size: 1.1em;
   }
 
-  .cancelImg,
-  .editImg {
+  #cancelImg,
+  #editImg {
     font-size: 2.5em;
   }
 
@@ -515,8 +515,8 @@ audio {
     height: 2em;
   }
 
-  .cancelImg,
-  .editImg {
+  #cancelImg,
+  #editImg {
     font-size: 2.5em;
   }
 
@@ -581,10 +581,11 @@ audio {
   audio {
     width: 80%;
     height: 2.5em;
+    display:none;
   }
 
-  .cancelImg,
-  .editImg {
+  #cancelImg,
+  #editImg {
     font-size: 2.5em;
   }
 
@@ -738,8 +739,8 @@ audio {
     justify-content: center;
     width: 30vw;
     height: 30vw;
-    top: 14%;
-    left: 3.2%;
+    top: 18%;
+    left: 3.41%;
   }
 
 

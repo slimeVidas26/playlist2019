@@ -1,6 +1,8 @@
 (function ($) {
   //AUDIO
   var myAudio = $("#sound");
+
+  
   var songName_index = 0;
   var activePlaylist = $('.playlist').filter(function () {
     return $(this).attr("isplaying") == "true"
@@ -20,7 +22,7 @@
 
       $.ajax({
         url: 'http://localhost/playlist2019/api/playlist',
-        url: 'http://nemorak.com/api/playlist',
+        //url: 'http://nemorak.com/api/playlist',
 
 
         method: 'POST',
@@ -70,7 +72,7 @@
       if (query !== undefined) {
         $.ajax({
           url: `http://localhost/playlist2019/api/playlist/${query}`,
-           url: `http://nemorak.com/api/playlist/${query}`,
+           //url: `http://nemorak.com/api/playlist/${query}`,
           method: 'GET',
 
         }).done(function (res) {
@@ -79,7 +81,7 @@
           console.log("activePlaylist in get all playlists with query")
 
           var newQuery = res.data.map(function (item) {
-            return `<div  class="col s12 m6 l4 xl3 playlist" isPlaying = "false">
+            return `<div  class="col s12 m6 l4 xl3 playlist" isplaying = "false">
           <img src=${item.image}  alt="preview img" class="center">
           <div  class="arcText">${item.name}</div>
           <i data-id = ${item.id} class="material-icons playBtn">play_circle_outline</i>
@@ -100,7 +102,7 @@
         $.ajax({
 
           url: 'http://localhost/playlist2019/api/playlist',
-           url: `http://nemorak.com/api/playlist`,
+           //url: `http://nemorak.com/api/playlist`,
 
 
           method: 'GET',
@@ -111,7 +113,7 @@
           console.log("activePlaylist in get all playlists without query")
 
           var newPlaylist = res.data.map(function (item) {
-            return `<div   class="col s12 m6 l4 xl3 playlist"  isPlaying ="false">
+            return `<div   class="col s12 m6 l4 xl3 playlist"  isplaying ="false">
              <img src=${item.image}  alt="preview img" class="center">
              <div  class="arcText">${item.name}</div>
                 <i data-id = ${item.id} class="material-icons playBtn">play_circle_outline</i>
@@ -139,7 +141,7 @@
 
       $.ajax({
         url: `http://localhost/playlist2019/api/playlist/${id}`,
-        url: `http://nemorak.com/api/playlist/${id}`,
+        //url: `http://nemorak.com/api/playlist/${id}`,
 
         method: "GET"
 
@@ -164,7 +166,7 @@
 
       $.ajax({
         url: `http://localhost/playlist2019/api/playlist/${id}`,
-        url: `http://nemorak.com/api/playlist/${id}`,
+        //url: `http://nemorak.com/api/playlist/${id}`,
 
         method: "GET"
 
@@ -217,7 +219,7 @@
 
       $.ajax({
         url: `http://localhost/playlist2019/api/playlist/${id}/songs`,
-        url: `http://nemorak.com/api/playlist/${id}/songs`,
+        //url: `http://nemorak.com/api/playlist/${id}/songs`,
 
         method: "GET",
       }).done(function (res) {
@@ -312,7 +314,7 @@
     function editPlaylistSongsAndFinish(id, songData) {
       $.ajax({
         url: `http://localhost/playlist2019/api/playlist/${id}/songs`,
-        url: `http://nemorak.com/api/playlist/${id}/songs`,
+        //url: `http://nemorak.com/api/playlist/${id}/songs`,
 
 
         method: 'POST',
@@ -330,18 +332,18 @@
 
     //DELETE PLAYLIST
     var deletePlaylist = function () {
-      $(document).on('click', '.cancel , .cancelImg', function () {
+      $(document).on('click', '.cancel , #cancelImg', function () {
         var id = $(this).data("id");
         console.log(id)
 
-        $('.cancelImg').attr('data-id', "id");
+        $('#cancelImg').attr('data-id', "id");
 
         $('#modal-warning .modal-footer .okDelete').attr('data-id', "id");
         $('#modal-warning .modal-content h4').attr('data-id', "id");
         $('#modal-warning .modal-footer .okDelete').on('click', function () {
           $.ajax({
             url: `http://localhost/playlist2019/api/playlist/${id}`,
-            url: `http://nemorak.com/api/playlist/${id}`,
+            //url: `http://nemorak.com/api/playlist/${id}`,
 
 
             method: 'DELETE',
@@ -371,6 +373,8 @@
   var processPlaylist = (function () {
 
     //SHOW RESUME
+
+    
 
 
 
@@ -449,7 +453,7 @@
 
         $.ajax({
           url: `http://localhost/playlist2019/api/playlist/${$id}`,
-          url: `http://nemorak.com/api/playlist/${$id}`,
+          //url: `http://nemorak.com/api/playlist/${$id}`,
 
 
           method: 'POST',
@@ -474,14 +478,17 @@
 
     //GET PLAYLIST
 
+  
 
-    $(document).on('click', '.edit , .editImg', function () {
-      var playlistID = $(".edit").data("id")
-      $('.editImg').attr('data-id', "playlistID");
 
+    $(document).on('click', '.edit  , #editImg', function () {
+      var playlistID = $(this).data("id");
+      $(this).attr('data-id', playlistID);
       playlist._getPlaylist(playlistID);
 
     });
+
+    
 
 
     //DELETE PLAYLIST
@@ -490,6 +497,8 @@
 
 
     $(document).on('click', 'i.material-icons.playBtn', function () {
+
+      
 
       if ($(this).text() == "pause_circle_outline") {
 
@@ -518,6 +527,7 @@
         $(".item").hide();
         $(".itemIsPlaying").show().addClass("rotate");
         var playlistID = $(this).data("id");
+        $('#editImg').attr('data-id', playlistID);
         playlist._getPlaylistSongs(playlistID);
 
         $('.nowPlaying').textMarquee({
@@ -532,29 +542,29 @@
         $(this).parent().attr("isplaying", "true").addClass("rotate")
         $(this).parent().siblings().attr("isplaying", "false").removeClass("rotate").find(".playBtn").text("play_circle_outline");
 
-
-
-
-
       }
-
-
-
     });
 
 
 
     $('#search').keyup(function () {
       var search = $(this).val();
-      console.log("search", search)
-
-
-
-      if (search !== undefined) {
+  
+      if (search.length >0) {
         playlist._getAllPlaylist(search);
+        console.log("search", search)
       } else {
         playlist._getAllPlaylist();
+        console.log("emptysearch", search)
+
       }
+
+      myAudio.onplay = function() {
+         /* do something */
+         console.log("toto")
+        };
+
+      
 
     });
 
