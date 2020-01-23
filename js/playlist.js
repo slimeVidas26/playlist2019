@@ -33,13 +33,13 @@
         }
 
       }).done(function (r) {
-        console.log(r.data);
-        console.log(`Playlist ${r.data.id} added successfully`);
+        // console.log(r.data);
+        // console.log(`Playlist ${r.data.id} added successfully`);
 
         getAllPlaylist();
 
       }).fail(function (textStatus) {
-        console.log(textStatus);
+        //console.log(textStatus);
       });
     }
 
@@ -69,7 +69,8 @@
     var getAllPlaylist = function (query) {
       $('#spinner').show();
 
-      if (query !== undefined) {
+      // if (query !== undefined) {
+        if (undefined !== query && query.length) {
         $.ajax({
           url: `http://localhost/playlist2019/api/playlist/${query}`,
            //url: `http://nemorak.com/api/playlist/${query}`,
@@ -95,7 +96,7 @@
              `
           });
 
-          $('.mainPlaylist').html(newQuery)
+          $('.mainPlaylist').html(newQuery).fadeIn(1500);
 
         })
       } else {
@@ -110,7 +111,7 @@
         }).done(function (res) {
           $('#spinner').hide();
 
-          console.log("activePlaylist in get all playlists without query")
+          //console.log("activePlaylist in get all playlists without query")
 
           var newPlaylist = res.data.map(function (item) {
             return `<div   class="col s12 m6 l4 xl3 playlist"  isplaying ="false">
@@ -126,7 +127,7 @@
                 </a>`
           });
 
-          $('.mainPlaylist').html(newPlaylist)
+          $('.mainPlaylist').html(newPlaylist).fadeIn(1500);
         }).fail(function (textStatus) {
           console.log(textStatus);
         });
@@ -189,12 +190,29 @@
 
     }
 
+    // GET PLAYLIST NAME
+
+    var getPlaylistName = function (id) {
+
+      $.ajax({
+        url: `http://localhost/playlist2019/api/playlist/${id}`,
+        //url: `http://nemorak.com/api/playlist/${id}`,
+
+        method: "GET"
+
+      }).done(function (res) {
+        console.log("res.data.name" , res.data.name)
+        $(".playlist-title").empty().append(res.data.name);
+      });
+
+    }
+
     var switchTrack = function (collection) {
 
       if (songName_index == (collection.length - 1)) {
         songName_index = 0;
         myAudio.src = collection[songName_index].url;
-        myAudio.play();
+        myAudio.get(0).play();
         $('.nowPlaying').html(`Now Playing : ${songName[0].name}`);
         $('.nowPlaying').textMarquee({
           mode: 'loop'
@@ -330,13 +348,18 @@
       });
     }
 
+
     //DELETE PLAYLIST
     var deletePlaylist = function () {
       $(document).on('click', '.cancel , #cancelImg', function () {
-        var id = $(this).data("id");
-        console.log(id)
 
-        $('#cancelImg').attr('data-id', "id");
+        var id = $(this).data("id");
+        console.log(id);
+       
+        $('#cancelImg').attr('data-id', id);
+         console.log($(this).attr('data-id'));
+         getPlaylistName(id);
+
 
         $('#modal-warning .modal-footer .okDelete').attr('data-id', "id");
         $('#modal-warning .modal-content h4').attr('data-id', "id");
@@ -366,6 +389,7 @@
       _deletePlaylist: deletePlaylist,
       _getPlaylistSongs: getPlaylistSongs
 
+
     }
   })();
 
@@ -379,15 +403,15 @@
 
 
     $('a.resumePlaylist').on('click', function (e) {
-      console.log(e.target)
-      console.log($(this).text())
-      console.log($(this).children())
+      // console.log(e.target)
+      // console.log($(this).text())
+      // console.log($(this).children())
 
 
 
       var myStr = $(this).text();
       var textBtn = myStr.slice(myStr.length - 8).trim()
-      console.log("textBtn", textBtn);
+      //console.log("textBtn", textBtn);
 
 
 
@@ -395,10 +419,9 @@
 
         case "About Me":
           $(this).text("Playlist")
-          console.log("this", $(this))
+          //console.log("this", $(this))
           //console.log("children" , $(this).children(":first"))
           $(this).append('<i class="material-icons left">playlist_play</i>');
-          // $(this).prepend('<i class="material-icons left">playlist_play</i>');
 
           $('.resume').fadeIn();
           $('.playlist').fadeOut();
@@ -498,7 +521,9 @@
 
     $(document).on('click', 'i.material-icons.playBtn', function () {
 
-      
+      $("html, body").animate({ scrollTop: 0 }, 600);
+
+      //$(window).scrollTop(0); 
 
       if ($(this).text() == "pause_circle_outline") {
 

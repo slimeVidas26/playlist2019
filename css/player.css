@@ -149,7 +149,7 @@
 
 .listSongs {
   position: absolute;
-  top: 48%;
+  top: 40%;
   left: 2%;
   width: 100%;
   transform: translateY(-50%);

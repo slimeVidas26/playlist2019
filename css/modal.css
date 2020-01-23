@@ -9,6 +9,10 @@
     padding-bottom:10px;
   }
 
+  .playlist-title{
+    color: crimson;
+  }
+
   .focused{
     font-size: 12px !important;
     -webkit-transform: translateY(-140%);
@@ -21,7 +25,6 @@
  
 
   .modal-footer a:first-child{
-      color:black;
       margin-top:10px;
       cursor: pointer;
       margin-left: 6px;
