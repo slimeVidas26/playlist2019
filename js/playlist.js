@@ -1,15 +1,11 @@
 (function ($) {
-  //AUDIO
+  //DEFINE VARIABLES
   var myAudio = $("#sound");
-
-  
   var songName_index = 0;
-  var activePlaylist = $('.playlist').filter(function () {
-    return $(this).attr("isplaying") == "true"
-  });
+  var activePlaylist = $('.playlist').filter(() =>
+     $(this).attr("isplaying") == "true");
 
   console.log(activePlaylist.length)
-
   $("#spinner").show();
 
   var playlist = (function () {
