@@ -350,20 +350,9 @@
 
 
     //DELETE PLAYLIST
+    
+
     var deletePlaylist = function () {
-      $(document).on('click', '.cancel , #cancelImg', function () {
-
-        var id = $(this).data("id");
-        console.log(id);
-       
-        $('#cancelImg').attr('data-id', id);
-         console.log($(this).attr('data-id'));
-         getPlaylistName(id);
-
-
-        $('#modal-warning .modal-footer .okDelete').attr('data-id', "id");
-        $('#modal-warning .modal-content h4').attr('data-id', "id");
-        $('#modal-warning .modal-footer .okDelete').on('click', function () {
           $.ajax({
             url: `http://localhost/playlist2019/api/playlist/${id}`,
             //url: `http://nemorak.com/api/playlist/${id}`,
@@ -374,20 +363,20 @@
             getAllPlaylist();
           }).fail(function (textStatus) {
             console.log(textStatus);
-          });
-        })
-      });
+          }); 
     }
 
     return {
       _addPlaylist: addPlaylist,
       _insertSongToPlaylist: insertSongToPlaylist,
       _getAllPlaylist: getAllPlaylist,
-
       _getPlaylist: getPlaylist,
       _editPlaylistSongsAndFinish: editPlaylistSongsAndFinish,
       _deletePlaylist: deletePlaylist,
-      _getPlaylistSongs: getPlaylistSongs
+      _getPlaylistSongs: getPlaylistSongs,
+      deletePlaylist: deletePlaylist,
+      _getPlaylistName : getPlaylistName
+
 
 
     }
@@ -397,10 +386,6 @@
   var processPlaylist = (function () {
 
     //SHOW RESUME
-
-    
-
-
 
     $('a.resumePlaylist').on('click', function (e) {
       // console.log(e.target)
@@ -499,11 +484,7 @@
 
     });
 
-    //GET PLAYLIST
-
-  
-
-
+    //GET PLAYLIST TO UPDATE
     $(document).on('click', '.edit  , #editImg', function () {
       var playlistID = $(this).data("id");
       $(this).attr('data-id', playlistID);
@@ -512,10 +493,23 @@
     });
 
     
-
-
     //DELETE PLAYLIST
-    playlist._deletePlaylist();
+
+      $(document).on('click', '.cancel , #cancelImg', function () {
+        var id = $(this).data("id");
+        $(this).attr('data-id', id);
+        //console.log(id);
+         //console.log($(this).attr('data-id'));
+         playlist._getPlaylistName(id);
+
+
+        $('#modal-warning .modal-footer .okDelete').attr('data-id', "id");
+        $('#modal-warning .modal-content h4').attr('data-id', "id");
+        $('#modal-warning .modal-footer .okDelete').on('click', function () {
+          playlist._deletePlaylist()
+        })
+      });
+    
     //end of delete playlist
 
 
@@ -553,6 +547,8 @@
         $(".itemIsPlaying").show().addClass("rotate");
         var playlistID = $(this).data("id");
         $('#editImg').attr('data-id', playlistID);
+        $('#cancelImg').attr('data-id', playlistID);
+
         playlist._getPlaylistSongs(playlistID);
 
         $('.nowPlaying').textMarquee({
