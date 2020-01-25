@@ -1,5 +1,8 @@
 (function ($) {
   //DEFINE VARIABLES
+  const LOCAL =  `http://localhost/playlist2019/api/playlist`;
+  const PROD =  `http://nemorak.com/api/playlist`;
+
   var myAudio = $("#sound");
   var songName_index = 0;
   var activePlaylist = $('.playlist').filter(() =>
@@ -17,8 +20,8 @@
     function addPlaylist(name, image, songs) {
 
       $.ajax({
-        url: 'http://localhost/playlist2019/api/playlist',
-        //url: 'http://nemorak.com/api/playlist',
+        url: `${LOCAL}`,
+        //url:`${PROD}`,
 
 
         method: 'POST',
@@ -68,8 +71,8 @@
       // if (query !== undefined) {
         if (undefined !== query && query.length) {
         $.ajax({
-          url: `http://localhost/playlist2019/api/playlist/${query}`,
-           //url: `http://nemorak.com/api/playlist/${query}`,
+          url: `${LOCAL}/${query}`,
+           //url: `${PROD}/${query}`,
           method: 'GET',
 
         }).done(function (res) {
@@ -98,8 +101,8 @@
       } else {
         $.ajax({
 
-          url: 'http://localhost/playlist2019/api/playlist',
-           //url: `http://nemorak.com/api/playlist`,
+          url: `${LOCAL}`,
+          //url:`${PROD}`,
 
 
           method: 'GET',
@@ -137,8 +140,8 @@
     var getPlaylistImage = function (id) {
 
       $.ajax({
-        url: `http://localhost/playlist2019/api/playlist/${id}`,
-        //url: `http://nemorak.com/api/playlist/${id}`,
+        url: `${LOCAL}/${id}`,
+        //url: `${PROD}/${id}`,
 
         method: "GET"
 
@@ -162,8 +165,8 @@
     var getPlaylist = function (id) {
 
       $.ajax({
-        url: `http://localhost/playlist2019/api/playlist/${id}`,
-        //url: `http://nemorak.com/api/playlist/${id}`,
+        url: `${LOCAL}/${id}`,
+        //url: `${PROD}/${id}`,
 
         method: "GET"
 
@@ -191,8 +194,8 @@
     var getPlaylistName = function (id) {
 
       $.ajax({
-        url: `http://localhost/playlist2019/api/playlist/${id}`,
-        //url: `http://nemorak.com/api/playlist/${id}`,
+        url: `${LOCAL}/${id}`,
+        //url: `${PROD}/${id}`,
 
         method: "GET"
 
@@ -232,8 +235,8 @@
     var getPlaylistSongs = function (id) {
 
       $.ajax({
-        url: `http://localhost/playlist2019/api/playlist/${id}/songs`,
-        //url: `http://nemorak.com/api/playlist/${id}/songs`,
+        url: `${LOCAL}/${id}/songs`,
+        //url: `${PROD}/${id}/songs`,
 
         method: "GET",
       }).done(function (res) {
@@ -327,8 +330,8 @@
     // EDIT PLAYLIST SONGS AND FINISH
     function editPlaylistSongsAndFinish(id, songData) {
       $.ajax({
-        url: `http://localhost/playlist2019/api/playlist/${id}/songs`,
-        //url: `http://nemorak.com/api/playlist/${id}/songs`,
+        url: `${LOCAL}/${id}/songs`,
+        //url: `${PROD}/${id}/songs`,
 
 
         method: 'POST',
@@ -350,8 +353,8 @@
 
     var deletePlaylist = function () {
           $.ajax({
-            url: `http://localhost/playlist2019/api/playlist/${id}`,
-            //url: `http://nemorak.com/api/playlist/${id}`,
+            url: `${LOCAL}/${id}`,
+            //url: `${PROD}/${id}`,
 
 
             method: 'DELETE',
@@ -456,8 +459,8 @@
       } else {
 
         $.ajax({
-          url: `http://localhost/playlist2019/api/playlist/${$id}`,
-          //url: `http://nemorak.com/api/playlist/${$id}`,
+          url: `${LOCAL}/${$id}`,
+          //url: `${PROD}/${$id}`,
 
 
           method: 'POST',
