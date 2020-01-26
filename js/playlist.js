@@ -20,8 +20,8 @@
     function addPlaylist(name, image, songs) {
 
       $.ajax({
-        //url: `${LOCAL}`,
-        url:`${PROD}`,
+        url: `${LOCAL}`,
+        //url:`${PROD}`,
 
 
         method: 'POST',
@@ -101,10 +101,8 @@
       } else {
         $.ajax({
 
-          //url: `${LOCAL}`,
-          url:`${PROD}`,
-
-
+          url: `${LOCAL}`,
+          //url:`${PROD}`,
           method: 'GET',
 
         }).done(function (res) {
@@ -140,8 +138,8 @@
     var getPlaylistImage = function (id) {
 
       $.ajax({
-        //url: `${LOCAL}/${id}`,
-        url: `${PROD}/${id}`,
+        url: `${LOCAL}/${id}`,
+        //url: `${PROD}/${id}`,
 
         method: "GET"
 
@@ -165,8 +163,8 @@
     var getPlaylist = function (id) {
 
       $.ajax({
-        //url: `${LOCAL}/${id}`,
-        url: `${PROD}/${id}`,
+        url: `${LOCAL}/${id}`,
+        //url: `${PROD}/${id}`,
 
         method: "GET"
 
@@ -194,8 +192,8 @@
     var getPlaylistName = function (id) {
 
       $.ajax({
-        //url: `${LOCAL}/${id}`,
-        url: `${PROD}/${id}`,
+        url: `${LOCAL}/${id}`,
+        //url: `${PROD}/${id}`,
 
         method: "GET"
 
@@ -209,10 +207,13 @@
     var switchTrack = function (collection) {
 
       if (songName_index == (collection.length - 1)) {
+        $('.listSongs ul a li').eq(songName_index).removeClass("current");
         songName_index = 0;
         myAudio.src = collection[songName_index].url;
         myAudio.get(0).play();
-        $('.nowPlaying').html(`Now Playing : ${songName[0].name}`);
+       
+        $('.listSongs ul a li').eq(songName_index).addClass("current");
+        $('.nowPlaying').html(`Now Playing :\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0 ${collection[0].name}`);
         $('.nowPlaying').textMarquee({
           mode: 'loop'
         });
@@ -224,7 +225,7 @@
         $('.listSongs ul a li').eq(songName_index).addClass("current");
 
         myAudio.get(0).play();
-        $('.nowPlaying').html(`${collection[songName_index].name}`);
+        $('.nowPlaying').html(`Now Playing :\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${collection[songName_index].name}`);
         $('.nowPlaying').textMarquee({
           mode: 'loop'
         });
@@ -235,8 +236,8 @@
     var getPlaylistSongs = function (id) {
 
       $.ajax({
-        //url: `${LOCAL}/${id}/songs`,
-        url: `${PROD}/${id}/songs`,
+        url: `${LOCAL}/${id}/songs`,
+        //url: `${PROD}/${id}/songs`,
 
         method: "GET",
       }).done(function (res) {
@@ -267,7 +268,7 @@
         $('.player .info .listSongs ul').html(listSongs);
         $('.listSongs ul a li:first').addClass("current");
 
-        $('.nowPlaying').append(`Now Playing : ${songName[0].name}`);
+        $('.nowPlaying').append(`Now Playing :\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0 ${songName[0].name}`);
         $('.nowPlaying').textMarquee({
           mode: 'loop'
         });
@@ -279,7 +280,7 @@
             $(this).addClass("currentStop");
             $(myAudio).get(0).pause();
             $('.itemIsPlaying').removeClass('rotate')
-            $('.nowPlaying').html(`Stop Sound :${$(this).text()}`);
+            $('.nowPlaying').html(`Stop Sound :\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${$(this).text()}`);
 
             if ($('.playlist').hasClass('rotate')) {
               $('.playlist').removeClass('rotate');
@@ -290,7 +291,7 @@
             $(this).addClass("current");
             myAudio.get(0).play();
             $('.itemIsPlaying').addClass('rotate');
-            $('.nowPlaying').html(`Now Playing :${$(this).text()}`);
+            $('.nowPlaying').html(`Now Playing :\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${$(this).text()}`);
             $('.nowPlaying').textMarquee({
               mode: 'loop'
             });
@@ -310,7 +311,7 @@
             $(this).addClass("current");
             $('.itemIsPlaying').addClass('rotate');
             //$(".nowPlaying").replaceWith(`Now Playing :${$(this).text()}`);
-            $('.nowPlaying').html(`Now Playing :${$(this).text()}`);
+            $('.nowPlaying').html(`Now Playing :\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${$(this).text()}`);
             $('.nowPlaying').textMarquee({
               mode: 'loop'
             });
@@ -330,8 +331,8 @@
     // EDIT PLAYLIST SONGS AND FINISH
     function editPlaylistSongsAndFinish(id, songData) {
       $.ajax({
-        //url: `${LOCAL}/${id}/songs`,
-        url: `${PROD}/${id}/songs`,
+        url: `${LOCAL}/${id}/songs`,
+        //url: `${PROD}/${id}/songs`,
 
 
         method: 'POST',
@@ -353,8 +354,8 @@
 
     var deletePlaylist = function () {
           $.ajax({
-            //url: `${LOCAL}/${id}`,
-            url: `${PROD}/${id}`,
+            url: `${LOCAL}/${id}`,
+            //url: `${PROD}/${id}`,
 
 
             method: 'DELETE',
