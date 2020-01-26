@@ -40,4 +40,4 @@
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
 - **[MIT license](http://opensource.org/licenses/mit-license.php)**
-- Copyright 2015 © <a href="http://www.nemorak.com" target="_blank">nemorak.com</a>.
+- Copyright 2015 © <a href="http://www.nemorak.com/demo/index.php" target="_blank">nemorak.com</a>.

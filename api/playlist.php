@@ -1,4 +1,5 @@
 <?php 
+//header(" Access-Control-Allow-Origin:* ")
 
 if (!empty($_GET['404'])
 	|| empty($_GET['type'])

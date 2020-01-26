@@ -20,8 +20,8 @@
     function addPlaylist(name, image, songs) {
 
       $.ajax({
-        url: `${LOCAL}`,
-        //url:`${PROD}`,
+        //url: `${LOCAL}`,
+        url:`${PROD}`,
 
 
         method: 'POST',
@@ -101,8 +101,8 @@
       } else {
         $.ajax({
 
-          url: `${LOCAL}`,
-          //url:`${PROD}`,
+          //url: `${LOCAL}`,
+          url:`${PROD}`,
 
 
           method: 'GET',
@@ -140,8 +140,8 @@
     var getPlaylistImage = function (id) {
 
       $.ajax({
-        url: `${LOCAL}/${id}`,
-        //url: `${PROD}/${id}`,
+        //url: `${LOCAL}/${id}`,
+        url: `${PROD}/${id}`,
 
         method: "GET"
 
@@ -165,8 +165,8 @@
     var getPlaylist = function (id) {
 
       $.ajax({
-        url: `${LOCAL}/${id}`,
-        //url: `${PROD}/${id}`,
+        //url: `${LOCAL}/${id}`,
+        url: `${PROD}/${id}`,
 
         method: "GET"
 
@@ -194,8 +194,8 @@
     var getPlaylistName = function (id) {
 
       $.ajax({
-        url: `${LOCAL}/${id}`,
-        //url: `${PROD}/${id}`,
+        //url: `${LOCAL}/${id}`,
+        url: `${PROD}/${id}`,
 
         method: "GET"
 
@@ -235,8 +235,8 @@
     var getPlaylistSongs = function (id) {
 
       $.ajax({
-        url: `${LOCAL}/${id}/songs`,
-        //url: `${PROD}/${id}/songs`,
+        //url: `${LOCAL}/${id}/songs`,
+        url: `${PROD}/${id}/songs`,
 
         method: "GET",
       }).done(function (res) {
@@ -330,8 +330,8 @@
     // EDIT PLAYLIST SONGS AND FINISH
     function editPlaylistSongsAndFinish(id, songData) {
       $.ajax({
-        url: `${LOCAL}/${id}/songs`,
-        //url: `${PROD}/${id}/songs`,
+        //url: `${LOCAL}/${id}/songs`,
+        url: `${PROD}/${id}/songs`,
 
 
         method: 'POST',
@@ -353,8 +353,8 @@
 
     var deletePlaylist = function () {
           $.ajax({
-            url: `${LOCAL}/${id}`,
-            //url: `${PROD}/${id}`,
+            //url: `${LOCAL}/${id}`,
+            url: `${PROD}/${id}`,
 
 
             method: 'DELETE',
